@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+dist
+build
+electron
+.git
+.gitignore
+*.ps1
+test*
+.gemini

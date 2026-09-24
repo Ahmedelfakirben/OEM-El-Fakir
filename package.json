@@ -1,0 +1,67 @@
+{
+  "name": "oem-driver-auditor",
+  "version": "1.0.0",
+  "description": "OEM Driver Matrix Explorer — Auditoría de controladores y firmware para flotas corporativas Lenovo y HP",
+  "main": "electron/main.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "electron": "electron .",
+    "dist:msi": "electron-builder --win msi"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "nodemon": "^3.0.2"
+  },
+  "build": {
+    "appId": "com.oem.driverauditor",
+    "productName": "OEM Driver Auditor",
+    "copyright": "Copyright 2026 OEM Driver Auditor",
+    "directories": {
+      "output": "../oem-dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "server.js",
+      "lib/**/*",
+      "public/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "msi"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "msi": {
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": true,
+      "shortcutName": "OEM Driver Auditor",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "keywords": [
+    "lenovo",
+    "hp",
+    "drivers",
+    "bios",
+    "firmware",
+    "fleet",
+    "audit",
+    "oem"
+  ],
+  "author": "OEM Driver Auditor",
+  "license": "MIT"
+}

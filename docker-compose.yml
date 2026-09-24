@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  oem-driver-auditor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: oem-driver-auditor:latest
+    container_name: oem-driver-auditor
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

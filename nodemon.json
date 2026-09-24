@@ -1,0 +1,16 @@
+{
+  "watch": [
+    "server.js",
+    "lib/",
+    "public/"
+  ],
+  "ignore": [
+    "dist/*",
+    "build/*",
+    "node_modules/*",
+    ".git/*",
+    "*.ps1",
+    "*.log"
+  ],
+  "ext": "js,html,css,json"
+}

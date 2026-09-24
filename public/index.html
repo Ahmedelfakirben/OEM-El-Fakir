@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OEM Driver Explorer — Auditoría corporativa de controladores, parches y firmware BIOS para flotas HP y Lenovo con validación de admisión en Windows Update y Windows 11." />
+  <meta name="keywords" content="Lenovo drivers, HP drivers, BIOS update, firmware audit, Windows Update Catalog, WHQL, Intune driver update, ThinkPad, EliteBook, ProBook, Windows 11 24H2, Windows 11 25H2, Windows 11 26H2" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>OEM Driver Explorer — Auditoría de Flota &amp; Windows Update</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="OEM Driver Explorer" />
+  <meta property="og:description" content="Auditoría centralizada de controladores oficiales y verificación de admisión en el catálogo de Microsoft Windows Update / Intune" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon SVG limpio -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="style.css?v=6.5" />
+</head>
+<body>
+
+  <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true">OEM</div>
+        <div class="logo-title-group">
+          <span class="logo-text">Driver Explorer</span>
+          <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
+        </div>
+      </div>
+
+      <div class="header-services" aria-label="Estado de conectores OEM oficiales">
+        <div class="service-pill" title="API Oficial v4 de Lenovo PC Support">
+          <span class="service-dot lenovo"></span>
+          <span class="service-name">Lenovo PC Support</span>
+        </div>
+        <div class="service-pill" title="Catálogo Oficial HP Image Assistant / SoftPaq">
+          <span class="service-dot hp"></span>
+          <span class="service-name">HP Image Assistant</span>
+        </div>
+        <div class="service-pill" title="Taxonomía y Catálogo Microsoft Windows Update / WHQL">
+          <span class="service-dot msft"></span>
+          <span class="service-name">Microsoft WHQL / WU</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Panel Principal de Búsqueda y Control de Flota ───────────── -->
+  <section class="control-center-section" aria-labelledby="section-title">
+    <div class="control-center-container">
+      
+      <div class="control-center-intro">
+        <h1 id="section-title">Auditoría de Controladores y Firmware</h1>
+        <p>
+          Consulta el catálogo oficial de fabricantes, verifica si cada actualización está 
+          <strong>admitida en Windows Update</strong> y conoce su <strong>nombre oficial en Microsoft</strong> para gestión de Intune.
+        </p>
+      </div>
+
+      <!-- Command Deck Card -->
+      <div class="command-deck-card">
+        
+        <!-- Pestañas Selectoras de Fabricante (Lenovo / HP) -->
+        <div class="oem-toggle-bar" role="tablist" aria-label="Seleccionar fabricante">
+          <button
+            id="tab-lenovo"
+            class="oem-tab-btn active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="results-panel"
+            data-oem="lenovo"
+            onclick="selectOEM('lenovo')"
+          >
+            <span class="tab-btn-pill lenovo">LENOVO</span>
+            <div class="tab-btn-text">
+              <span class="tab-btn-title">Lenovo ThinkPad &amp; Workstations</span>
+              <span class="tab-btn-sub">Familias T460 · T480 · T490 · P15 · L14 · X1</span>
+            </div>
+          </button>
+
+          <button
+            id="tab-hp"
+            class="oem-tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="results-panel"
+            data-oem="hp"
+            onclick="selectOEM('hp')"
+          >
+            <span class="tab-btn-pill hp">HP</span>
+            <div class="tab-btn-text">
+              <span class="tab-btn-title">HP ProBook &amp; EliteBook</span>
+              <span class="tab-btn-sub">Familias ProBook 440 (G5-G11) · EliteBook 840 (G5-G11)</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Fila Unificada de Búsqueda: Selector de Flota + Input Libre -->
+        <div class="unified-search-deck">
+          
+          <!-- Dropdown Flota Frecuente -->
+          <div class="fleet-select-wrapper">
+            <label for="fleet-model-select" class="deck-label">Modelos frecuentes de la flota</label>
+            <div class="select-field-box">
+              <select
+                id="fleet-model-select"
+                class="fleet-dropdown"
+                onchange="handleFleetSelection(this.value)"
+                aria-label="Selecciona un modelo frecuente de la flota corporativa"
+              >
+                <option value="">Selecciona un modelo de la flota corporativa...</option>
+
+                <!-- HP PROBOOK 440 -->
+                <optgroup label="HP — Familia ProBook 440">
+                  <option value="hp:837E">HP ProBook 440 G5 (837E)</option>
+                  <option value="hp:8532">HP ProBook 440 G6 (8532)</option>
+                  <option value="hp:8723">HP ProBook 440 G7 (8723)</option>
+                  <option value="hp:888A">HP ProBook 440 G8 (888A)</option>
+                  <option value="hp:888B">HP ProBook 440 G8 — Placa Alt. (888B)</option>
+                  <option value="hp:8A4E">HP ProBook 440 G9 (8A4E)</option>
+                  <option value="hp:8A4F">HP ProBook 440 G9 — Placa Alt. (8A4F)</option>
+                  <option value="hp:8B58">HP ProBook 440 G10 (8B58)</option>
+                  <option value="hp:8B59">HP ProBook 440 G10 — Placa Alt. (8B59)</option>
+                  <option value="hp:8C24">HP ProBook 440 G11 (8C24)</option>
+                  <option value="hp:8C25">HP ProBook 440 G11 — Placa Alt. (8C25)</option>
+                </optgroup>
+
+                <!-- HP ELITEBOOK 840 -->
+                <optgroup label="HP — Familia EliteBook 840">
+                  <option value="hp:83B2">HP EliteBook 840 G5 (83B2)</option>
+                  <option value="hp:8549">HP EliteBook 840 G6 (8549)</option>
+                  <option value="hp:880D">HP EliteBook 840 G7 (880D)</option>
+                  <option value="hp:8724">HP EliteBook 840 G7 — Placa Alt. (8724)</option>
+                  <option value="hp:8936">HP EliteBook 840 G8 (8936)</option>
+                  <option value="hp:880E">HP EliteBook 840 G8 — Placa Alt. (880E)</option>
+                  <option value="hp:8AB2">HP EliteBook 840 G9 (8AB2)</option>
+                  <option value="hp:8A3B">HP EliteBook 840 G9 — Placa Alt. (8A3B)</option>
+                  <option value="hp:8A3C">HP EliteBook 840 G9 — Placa Alt. (8A3C)</option>
+                  <option value="hp:8B28">HP EliteBook 840 G10 (8B28)</option>
+                  <option value="hp:8B44">HP EliteBook 840 G10 — Placa Alt. (8B44)</option>
+                  <option value="hp:8B45">HP EliteBook 840 G10 — Placa Alt. (8B45)</option>
+                  <option value="hp:8C1E">HP EliteBook 840 G11 (8C1E)</option>
+                  <option value="hp:8C1F">HP EliteBook 840 G11 — Placa Alt. (8C1F)</option>
+                </optgroup>
+
+                <!-- LENOVO T460, T480, T490 -->
+                <optgroup label="Lenovo — Familias ThinkPad T460, T480 y T490">
+                  <option value="lenovo:20FM">ThinkPad T460 (20FM)</option>
+                  <option value="lenovo:20FN">ThinkPad T460 (20FN)</option>
+                  <option value="lenovo:20F9">ThinkPad T460s (20F9)</option>
+                  <option value="lenovo:20FA">ThinkPad T460s (20FA)</option>
+                  <option value="lenovo:20FW">ThinkPad T460p (20FW)</option>
+                  <option value="lenovo:20FX">ThinkPad T460p (20FX)</option>
+                  <option value="lenovo:20L5">ThinkPad T480 (20L5)</option>
+                  <option value="lenovo:20L6">ThinkPad T480 (20L6)</option>
+                  <option value="lenovo:20L7">ThinkPad T480s (20L7)</option>
+                  <option value="lenovo:20L8">ThinkPad T480s (20L8)</option>
+                  <option value="lenovo:20N2">ThinkPad T490 (20N2)</option>
+                  <option value="lenovo:20N3">ThinkPad T490 (20N3)</option>
+                  <option value="lenovo:20RY">ThinkPad T490 (20RY)</option>
+                  <option value="lenovo:20RX">ThinkPad T490 (20RX)</option>
+                  <option value="lenovo:20Q9">ThinkPad T490 Healthcare Edition (20Q9)</option>
+                  <option value="lenovo:20QH">ThinkPad T490 Healthcare Edition (20QH)</option>
+                  <option value="lenovo:20NX">ThinkPad T490s (20NX)</option>
+                  <option value="lenovo:20NY">ThinkPad T490s (20NY)</option>
+                </optgroup>
+
+                <!-- LENOVO P15 WORKSTATIONS -->
+                <optgroup label="Lenovo — Familia ThinkPad P15 (Workstations)">
+                  <option value="lenovo:20ST">ThinkPad P15 Gen 1 (20ST)</option>
+                  <option value="lenovo:20SU">ThinkPad P15 Gen 1 (20SU)</option>
+                  <option value="lenovo:20TQ">ThinkPad P15v Gen 1 Intel (20TQ)</option>
+                  <option value="lenovo:20TR">ThinkPad P15v Gen 1 Intel (20TR)</option>
+                  <option value="lenovo:20T4">ThinkPad P15s Gen 1 (20T4)</option>
+                  <option value="lenovo:20T5">ThinkPad P15s Gen 1 (20T5)</option>
+                  <option value="lenovo:20YQ">ThinkPad P15 Gen 2 (20YQ)</option>
+                  <option value="lenovo:20YR">ThinkPad P15 Gen 2 (20YR)</option>
+                  <option value="lenovo:21A9">ThinkPad P15v Gen 2 (21A9)</option>
+                  <option value="lenovo:21AA">ThinkPad P15v Gen 2 (21AA)</option>
+                  <option value="lenovo:20W6">ThinkPad P15s Gen 2 (20W6)</option>
+                  <option value="lenovo:20W7">ThinkPad P15s Gen 2 (20W7)</option>
+                  <option value="lenovo:21D8">ThinkPad P15v Gen 3 Intel (21D8)</option>
+                  <option value="lenovo:21D9">ThinkPad P15v Gen 3 Intel (21D9)</option>
+                  <option value="lenovo:21EM">ThinkPad P15v Gen 3 AMD (21EM)</option>
+                  <option value="lenovo:21EN">ThinkPad P15v Gen 3 AMD (21EN)</option>
+                </optgroup>
+
+                <!-- LENOVO L14 FAMILIA -->
+                <optgroup label="Lenovo — Familia ThinkPad L14">
+                  <option value="lenovo:20U1">ThinkPad L14 Gen 1 Intel (20U1)</option>
+                  <option value="lenovo:20U2">ThinkPad L14 Gen 1 Intel (20U2)</option>
+                  <option value="lenovo:20U5">ThinkPad L14 Gen 1 AMD (20U5)</option>
+                  <option value="lenovo:20U6">ThinkPad L14 Gen 1 AMD (20U6)</option>
+                  <option value="lenovo:20X1">ThinkPad L14 Gen 2 Intel (20X1)</option>
+                  <option value="lenovo:20X2">ThinkPad L14 Gen 2 Intel (20X2)</option>
+                  <option value="lenovo:20X5">ThinkPad L14 Gen 2 AMD (20X5)</option>
+                  <option value="lenovo:20X6">ThinkPad L14 Gen 2 AMD (20X6)</option>
+                  <option value="lenovo:21C1">ThinkPad L14 Gen 3 Intel (21C1)</option>
+                  <option value="lenovo:21C2">ThinkPad L14 Gen 3 Intel (21C2)</option>
+                  <option value="lenovo:21C5">ThinkPad L14 Gen 3 AMD (21C5)</option>
+                  <option value="lenovo:21C6">ThinkPad L14 Gen 3 AMD (21C6)</option>
+                  <option value="lenovo:21H1">ThinkPad L14 Gen 4 Intel (21H1)</option>
+                  <option value="lenovo:21H2">ThinkPad L14 Gen 4 Intel (21H2)</option>
+                  <option value="lenovo:21H5">ThinkPad L14 Gen 4 AMD (21H5)</option>
+                  <option value="lenovo:21H6">ThinkPad L14 Gen 4 AMD (21H6)</option>
+                  <option value="lenovo:21L1">ThinkPad L14 Gen 5 Intel (21L1)</option>
+                  <option value="lenovo:21L2">ThinkPad L14 Gen 5 Intel (21L2)</option>
+                  <option value="lenovo:21L5">ThinkPad L14 Gen 5 AMD (21L5)</option>
+                  <option value="lenovo:21L6">ThinkPad L14 Gen 5 AMD (21L6)</option>
+                </optgroup>
+              </select>
+              <button class="fleet-clear-btn" type="button" onclick="clearFleetSelection()" title="Limpiar y buscar a mano">
+                Limpiar
+              </button>
+            </div>
+          </div>
+
+          <!-- Búsqueda Libre con Autocompletado en Vivo -->
+          <div class="search-input-wrapper">
+            <label for="search-id-input" class="deck-label">O escribe código de equipo o nombre</label>
+            <div class="search-field-box">
+              <input
+                type="text"
+                id="search-id-input"
+                name="model-id"
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false"
+                placeholder="Escribe modelo o código (ej. T480, 888A, 20L5, ProBook 440)..."
+                aria-label="Introduce el ID o nombre del modelo del equipo"
+                onkeydown="handleSearchKeydown(event)"
+                oninput="handleSearchInput(event)"
+                onfocus="handleSearchFocus()"
+              />
+              <button
+                id="search-btn"
+                class="primary-search-btn"
+                onclick="triggerSearch()"
+                aria-label="Buscar controladores para este modelo"
+              >
+                Buscar
+              </button>
+
+              <!-- Dropdown de Autocompletado Flotante -->
+              <div id="autocomplete-dropdown" class="autocomplete-dropdown" style="display:none;" role="listbox"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Barra Inferior de Apoyo: Chips Rápidos y Pistas de Comando -->
+        <div class="deck-footer-bar">
+          <div class="chips-container" id="chips-container" role="group" aria-label="Accesos directos rápidos">
+            <span class="chips-title">Accesos rápidos:</span>
+          </div>
+
+          <div class="ps-quick-hint">
+            <button type="button" class="export-btn terminal-btn" onclick="openTerminalCommandModal()" title="Generar comando PowerShell para el modelo activo" style="padding: 4px 10px; font-size: 11px;">
+              Terminal PowerShell
+            </button>
+            <span class="ps-badge">PowerShell</span>
+            <span id="ps-hint-label" class="ps-label">Obtener código cliente:</span>
+            <code id="ps-hint-cmd" class="ps-code" title="Comando de PowerShell">(Get-CimInstance Win32_ComputerSystem).Model.Substring(0,4)</code>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Panel Principal de Resultados ──────────────────────────── -->
+  <main class="main-panel" id="results-panel" role="main">
+
+    <!-- Franja de Métricas de la Auditoría (Visible solo con resultados) -->
+    <div class="stats-strip" id="stats-strip" style="display:none;" aria-label="Resumen de auditoría">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Total Actualizaciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value text-admitted" id="stat-admitted">0</div>
+        <div class="stat-label">Ofertadas en Windows Update</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value text-oem-only" id="stat-oem-only">0</div>
+        <div class="stat-label" id="stat-oem-label">Solo Soporte Lenovo</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value text-critical" id="stat-critical">0</div>
+        <div class="stat-label">Críticos (Seguridad)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-elapsed">—</div>
+        <div class="stat-label">Tiempo de Respuesta</div>
+      </div>
+    </div>
+
+    <!-- Barra de Filtros Multifunción (Activa antes y después de la búsqueda) -->
+    <div class="filters-bar" id="filters-bar" role="search" aria-label="Filtros de controladores">
+      
+      <!-- Filtro Categoría -->
+      <div class="filter-col">
+        <label class="filter-label" for="filter-category">Categoría</label>
+        <select id="filter-category" class="filter-select" onchange="applyFilters()" aria-label="Filtrar por categoría">
+          <option value="">Todas las categorías</option>
+          <option value="BIOS/UEFI">BIOS/UEFI</option>
+          <option value="Red">Red (Wi-Fi / Ethernet)</option>
+          <option value="Bluetooth">Bluetooth</option>
+          <option value="Gráficos/Display">Gráficos/Display</option>
+          <option value="Audio">Audio</option>
+          <option value="Chipset">Chipset</option>
+          <option value="Almacenamiento">Almacenamiento / NVMe</option>
+          <option value="USB/Thunderbolt">USB/Thunderbolt</option>
+          <option value="Cámara">Cámara</option>
+          <option value="Periféricos">Periféricos (Touchpad / Teclado)</option>
+          <option value="Energía/Batería">Energía/Batería</option>
+          <option value="Seguridad">Seguridad (TPM / Huella)</option>
+          <option value="Software Lenovo">Software Lenovo / HP</option>
+        </select>
+      </div>
+
+      <!-- Filtro Origen de la Oferta -->
+      <div class="filter-col">
+        <label class="filter-label" for="filter-windows-admitted">Origen de la Oferta</label>
+        <select id="filter-windows-admitted" class="filter-select select-admitted" onchange="applyFilters()" aria-label="Filtrar por origen de la oferta">
+          <option value="">Todos los orígenes (WU y OEM)</option>
+          <option value="admitted">Ofertadas en Windows Update (Catálogo Microsoft)</option>
+          <option value="oem_only" id="opt-filter-oem-only">Solo Soporte Lenovo (No en Windows Update)</option>
+        </select>
+      </div>
+
+      <!-- Filtro Canal Windows Update / Intune -->
+      <div class="filter-col">
+        <label class="filter-label" for="filter-intune">Canal Intune / WU</label>
+        <select id="filter-intune" class="filter-select" onchange="applyFilters()" aria-label="Filtrar por canal de Windows Update e Intune">
+          <option value="">Todos los canales</option>
+          <option value="automatic">Automático (Recomendada WU)</option>
+          <option value="manual_optional">Aprobación Intune (Opcional)</option>
+          <option value="priority_firmware">Prioritario (Firmware / BIOS)</option>
+        </select>
+      </div>
+
+      <!-- Filtro SO Windows 11 Build -->
+      <div class="filter-col">
+        <label class="filter-label" for="filter-os-build">SO Windows 11</label>
+        <select id="filter-os-build" class="filter-select select-os" onchange="applyFilters()" aria-label="Filtrar por versión de Windows 11">
+          <option value="">Todos los Builds Win 11</option>
+          <option value="win11-24h2">Compatibles con Windows 11 24H2</option>
+          <option value="win11-25h2">Compatibles con Windows 11 25H2</option>
+          <option value="win11-26h2">Compatibles con Windows 11 26H2</option>
+        </select>
+      </div>
+
+      <!-- Búsqueda en Texto Libre -->
+      <div class="filter-col filter-col-search">
+        <label class="filter-label" for="filter-text">Buscar en resultados</label>
+        <input
+          type="search"
+          id="filter-text"
+          class="filter-search-input"
+          placeholder="Nombre, versión, solución o ID..."
+          oninput="applyFilters()"
+          aria-label="Buscar en nombre, versión o solución"
+        />
+      </div>
+
+      <!-- Checkbox Solo Críticos -->
+      <div class="filter-col-check">
+        <label class="filter-checkbox-label" for="filter-critical">
+          <input type="checkbox" id="filter-critical" onchange="applyFilters()" />
+          <span>Solo Críticos</span>
+        </label>
+      </div>
+
+    </div>
+
+    <!-- Cabecera de Resultados y Botones de Exportación -->
+    <div class="results-header" id="results-header" style="display:none;">
+      <div class="results-title-group">
+        <span class="results-count" id="results-count"><strong id="results-count-num">0</strong> controladores encontrados</span>
+        <span class="oem-badge" id="oem-badge">LENOVO</span>
+        <span class="model-id-tag" id="model-id-display"></span>
+        <span class="model-name-tag" id="model-name-display"></span>
+      </div>
+
+      <div class="export-actions">
+        <button id="terminal-cmd-btn" class="export-btn terminal-btn" onclick="openTerminalCommandModal()" title="Generar comando PowerShell para auditar e instalar controladores en el equipo cliente">
+          Terminal del Equipo (PowerShell)
+        </button>
+        <span class="export-label">Exportar auditoría:</span>
+        <button id="export-csv-btn" class="export-btn" onclick="exportData('csv')" title="Exportar a CSV con nombres de Windows Update y notas Intune" disabled>
+          CSV (Excel)
+        </button>
+        <button id="export-json-btn" class="export-btn" onclick="exportData('json')" title="Exportar a JSON estructurado" disabled>
+          JSON
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenedor Principal de la Tabla -->
+    <div class="table-container" id="table-container">
+      
+      <!-- Estado Inicial: En espera -->
+      <div class="state-panel" id="state-idle">
+        <h2 class="state-title">Listo para auditar la flota corporativa</h2>
+        <p class="state-msg">
+          Selecciona un modelo frecuente en el menú desplegable superior o escribe cualquier código o nombre en el buscador.
+        </p>
+        <code class="state-code" id="idle-ps-hint">(Get-CimInstance Win32_ComputerSystem).Model.Substring(0,4)</code>
+      </div>
+
+      <!-- Estado: Cargando -->
+      <div class="state-panel" id="state-loading" style="display:none;">
+        <div class="spinner-box" role="status" aria-label="Consultando catálogo">
+          <div class="spinner" aria-hidden="true"></div>
+          <span id="loading-text">Consultando catálogo oficial del fabricante…</span>
+        </div>
+        <div id="skeleton-rows"></div>
+      </div>
+
+      <!-- Estado: Error -->
+      <div class="state-panel error" id="state-error" style="display:none;">
+        <h2 class="state-title" id="error-title">Error al consultar catálogo</h2>
+        <p class="state-msg" id="error-message"></p>
+        <div class="error-detail" id="error-detail" style="display:none;"></div>
+      </div>
+
+      <!-- Estado: Vacío por filtros -->
+      <div class="state-panel" id="state-empty" style="display:none;">
+        <h2 class="state-title">Ninguna actualización coincide con los filtros</h2>
+        <p class="state-msg">Prueba a restablecer los filtros para volver a ver el catálogo completo.</p>
+        <button class="reset-filter-btn" onclick="resetFiltersAndApply()">Restablecer todos los filtros</button>
+      </div>
+
+      <!-- Tabla de Controladores Estructurada en 6 Columnas -->
+      <table class="drivers-table" id="drivers-table" style="display:none;" role="grid" aria-label="Catálogo de drivers y parches">
+        <thead>
+          <tr>
+            <th scope="col" class="th-priority">Prioridad / Tipo</th>
+            <th scope="col" class="th-driver">Controlador Oficial OEM</th>
+            <th scope="col" class="th-windows">Admisión en Windows &amp; Nombre Microsoft</th>
+            <th scope="col" class="th-solution">Qué Soluciona Este Parche</th>
+            <th scope="col" class="th-os">Windows 11</th>
+            <th scope="col" class="th-action">Descarga</th>
+          </tr>
+        </thead>
+        <tbody id="drivers-tbody">
+        </tbody>
+      </table>
+
+    </div>
+
+  </main>
+
+  <!-- ── Modal Detalle de Parche & Diagnóstico Windows Update ──────── -->
+  <div id="patch-modal" class="modal-overlay" style="display:none;" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      
+      <div class="modal-header">
+        <div class="modal-badges-group">
+          <span id="modal-category-badge" class="category-badge"></span>
+          <span id="modal-severity-badge" class="severity-badge"></span>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button type="button" class="modal-new-window-btn" onclick="openPatchInNewWindow()" title="Abrir informe técnico completo en nueva pestaña o ventana">
+            Abrir en Nueva Ventana ↗
+          </button>
+          <button class="modal-close-btn" onclick="closePatchModal()" aria-label="Cerrar modal">&times;</button>
+        </div>
+      </div>
+
+      <h3 id="modal-title" class="modal-title">Detalle del Controlador</h3>
+      
+      <!-- Fila de Metadatos Rápidos -->
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">ID / SoftPaq:</span>
+          <span id="modal-id" class="modal-meta-value font-mono"></span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Versión Oficial:</span>
+          <span id="modal-version" class="modal-meta-value font-mono"></span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Fecha de Entrega:</span>
+          <span id="modal-date" class="modal-meta-value"></span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Tamaño Descarga:</span>
+          <span id="modal-size" class="modal-meta-value"></span>
+        </div>
+      </div>
+
+      <!-- SECCIÓN DESTACADA: ADMISIÓN EN MICROSOFT WINDOWS UPDATE -->
+      <div class="modal-section modal-windows-section">
+        <h4 class="modal-section-title">Estado de Admisión en Microsoft Windows Update &amp; Intune</h4>
+        
+        <div class="modal-windows-box">
+          
+          <div class="modal-win-status-row">
+            <span class="modal-win-label">¿Admitida por Windows Update?</span>
+            <span id="modal-admitted-badge" class="admit-badge-lg"></span>
+          </div>
+
+          <div class="modal-win-detail-item">
+            <span class="modal-win-label">Nombre oficial en el Catálogo de Windows / Administrador de Dispositivos:</span>
+            <code id="modal-canonical-name" class="modal-win-code"></code>
+          </div>
+
+          <div class="modal-win-detail-grid">
+            <div class="modal-win-detail-item">
+              <span class="modal-win-label">Canal de Distribución:</span>
+              <span id="modal-intune-channel" class="modal-win-val"></span>
+            </div>
+            <div class="modal-win-detail-item">
+              <span class="modal-win-label">Firma WHQL / ID de Hardware:</span>
+              <span id="modal-whql-id" class="modal-win-val font-mono"></span>
+            </div>
+          </div>
+
+          <div class="modal-win-detail-item">
+            <span class="modal-win-label">Notas de Despliegue para SysAdmin / Microsoft Intune:</span>
+            <p id="modal-intune-notes" class="modal-win-notes"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SECCIÓN: QUÉ SOLUCIONA ESTE PARCHE (DETALLE TÉCNICO COMPLETO EN ESPAÑOL) -->
+      <div class="modal-section">
+        <h4 class="modal-section-title">Qué Soluciona Este Parche (Detalle Técnico Completo)</h4>
+        
+        <div class="modal-solution-grid">
+          
+          <div class="modal-solution-card">
+            <div class="modal-card-subhead">
+              <span class="modal-card-icon-pill fix">Correcciones</span>
+              <h5 class="modal-card-title">Problemas Corregidos y Mejoras de Rendimiento</h5>
+            </div>
+            <p id="modal-que-corrige" class="modal-card-text"></p>
+          </div>
+
+          <div class="modal-solution-card">
+            <div class="modal-card-subhead">
+              <span class="modal-card-icon-pill sec">Seguridad</span>
+              <h5 class="modal-card-title">Boletines de Seguridad y Vulnerabilidades (CVE)</h5>
+            </div>
+            <p id="modal-seguridad" class="modal-card-text"></p>
+          </div>
+
+          <div class="modal-solution-card">
+            <div class="modal-card-subhead">
+              <span class="modal-card-icon-pill win">Windows 11</span>
+              <h5 class="modal-card-title">Compatibilidad con Windows 11</h5>
+            </div>
+            <p id="modal-win11-compat" class="modal-card-text"></p>
+            <div id="modal-os-tags" class="os-tags-row"></div>
+          </div>
+
+          <div class="modal-solution-card">
+            <div class="modal-card-subhead">
+              <span class="modal-card-icon-pill ops">SysAdmin</span>
+              <h5 class="modal-card-title">Guía de Despliegue para Microsoft Intune / TI</h5>
+            </div>
+            <p id="modal-guia-despliegue" class="modal-card-text"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer del Modal -->
+      <div class="modal-footer">
+        <button type="button" class="modal-btn-secondary" onclick="openPatchInNewWindow()" title="Abrir en ventana independiente">
+          Abrir en Nueva Ventana ↗
+        </button>
+        <button type="button" class="modal-btn-secondary" onclick="closePatchModal()">Cerrar</button>
+        <a id="modal-dl-btn" href="#" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+          Descargar Actualización Oficial
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Modal Comando PowerShell para Equipo Cliente ────────────── -->
+  <div id="terminal-modal" class="modal-overlay" style="display:none;" onclick="if(event.target === this) { closeTerminalCommandModal(); this.style.display='none'; document.body.style.overflow=''; }">
+    <div class="modal-card modal-card-terminal" role="dialog" aria-modal="true" aria-labelledby="terminal-modal-title">
+      
+      <div class="modal-header">
+        <div class="modal-badges-group">
+          <span class="category-badge">PowerShell</span>
+          <span class="severity-badge critical">Auditoría &amp; Instalación</span>
+        </div>
+        <button type="button" id="terminal-modal-x-btn" class="modal-close-btn" onclick="closeTerminalCommandModal(); document.getElementById('terminal-modal').style.display='none'; document.body.style.overflow='';" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <h3 id="terminal-modal-title" class="modal-title">Comando para Terminal del Equipo Cliente</h3>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+        Copia y pega este comando en PowerShell (como Administrador) en cualquier equipo de la flota para auditar controladores instalados y elegir cuáles instalar interactivamente.
+      </p>
+
+      <!-- Caja del Comando One-Liner -->
+      <div class="terminal-cmd-box">
+        <div class="terminal-cmd-header">
+          <span>Comando de Ejecución Inmediata (PowerShell)</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyTerminalCommand()" id="copy-cmd-btn">
+            Copiar Comando
+          </button>
+        </div>
+        <pre class="terminal-cmd-code" id="terminal-cmd-display"></pre>
+      </div>
+
+      <!-- Configuración de Host / IP para equipos en red -->
+      <div class="terminal-host-config">
+        <label for="server-host-input" style="font-size:11px; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:4px;">
+          Dirección del Servidor (si ejecutas desde otro equipo en red local):
+        </label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="server-host-input" class="filter-search-input" placeholder="localhost:3000 o 192.168.1.X:3000" oninput="updateTerminalCommandString()" style="max-width:320px;" />
+          <button type="button" class="export-btn" onclick="resetServerHost()" style="font-size:12px;">Restablecer</button>
+        </div>
+      </div>
+
+      <!-- Pasos y Funcionalidades del Script -->
+      <div class="terminal-steps-card">
+        <h4 style="font-size:13px; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:8px;">¿Qué hace este comando en el equipo?</h4>
+        <ul style="font-size:13px; color:var(--text-secondary); margin-left:18px; display:flex; flex-direction:column; gap:6px;">
+          <li><strong>Verifica compatibilidad:</strong> Detecta el MachineType / System Board ID y comprueba si coincide con el modelo.</li>
+          <li><strong>Escanea controladores locales:</strong> Compara cada driver oficial con los instalados en el sistema Plug &amp; Play.</li>
+          <li><strong>Reporte visual en consola:</strong> Lista en verde los actualizados, en amarillo los desactualizados y en rojo los pendientes.</li>
+          <li><strong>Menú de instalación interactivo:</strong> Te permite instalar todas las pendientes automáticamente o elegir manualmente cuáles aplicar (1 a 1).</li>
+        </ul>
+      </div>
+
+      <!-- Footer del Modal con descarga de archivo .ps1 -->
+      <div class="modal-footer" style="margin-top:20px;">
+        <button type="button" class="modal-btn-secondary" onclick="downloadPowerShellScript()">
+          Descargar Script .ps1
+        </button>
+        <button type="button" id="terminal-modal-close-btn" class="modal-btn-secondary" onclick="closeTerminalCommandModal(); document.getElementById('terminal-modal').style.display='none'; document.body.style.overflow='';">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <p>
+      OEM Driver Explorer &mdash; Auditoría de Controladores y Plataformas Corporativas.
+      Fuentes oficiales:
+      <a href="https://pcsupport.lenovo.com" target="_blank" rel="noopener">Lenovo PC Support</a> ·
+      <a href="https://www.hp.com/us-en/shop/cv/hpia" target="_blank" rel="noopener">HP Image Assistant</a> ·
+      <a href="https://www.catalog.update.microsoft.com" target="_blank" rel="noopener">Microsoft Update Catalog</a>.
+    </p>
+  </footer>
+
+  <!-- ── Toast de Notificaciones ────────────────────────────────── -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="app.js?v=6.5"></script>
+</body>
+</html>

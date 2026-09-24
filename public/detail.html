@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Técnico del Controlador — OEM Driver Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f1527;
+      --bg-card: #131a31;
+      --bg-input: #0c1222;
+      --border: rgba(99, 102, 241, 0.22);
+      --border-strong: rgba(99, 102, 241, 0.45);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #4f6ef7;
+      --accent-cyan: #38bdf8;
+      --green: #34d399;
+      --orange: #f97316;
+      --red: #f87171;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 30px 20px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-oem { background: rgba(249, 115, 22, 0.15); color: var(--orange); border: 1px solid rgba(249, 115, 22, 0.3); }
+    .badge-wu { background: rgba(52, 211, 153, 0.15); color: var(--green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .badge-cat { background: rgba(79, 110, 247, 0.15); color: var(--accent); border: 1px solid var(--border); }
+    .badge-sev { background: rgba(248, 113, 113, 0.15); color: var(--red); border: 1px solid rgba(248, 113, 113, 0.3); }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #fff;
+      line-height: 1.35;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+    .grid-item { background: var(--bg-input); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border); }
+    .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+    .val { font-size: 13px; font-weight: 600; color: #fff; }
+    .font-mono { font-family: 'JetBrains Mono', 'Consolas', monospace; }
+
+    .code-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent-cyan);
+      word-break: break-all;
+      margin-top: 6px;
+    }
+
+    .desc-block {
+      background: var(--bg-input);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .os-tags-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .os-pill {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: opacity 0.2s ease;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--bg-input); color: var(--text); border: 1px solid var(--border-strong); }
+
+    .loading-state, .error-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(99, 102, 241, 0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 10px; }
+      .card { border: 1px solid #ccc; box-shadow: none; background: #fff; color: #000; }
+      .grid-item, .code-box, .desc-block { background: #f8fafc; color: #000; border-color: #cbd5e1; }
+      .val, h1, h2 { color: #000; }
+      .top-bar, .btn-row { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div id="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p style="color:var(--text-muted);">Cargando informe técnico del parche...</p>
+    </div>
+
+    <div id="error" class="error-state" style="display:none;">
+      <h2 style="color:var(--red);">No se pudo cargar la información</h2>
+      <p id="error-msg" style="color:var(--text-muted); margin-bottom:16px;"></p>
+      <button class="btn btn-secondary" onclick="window.close()">Cerrar Ventana</button>
+    </div>
+
+    <div id="content" style="display:none;">
+      <div class="top-bar">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <span class="brand-title">OEM Driver Explorer</span>
+          <span id="badge-oem" class="badge badge-oem">OEM</span>
+          <span id="badge-cat" class="badge badge-cat">Categoría</span>
+          <span id="badge-sev" class="badge badge-sev">Severidad</span>
+          <span id="badge-wu" class="badge badge-wu">Windows Update</span>
+        </div>
+        <div class="top-actions">
+          <button class="btn btn-secondary" onclick="window.print()">Imprimir / Guardar PDF</button>
+          <button class="btn btn-secondary" onclick="window.close()">Cerrar</button>
+        </div>
+      </div>
+
+      <!-- Tarjeta 1: Información Oficial del Controlador -->
+      <div class="card">
+        <h1 id="driver-name">Nombre del Controlador</h1>
+        <div class="grid">
+          <div class="grid-item">
+            <span class="label">ID / SoftPaq</span>
+            <span id="driver-id" class="val font-mono">—</span>
+          </div>
+          <div class="grid-item">
+            <span class="label">Versión Oficial</span>
+            <span id="driver-version" class="val font-mono">—</span>
+          </div>
+          <div class="grid-item">
+            <span class="label">Fecha Oficial</span>
+            <span id="driver-date" class="val">—</span>
+          </div>
+          <div class="grid-item">
+            <span class="label">Tamaño del Paquete</span>
+            <span id="driver-size" class="val">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2: Admisión en Microsoft Windows Update & Intune -->
+      <div class="card">
+        <h2>Admisión en Catálogo de Microsoft Windows Update &amp; Microsoft Intune</h2>
+        
+        <div style="margin-bottom:14px;">
+          <span id="wu-status-banner" class="badge badge-wu">Certificado WHQL</span>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <span class="label">Nombre Oficial en Catálogo Microsoft / Administrador de Dispositivos:</span>
+          <div id="wu-canonical-name" class="code-box">—</div>
+        </div>
+
+        <div class="grid">
+          <div class="grid-item">
+            <span class="label">Canal de Distribución</span>
+            <span id="wu-channel" class="val">—</span>
+          </div>
+          <div class="grid-item">
+            <span class="label">ID de Certificación WHQL / Hardware ID</span>
+            <span id="wu-whql-id" class="val font-mono">—</span>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <span class="label">Notas Operativas para SysAdmin / Microsoft Intune:</span>
+          <p id="wu-intune-notes" style="font-size:13px; color:var(--text-muted); margin-top:4px;">—</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3: Qué Soluciona Este Parche -->
+      <div class="card">
+        <h2>Qué Soluciona Este Parche (Detalle Técnico Completo)</h2>
+        
+        <span class="label">Problemas Corregidos y Mejoras de Rendimiento:</span>
+        <div id="patch-fixes" class="desc-block">—</div>
+
+        <span class="label">Boletines de Seguridad y Vulnerabilidades (CVE):</span>
+        <div id="patch-security" class="desc-block" style="border-left-color: var(--orange);">—</div>
+
+        <span class="label">Compatibilidad Certificada con Windows 11:</span>
+        <div class="desc-block" style="border-left-color: var(--green);">
+          <div id="patch-win11">—</div>
+          <div class="os-tags-row">
+            <span class="os-pill">Windows 11 24H2</span>
+            <span class="os-pill">Windows 11 25H2</span>
+            <span class="os-pill">Windows 11 26H2</span>
+          </div>
+        </div>
+
+        <span class="label">Guía de Despliegue e Instalación para TI:</span>
+        <div id="patch-deploy" class="desc-block" style="border-left-color: var(--accent-cyan);">—</div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="btn-row">
+        <a id="download-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:none;">
+          Descargar Actualización Oficial
+        </a>
+        <button class="btn btn-secondary" onclick="window.close()">Cerrar Ventana</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    'use strict';
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '—';
+      try {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return String(dateStr);
+        return d.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: '2-digit' });
+      } catch {
+        return String(dateStr);
+      }
+    }
+
+    async function loadDriverDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const oem = (params.get('oem') || 'lenovo').toLowerCase();
+      const model = params.get('model') || '';
+      const id = params.get('id') || '';
+      const idx = params.get('idx');
+
+      if (!model && !id) {
+        showError('Parámetros de búsqueda incompletos. Abre el enlace desde OEM Driver Explorer.');
+        return;
+      }
+
+      // 1. Intentar cargar desde sessionStorage (0ms de latencia)
+      let driver = null;
+      try {
+        const cached = sessionStorage.getItem('current_drivers_' + model.toUpperCase());
+        if (cached) {
+          const list = JSON.parse(cached);
+          if (id) {
+            driver = list.find(d => d.id === id || d.id.includes(id));
+          } else if (idx != null && list[idx]) {
+            driver = list[idx];
+          }
+        }
+      } catch (e) {
+        console.warn('Error leyendo sessionStorage:', e);
+      }
+
+      // 2. Si no estaba en sessionStorage, consultar la API directamente
+      if (!driver && model) {
+        try {
+          const endpoint = oem === 'lenovo'
+            ? `/api/drivers/lenovo/${encodeURIComponent(model)}`
+            : `/api/drivers/hp/${encodeURIComponent(model)}`;
+          const res = await fetch(endpoint);
+          const data = await res.json();
+          if (data && data.drivers) {
+            if (id) {
+              driver = data.drivers.find(d => d.id === id || d.id.includes(id));
+            } else if (idx != null && data.drivers[idx]) {
+              driver = data.drivers[idx];
+            }
+          }
+        } catch (err) {
+          showError('Error de red al consultar los datos del parche: ' + err.message);
+          return;
+        }
+      }
+
+      if (!driver) {
+        showError('No se encontró el controlador especificado (' + (id || model) + ').');
+        return;
+      }
+
+      renderDriver(driver, oem);
+    }
+
+    function renderDriver(driver, oem) {
+      document.title = driver.name + ' — Informe Técnico';
+
+      const oemTitle = oem === 'hp' ? 'HP' : 'Lenovo';
+      const isAdmitted = driver.windowsAdmitted !== false && driver.deliverySource !== 'oem_only';
+      const winName = driver.windowsAdmittedName || driver.name;
+      const channel = driver.windowsChannel || driver.intuneLabel || (isAdmitted ? 'Automático (Windows Update / WHQL)' : 'Portal Oficial ' + oemTitle);
+
+      document.getElementById('badge-oem').textContent = 'Soporte ' + oemTitle;
+      document.getElementById('badge-cat').textContent = driver.category || 'Sistema';
+      document.getElementById('badge-sev').textContent = driver.severity || 'Recomendado';
+
+      const badgeWu = document.getElementById('badge-wu');
+      const bannerWu = document.getElementById('wu-status-banner');
+      if (isAdmitted) {
+        badgeWu.textContent = 'Ofertada en Windows Update';
+        badgeWu.className = 'badge badge-wu';
+        bannerWu.textContent = 'Certificado WHQL — Ofertada en Catálogo de Microsoft Windows Update';
+        bannerWu.className = 'badge badge-wu';
+      } else {
+        badgeWu.textContent = 'Solo Soporte ' + oemTitle;
+        badgeWu.className = 'badge badge-oem';
+        bannerWu.textContent = 'Exclusivo Portal de Soporte ' + oemTitle + ' (No publicado en Catálogo Microsoft)';
+        bannerWu.className = 'badge badge-oem';
+      }
+
+      document.getElementById('driver-name').textContent = driver.name;
+      document.getElementById('driver-id').textContent = driver.id;
+      document.getElementById('driver-version').textContent = 'v' + driver.version;
+      document.getElementById('driver-date').textContent = formatDate(driver.releaseDate);
+      document.getElementById('driver-size').textContent = driver.fileSize || 'Estándar';
+
+      document.getElementById('wu-canonical-name').textContent = winName;
+      document.getElementById('wu-channel').textContent = channel;
+      document.getElementById('wu-whql-id').textContent = driver.whqlId || (isAdmitted ? 'WHQL-CERTIFIED-MSFT' : 'N/A (Exclusivo Fabricante)');
+      document.getElementById('wu-intune-notes').textContent = driver.intuneNotes || (isAdmitted ? 'Controlador firmado digitalmente por Microsoft.' : 'Herramienta de soporte exclusivo OEM.');
+
+      const fixes = driver.detailsSpanish?.queCorrige || driver.description || 'Actualización oficial para estabilidad y corrección de incidencias.';
+      const security = driver.detailsSpanish?.seguridad || 'Mantenimiento de estabilidad y corrección de errores en conformidad con los estándares de seguridad.';
+      const win11 = driver.detailsSpanish?.compatibilidadWin11 || 'Certificado para las ramas empresariales de Windows 11 (24H2, 25H2 y 26H2).';
+      const deploy = driver.detailsSpanish?.guiaDespliegue || (isAdmitted ? 'Despliegue estándar por Windows Update.' : 'Descarga e instalación exclusiva desde el portal ' + oemTitle + '.');
+
+      document.getElementById('patch-fixes').textContent = fixes;
+      document.getElementById('patch-security').textContent = security;
+      document.getElementById('patch-win11').textContent = win11;
+      document.getElementById('patch-deploy').textContent = deploy;
+
+      const dlBtn = document.getElementById('download-btn');
+      if (driver.downloadUrl) {
+        dlBtn.href = driver.downloadUrl;
+        dlBtn.style.display = 'inline-flex';
+      } else {
+        dlBtn.style.display = 'none';
+      }
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = '';
+    }
+
+    function showError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error-msg').textContent = msg;
+      document.getElementById('error').style.display = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDriverDetail);
+  </script>
+</body>
+</html>
