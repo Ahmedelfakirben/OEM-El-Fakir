@@ -16,7 +16,7 @@
   <!-- Favicon SVG limpio -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
 
-  <link rel="stylesheet" href="style.css?v=7.1" />
+  <link rel="stylesheet" href="style.css?v=9.0" />
 </head>
 <body>
 
@@ -33,33 +33,21 @@
 
       <!-- Pestañas de Navegación Principal -->
       <nav class="primary-nav" aria-label="Navegación principal">
-        <button type="button" id="nav-btn-catalog" class="nav-tab-btn active" onclick="switchMainView('catalog')">
+        <a href="/" id="nav-btn-catalog" class="nav-tab-btn active">
           <span class="nav-tab-label">Catálogo OEM</span>
-        </button>
-        <button type="button" id="nav-btn-fleet" class="nav-tab-btn" onclick="switchMainView('fleet')">
+        </a>
+        <a href="/flota" id="nav-btn-fleet" class="nav-tab-btn">
           <span class="nav-tab-label">Flota de Equipos</span>
-          <span id="nav-fleet-count-badge" class="nav-count-badge">0</span>
-        </button>
-        <button type="button" id="nav-btn-settings" class="nav-tab-btn" onclick="switchMainView('settings')">
+          <span id="nav-fleet-count-badge" class="nav-count-badge">1</span>
+        </a>
+        <a href="/configuracion" id="nav-btn-settings" class="nav-tab-btn">
           <span class="nav-tab-label">Políticas y Configuración</span>
           <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
-        </button>
+        </a>
+        <a href="/conectores" id="nav-btn-connectors" class="nav-tab-btn">
+          <span class="nav-tab-label">Conectores &amp; APIs</span>
+        </a>
       </nav>
-
-      <div class="header-services" aria-label="Estado de conectores OEM oficiales">
-        <div class="service-pill" title="API Oficial v4 de Lenovo PC Support">
-          <span class="service-dot lenovo"></span>
-          <span class="service-name">Lenovo PC Support</span>
-        </div>
-        <div class="service-pill" title="Catálogo Oficial HP Image Assistant / SoftPaq">
-          <span class="service-dot hp"></span>
-          <span class="service-name">HP Image Assistant</span>
-        </div>
-        <div class="service-pill" title="Taxonomía y Catálogo Microsoft Windows Update / WHQL">
-          <span class="service-dot msft"></span>
-          <span class="service-name">Microsoft WHQL / WU</span>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -489,9 +477,9 @@
             </p>
           </div>
           <div class="fleet-actions-row">
-            <button type="button" class="fleet-btn-primary" onclick="openAgentEnrollModal()">
-              Desplegar Agente en Equipos (Intune)
-            </button>
+            <a href="/api/agent/download-msi" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar paquete de instalación silenciosa para Intune o despliegue manual">
+              Descargar Agente MSI (.msi)
+            </a>
             <button type="button" class="fleet-btn-secondary" onclick="loadFleetData(true)">
               Refrescar Flota
             </button>
@@ -533,7 +521,7 @@
                 type="text"
                 id="fleet-search-input"
                 class="fleet-input"
-                placeholder="Buscar por equipo, IP, modelo o versión de BIOS..."
+                placeholder="Buscar por equipo, IP, modelo, CPU o versión de BIOS..."
                 oninput="filterFleetTable()"
               />
             </div>
@@ -571,6 +559,7 @@
                   <th>Estado</th>
                   <th>Equipo / Hostname</th>
                   <th>Fabricante &amp; Modelo</th>
+                  <th>Hardware (CPU / RAM)</th>
                   <th>Sistema &amp; BIOS</th>
                   <th>Grupo de Políticas</th>
                   <th>Cumplimiento</th>
@@ -584,8 +573,24 @@
               </tbody>
             </table>
           </div>
-          <div id="fleet-empty-state" class="fleet-empty-box" style="display:none;">
-            <p>No se encontraron equipos conectados que coincidan con los filtros aplicados.</p>
+          <div id="fleet-empty-state" class="fleet-empty-box" style="display:none; text-align:center; padding:48px 24px;">
+            <div style="font-size:36px; margin-bottom:12px; opacity:0.8;">[EQUIPOS]</div>
+            <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:8px;">No hay equipos conectados a la flota actualmente</h3>
+            <p style="color:var(--text-muted); max-width:620px; margin:0 auto 20px auto; font-size:14px; line-height:1.6;">
+              Los datos mostrados en este dashboard corresponden exclusivamente a equipos reales en producción.
+              Para que tus ordenadores aparezcan aquí, instala el <strong>Agente Cliente (.MSI)</strong> o despliégalo mediante Microsoft Intune.
+            </p>
+            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+              <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
+                Descargar Instalador MSI (.msi)
+              </a>
+              <button type="button" class="fleet-btn-secondary" onclick="openAgentEnrollModal()" style="padding:10px 20px; font-size:14px;">
+                Ver Instrucciones de Despliegue Intune
+              </button>
+              <button type="button" class="fleet-btn-secondary" onclick="seedDemoDevicesForTesting()" style="padding:10px 16px; font-size:13px; opacity:0.75;" title="Carga 4 equipos de prueba para verificar la interfaz">
+                Cargar Datos de Prueba (Demo)
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1004,63 +1009,105 @@
   </div>
   </div>
 
-  <!-- ── Modal Detalle de Auditoría de Equipo de Flota ─────────────── -->
+  <!-- ── Modal Detalle de Auditoría y Monitorización de Flota (Ventana Completa) ──── -->
   <div id="device-audit-modal" class="modal-overlay" style="display:none;" onclick="if(event.target === this) closeDeviceAuditModal()">
-    <div class="modal-card modal-card-fleet-audit" role="dialog" aria-modal="true" aria-labelledby="device-modal-title">
+    <div class="modal-card modal-card-fleet-audit" role="dialog" aria-modal="true" aria-labelledby="device-modal-title" style="max-width:98vw; width:98vw; height:96vh; max-height:96vh; display:flex; flex-direction:column; padding:24px;">
       
       <div class="modal-header">
         <div class="modal-badges-group">
           <span id="devmodal-oem-badge" class="tab-btn-pill lenovo">LENOVO</span>
           <span id="devmodal-group-badge" class="service-pill" style="padding:2px 8px; font-size:11px;">General</span>
           <span id="devmodal-compliance-badge" class="admit-badge-lg admit">100% CUMPLIMIENTO</span>
+          <span id="devmodal-demo-badge" class="status-pill critical" style="display:none; font-size:10px;">DATOS DEMO</span>
         </div>
         <button type="button" class="modal-close-btn" onclick="closeDeviceAuditModal()" aria-label="Cerrar modal">&times;</button>
       </div>
 
       <div class="devmodal-title-row">
         <div>
-          <h3 id="device-modal-title" class="modal-title font-mono">PC-MAD-FIN-01</h3>
+          <h3 id="device-modal-title" class="modal-title font-mono" style="font-size:20px;">PC-MAD-FIN-01</h3>
           <p id="devmodal-subtitle" class="devmodal-sub">ThinkPad T480 (20L5) · IP: 192.168.10.45 · BIOS: N24ET70W (1.47)</p>
         </div>
-        <div id="devmodal-action-box">
+        <div id="devmodal-action-box" style="display:flex; gap:8px;">
           <button type="button" id="devmodal-deploy-btn" class="fleet-btn-primary" onclick="triggerDeviceAuditDeploy()">
             Actualizar Controladores Pendientes
           </button>
         </div>
       </div>
 
-      <!-- Resumen Rápido del Hardware del Equipo -->
-      <div class="modal-meta-grid" style="margin-bottom:16px;">
-        <div class="modal-meta-item">
-          <span class="modal-meta-label">Sistema Operativo:</span>
-          <span id="devmodal-os" class="modal-meta-value">Windows 11 24H2</span>
+      <!-- Resumen Completo de Telemetría de Hardware del Equipo -->
+      <div style="background:var(--bg-tertiary); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:16px; margin-bottom:20px;">
+        <h4 style="font-size:12px; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; font-weight:700;">
+          Telemetría de Hardware y Sistema
+        </h4>
+        <div class="modal-meta-grid" style="grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:12px;">
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Procesador (CPU):</span>
+            <span id="devmodal-cpu" class="modal-meta-value font-mono">Detectando...</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Memoria RAM Instalada:</span>
+            <span id="devmodal-ram" class="modal-meta-value font-mono">Detectando...</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Número de Serie / Service Tag:</span>
+            <span id="devmodal-serial" class="modal-meta-value font-mono text-cyan">Detectando...</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Placa Base / Motherboard:</span>
+            <span id="devmodal-motherboard" class="modal-meta-value font-mono">Detectando...</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Sistema Operativo &amp; Edición:</span>
+            <span id="devmodal-os" class="modal-meta-value">Windows 11</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Versión de BIOS / UEFI:</span>
+            <span id="devmodal-bios" class="modal-meta-value font-mono">N/A</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Dirección MAC:</span>
+            <span id="devmodal-mac" class="modal-meta-value font-mono">Detectando...</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Dirección IP Local:</span>
+            <span id="devmodal-ip" class="modal-meta-value font-mono">127.0.0.1</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Controladores Analizados:</span>
+            <span id="devmodal-stats-summary" class="modal-meta-value">0 total</span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-label">Último Reporte / Check-in:</span>
+            <span id="devmodal-last-seen" class="modal-meta-value">Hace un momento</span>
+          </div>
         </div>
-        <div class="modal-meta-item">
-          <span class="modal-meta-label">Versión de BIOS/UEFI:</span>
-          <span id="devmodal-bios" class="modal-meta-value font-mono">N24ET70W</span>
-        </div>
-        <div class="modal-meta-item">
-          <span class="modal-meta-label">Controladores Analizados:</span>
-          <span id="devmodal-stats-summary" class="modal-meta-value">4 total (2 al día, 2 pendientes)</span>
-        </div>
-        <div class="modal-meta-item">
-          <span class="modal-meta-label">Último Reporte:</span>
-          <span id="devmodal-last-seen" class="modal-meta-value">Hace 5 minutos</span>
+      </div>
+
+      <!-- Cabecera de la Tabla de Controladores con Filtros -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">
+          Inventario de Controladores y Dispositivos Plug &amp; Play
+        </h4>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="export-btn" id="devdriver-filter-all" onclick="filterDevModalDrivers('all')" style="font-size:11px; padding:3px 8px;">Todos</button>
+          <button type="button" class="export-btn" id="devdriver-filter-pending" onclick="filterDevModalDrivers('pending')" style="font-size:11px; padding:3px 8px; color:var(--severity-critical);">Solo Pendientes</button>
+          <button type="button" class="export-btn" id="devdriver-filter-uptodate" onclick="filterDevModalDrivers('uptodate')" style="font-size:11px; padding:3px 8px; color:var(--accent-green);">Solo al Día</button>
         </div>
       </div>
 
       <!-- Tabla de Controladores del Dispositivo -->
-      <div class="table-container" style="max-height:360px; overflow-y:auto; border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
-        <table class="fleet-table" aria-label="Controladores analizados en este equipo">
+      <div class="table-container" style="flex:1; min-height:420px; overflow-y:auto; overflow-x:auto; border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+        <table class="driver-inventory-table" aria-label="Controladores analizados en este equipo">
           <thead>
             <tr>
-              <th>Controlador / Dispositivo</th>
-              <th>Categoría</th>
-              <th>Versión Instalada</th>
-              <th>Versión Oficial Objetivo</th>
-              <th>Estado</th>
-              <th>Severidad</th>
-              <th>Admisión WHQL</th>
+              <th style="width:34%;">Controlador / Dispositivo</th>
+              <th style="width:13%;">Categoría</th>
+              <th style="width:13%;">Versión Instalada</th>
+              <th style="width:13%;">Versión Oficial Objetivo</th>
+              <th style="width:10%;">Estado</th>
+              <th style="width:9%;">Severidad</th>
+              <th style="width:8%;">Admisión WHQL</th>
             </tr>
           </thead>
           <tbody id="devmodal-drivers-tbody">
@@ -1075,8 +1122,15 @@
         <div id="devmodal-tasks-list" class="tasks-timeline-box"></div>
       </div>
 
-      <div class="modal-footer" style="margin-top:20px;">
-        <button type="button" class="modal-btn-secondary" onclick="closeDeviceAuditModal()">Cerrar</button>
+      <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <button type="button" class="modal-btn-secondary" onclick="confirmDeleteCurrentDevice()" style="color:var(--severity-critical); border-color:rgba(239,68,68,0.4);" title="Elimina este equipo y su historial del panel">
+            Eliminar de la Flota
+          </button>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="modal-btn-secondary" onclick="closeDeviceAuditModal()">Cerrar</button>
+        </div>
       </div>
 
     </div>
@@ -1099,15 +1153,25 @@
         Instala el agente en los equipos de tu organización para que reporten automáticamente su modelo, BIOS y estado de controladores a este servidor.
       </p>
 
-      <!-- Comando One-Liner para PowerShell -->
-      <div class="terminal-cmd-box">
-        <div class="terminal-cmd-header">
-          <span>Comando de Registro Inmediato (PowerShell como Administrador)</span>
-          <button type="button" class="copy-cmd-btn" onclick="copyAgentEnrollCommand()" id="copy-agent-cmd-btn">
-            Copiar Comando
-          </button>
+      <!-- OPCIÓN 1 RECOMENDADA: PAQUETE MSI PARA MICROSOFT INTUNE -->
+      <div style="background:rgba(6, 182, 212, 0.08); border:1px solid rgba(6, 182, 212, 0.3); border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="status-pill compliant" style="font-size:11px; font-weight:700;">OPCIÓN RECOMENDADA</span>
+            <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Paquete Instalador MSI Autónomo (.msi)</h4>
+          </div>
+          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
+            Descargar OEM-Client-Agent-1.0.0.msi
+          </a>
         </div>
-        <pre class="terminal-cmd-code" id="agent-enroll-cmd-display"></pre>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">
+          Ideal para desplegar como aplicación de línea de negocio (LOB) o Win32 en Microsoft Intune, GPO de Active Directory o SCCM.
+        </p>
+        <div class="terminal-cmd-header" style="border-radius:var(--radius-sm) var(--radius-sm) 0 0;">
+          <span>Comando de Instalación Silenciosa (Intune / CMD / PowerShell Admin):</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyMsiInstallCommand()">Copiar msiexec</button>
+        </div>
+        <pre class="terminal-cmd-code" id="msi-install-cmd-display" style="border-radius:0 0 var(--radius-sm) var(--radius-sm);">msiexec /i OEM-Client-Agent-1.0.0.msi /qn SERVER_URL="http://localhost:3000"</pre>
       </div>
 
       <!-- Configuración de Host / Dominio del Servidor -->
@@ -1121,27 +1185,38 @@
         </div>
       </div>
 
+      <!-- OPCIÓN 2: COMANDO POWERSHELL -->
+      <div class="terminal-cmd-box" style="margin-top:16px;">
+        <div class="terminal-cmd-header">
+          <span>Opción 2: Script Directo de Enrolamiento (PowerShell Admin)</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyAgentEnrollCommand()" id="copy-agent-cmd-btn">
+            Copiar Comando
+          </button>
+        </div>
+        <pre class="terminal-cmd-code" id="agent-enroll-cmd-display"></pre>
+      </div>
+
       <!-- Guía Paso a Paso para Microsoft Intune -->
       <div class="terminal-steps-card">
-        <h4 style="font-size:13px; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:8px;">Guía de Configuración para Microsoft Intune</h4>
+        <h4 style="font-size:13px; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:8px;">Pasos de Despliegue en Microsoft Intune</h4>
         <ol style="font-size:13px; color:var(--text-secondary); margin-left:18px; display:flex; flex-direction:column; gap:6px;">
-          <li>En el portal de <strong>Microsoft Intune Admin Center</strong>, navega a <strong>Dispositivos &gt; Scripts &gt; Agregar &gt; Windows 10 y posteriores</strong>.</li>
-          <li>Descarga el script de enrolamiento usando el botón inferior y súbelo al perfil de script.</li>
-          <li>En la pestaña de configuración, establece:
-            <ul style="margin-left:16px; margin-top:4px; list-style-type:disc;">
-              <li><strong>Ejecutar este script con las credenciales de inicio de sesión del usuario:</strong> <strong style="color:var(--accent-cyan);">No</strong> (se ejecutará como <code>NT AUTHORITY\SYSTEM</code>).</li>
-              <li><strong>Exigir comprobación de firma del script:</strong> No.</li>
-              <li><strong>Ejecutar script en host de PowerShell de 64 bits:</strong> Sí.</li>
-            </ul>
-          </li>
-          <li>Asigna la directiva al grupo de dispositivos deseado (Piloto o Todos los Equipos).</li>
+          <li>En el portal de <strong>Microsoft Intune Admin Center</strong> (endpoint.microsoft.com), ve a <strong>Aplicaciones &gt; Todas las aplicaciones &gt; Agregar</strong>.</li>
+          <li>Tipo de aplicación: <strong>Aplicación de línea de negocio (LOB)</strong> o <strong>Windows app (Win32)</strong> y sube <code>OEM-Client-Agent-1.0.0.msi</code>.</li>
+          <li>En argumentos de la línea de comandos introduce: <code>/qn SERVER_URL="https://oem.elfakir.com"</code> (reemplaza con tu dominio Coolify).</li>
+          <li>Asigna el paquete al grupo de dispositivos deseado (Piloto o Producción).</li>
+          <li>El agente se instalará en segundo plano en <code>C:\Program Files\OEMDriverAgent</code> y creará una tarea programada bajo <code>NT AUTHORITY\SYSTEM</code> que enviará telemetría de hardware y estado de controladores automáticamente.</li>
         </ol>
       </div>
 
-      <div class="modal-footer" style="margin-top:20px;">
-        <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
-          Descargar Script de Enrolamiento (.ps1)
-        </button>
+      <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between;">
+        <div style="display:flex; gap:8px;">
+          <a href="/api/agent/download-msi" class="modal-btn-primary" style="text-decoration:none;">
+            Descargar Agente MSI
+          </a>
+          <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
+            Descargar Script .ps1
+          </button>
+        </div>
         <button type="button" class="modal-btn-secondary" onclick="closeAgentEnrollModal()">Cerrar</button>
       </div>
 
@@ -1162,6 +1237,6 @@
   <!-- ── Toast de Notificaciones ────────────────────────────────── -->
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
-  <script src="app.js?v=7.1"></script>
+  <script src="app.js?v=9.0"></script>
 </body>
 </html>

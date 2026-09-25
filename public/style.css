@@ -1770,7 +1770,8 @@ body {
 .toast.info    { border-color: rgba(56, 189, 248, 0.6);  color: #38bdf8; }
 
 /* ── Navegación Principal (Header Nav Tabs) ───────────────────── */
-.primary-nav {
+.primary-nav,
+.nav-tabs-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1790,6 +1791,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none;
 }
 
 .nav-tab-btn:hover {
@@ -2048,12 +2050,22 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow-x: auto;
+  box-shadow: var(--shadow-card);
+}
+
+.table-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: var(--shadow-card);
 }
 
 .fleet-table {
   width: 100%;
+  min-width: 1100px;
   border-collapse: collapse;
   text-align: left;
   font-size: 13px;
@@ -2061,7 +2073,7 @@ body {
 
 .fleet-table th {
   background: rgba(12, 18, 34, 0.95);
-  padding: 12px 16px;
+  padding: 12px 14px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -2072,13 +2084,100 @@ body {
 }
 
 .fleet-table td {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   vertical-align: middle;
 }
 
-.fleet-table tr:hover td {
+.fleet-table tr.clickable-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.fleet-table tr.clickable-row:hover td {
   background: var(--bg-card-hover);
+}
+
+/* Columna de Acciones fija / sticky SOLO en la tabla general de equipos */
+.fleet-table.fleet-overview-table th:last-child {
+  position: sticky;
+  right: 0;
+  background: #0d1424;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.35);
+  z-index: 3;
+}
+
+.fleet-table.fleet-overview-table td:last-child {
+  position: sticky;
+  right: 0;
+  background: #0f172a;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.fleet-table.fleet-overview-table tr:hover td:last-child {
+  background: #1e293b;
+}
+
+/* Tabla de Inventario de Controladores (Ficha Técnica y Modal): SIN solapamiento */
+.driver-inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+  table-layout: auto;
+}
+
+.driver-inventory-table th,
+.driver-inventory-table td {
+  padding: 10px 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.driver-inventory-table th {
+  background: rgba(12, 18, 34, 0.95);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.driver-inventory-table th:last-child,
+.driver-inventory-table td:last-child {
+  position: static !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  z-index: auto !important;
+}
+
+.driver-inventory-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-inline-monitor {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(6, 182, 212, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-inline-monitor:hover {
+  background: rgba(6, 182, 212, 0.25);
+  border-color: var(--accent-cyan);
+  transform: translateY(-1px);
 }
 
 /* Barras de Cumplimiento en Tabla */
@@ -2472,10 +2571,16 @@ input:checked + .toggle-slider:before {
   margin-top: 10px;
 }
 
-/* Modales de Flota */
+/* Modales de Flota — Ventana Completa */
 .modal-card-fleet-audit {
-  max-width: 900px;
-  width: 92%;
+  max-width: 98vw;
+  width: 98vw;
+  max-height: 96vh;
+  height: 96vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
 }
 
 .devmodal-title-row {

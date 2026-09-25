@@ -1952,15 +1952,24 @@ function renderFleetTable(devices) {
     else if (rate < 90) barClass = 'mid';
 
     const pendingTotal = (d.outdated_drivers || 0) + (d.pending_drivers || 0);
+    const isDemoBadge = (d.is_demo === 1 || ['LNV-PF12A9B1', 'LNV-PF23B8C2', 'HP-5CD142980', 'HP-5CD932014'].includes(d.id))
+      ? `<span class="status-pill critical" style="font-size:9px; padding:1px 5px; margin-left:4px;" title="Dispositivo de demostración">DEMO</span>`
+      : '';
 
     return `
-      <tr>
+      <tr class="clickable-row" onclick="openDeviceAuditModal('${escapeHtml(d.id)}')">
         <td>${statusPill}</td>
         <td>
-          <div style="font-weight:700; color:var(--text-primary); font-family:var(--font-mono); font-size:13px;">
-            ${escapeHtml(d.hostname)}
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-weight:700; color:var(--accent-cyan); font-family:var(--font-mono); font-size:13px; text-decoration:underline; text-underline-offset:2px;">
+              ${escapeHtml(d.hostname)}
+            </span>
+            ${isDemoBadge}
+            <button type="button" class="btn-inline-monitor" onclick="event.stopPropagation(); openDeviceAuditModal('${escapeHtml(d.id)}')" title="Ver telemetría y controladores de este equipo">
+              Ver Detalles
+            </button>
           </div>
-          <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+          <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px;">
             IP: ${escapeHtml(d.ip_address || '127.0.0.1')}
           </div>
         </td>
@@ -1974,11 +1983,19 @@ function renderFleetTable(devices) {
           </div>
         </td>
         <td>
+          <div style="font-weight:600; color:var(--text-primary); font-size:12px;" title="${escapeHtml(d.cpu || 'No reportado')}">
+            ${escapeHtml(d.cpu ? (d.cpu.length > 28 ? d.cpu.substring(0,28)+'…' : d.cpu) : 'Pendiente check-in')}
+          </div>
+          <div style="font-size:11px; color:var(--accent-cyan); font-family:var(--font-mono);">
+            RAM: ${escapeHtml(d.ram || '—')}
+          </div>
+        </td>
+        <td>
           <div style="color:var(--text-secondary); font-size:12px;">${escapeHtml(d.os_build || 'Windows 11')}</div>
           <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">BIOS: ${escapeHtml(d.bios_version || '—')}</div>
         </td>
         <td>
-          <select class="fleet-inline-select" onchange="changeDeviceGroup('${escapeHtml(d.id)}', this.value)" title="Asignar directiva de grupo">
+          <select class="fleet-inline-select" onclick="event.stopPropagation()" onchange="changeDeviceGroup('${escapeHtml(d.id)}', this.value)" title="Asignar directiva de grupo">
             <option value="pilot" ${d.group_name === 'pilot' ? 'selected' : ''}>Piloto / IT</option>
             <option value="general" ${d.group_name === 'general' ? 'selected' : ''}>General / Prod</option>
             <option value="vip" ${d.group_name === 'vip' ? 'selected' : ''}>VIP / Dirección</option>
@@ -2004,10 +2021,10 @@ function renderFleetTable(devices) {
         </td>
         <td style="text-align:right;">
           <div style="display:flex; gap:6px; justify-content:flex-end;">
-            <button type="button" class="export-btn" onclick="openDeviceAuditModal('${escapeHtml(d.id)}')" style="font-size:11px; padding:4px 10px;" title="Ver auditoría técnica de controladores">
-              Auditoría
+            <button type="button" class="fleet-btn-secondary" onclick="event.stopPropagation(); openDeviceAuditModal('${escapeHtml(d.id)}')" style="font-size:11px; padding:4px 10px; font-weight:600; color:var(--accent-cyan); border-color:rgba(6,182,212,0.4);" title="Ver telemetría de hardware y monitorización en tiempo real">
+              Monitorizar
             </button>
-            <button type="button" class="fleet-btn-primary" onclick="triggerDeviceDeployment('${escapeHtml(d.id)}')" ${pendingTotal === 0 ? 'disabled' : ''} style="font-size:11px; padding:4px 10px; font-weight:600;" title="${pendingTotal === 0 ? 'Equipo totalmente actualizado' : 'Enviar orden de actualización'}">
+            <button type="button" class="fleet-btn-primary" onclick="event.stopPropagation(); triggerDeviceDeployment('${escapeHtml(d.id)}')" ${pendingTotal === 0 ? 'disabled' : ''} style="font-size:11px; padding:4px 10px; font-weight:600;" title="${pendingTotal === 0 ? 'Equipo totalmente actualizado' : 'Enviar orden de actualización'}">
               Actualizar
             </button>
           </div>
@@ -2056,15 +2073,17 @@ async function triggerDeviceDeployment(deviceId) {
 }
 
 // ================================================================
-// Modal Detalle de Auditoría de Equipo
+// Modal Detalle de Telemetría y Monitorización de Equipo
 // ================================================================
 
+let currentModalDriverFilter = 'all';
+
 async function openDeviceAuditModal(deviceId) {
-  try {
-    const res = await fetch(`/api/fleet/devices/${encodeURIComponent(deviceId)}`);
-    if (!res.ok) throw new Error('Dispositivo no encontrado');
-    const dev = await res.json();
-    currentDeviceUnderAudit = dev;
+  // Abrir en ventana/vista completa dedicada sin comprimir en modal pequeño
+  if (deviceId) {
+    window.location.href = `/equipo?id=${encodeURIComponent(deviceId)}`;
+    return;
+  }
 
     const modal = $('device-audit-modal');
     if (!modal) return;
@@ -2073,16 +2092,22 @@ async function openDeviceAuditModal(deviceId) {
     const oemBadge = $('devmodal-oem-badge');
     if (oemBadge) {
       oemBadge.className = `tab-btn-pill ${dev.oem}`;
-      oemBadge.textContent = dev.oem.toUpperCase();
+      oemBadge.textContent = (dev.oem || 'OEM').toUpperCase();
     }
 
     const groupBadge = $('devmodal-group-badge');
-    if (groupBadge) groupBadge.textContent = `Grupo: ${dev.group_name.toUpperCase()}`;
+    if (groupBadge) groupBadge.textContent = `Grupo: ${(dev.group_name || 'General').toUpperCase()}`;
 
     const compBadge = $('devmodal-compliance-badge');
     if (compBadge) {
       compBadge.textContent = `${dev.compliance_rate}% CUMPLIMIENTO`;
       compBadge.className = dev.compliance_rate >= 90 ? 'admit-badge-lg admit' : (dev.compliance_rate >= 60 ? 'admit-badge-lg' : 'admit-badge-lg rejected');
+    }
+
+    const demoBadge = $('devmodal-demo-badge');
+    if (demoBadge) {
+      const isDemo = dev.is_demo === 1 || ['LNV-PF12A9B1', 'LNV-PF23B8C2', 'HP-5CD142980', 'HP-5CD932014'].includes(dev.id);
+      demoBadge.style.display = isDemo ? 'inline-block' : 'none';
     }
 
     // Título y subtítulo
@@ -2092,12 +2117,30 @@ async function openDeviceAuditModal(deviceId) {
     const subEl = $('devmodal-subtitle');
     if (subEl) subEl.textContent = `${dev.model_name} (${dev.model_id}) · IP: ${dev.ip_address || '—'} · BIOS: ${dev.bios_version || '—'}`;
 
-    // Metadatos
+    // ── Telemetría Completa de Hardware ──
+    const cpuEl = $('devmodal-cpu');
+    if (cpuEl) cpuEl.textContent = dev.cpu || 'Pendiente de primer check-in del agente';
+
+    const ramEl = $('devmodal-ram');
+    if (ramEl) ramEl.textContent = dev.ram || 'Pendiente de reporte';
+
+    const serialEl = $('devmodal-serial');
+    if (serialEl) serialEl.textContent = dev.serial_number || dev.id || 'N/A';
+
+    const mbEl = $('devmodal-motherboard');
+    if (mbEl) mbEl.textContent = dev.motherboard || `${dev.oem ? dev.oem.toUpperCase() : ''} ${dev.model_id || ''}`;
+
+    const macEl = $('devmodal-mac');
+    if (macEl) macEl.textContent = dev.mac_address || 'Detectando en red local';
+
+    const ipEl = $('devmodal-ip');
+    if (ipEl) ipEl.textContent = dev.ip_address || '127.0.0.1';
+
     const osEl = $('devmodal-os');
-    if (osEl) osEl.textContent = dev.os_build || 'Windows 11';
+    if (osEl) osEl.textContent = `${dev.os_edition || 'Windows'} — ${dev.os_build || 'Build N/A'}`;
 
     const biosEl = $('devmodal-bios');
-    if (biosEl) biosEl.textContent = dev.bios_version || '—';
+    if (biosEl) biosEl.textContent = dev.bios_version || 'N/A';
 
     const statsEl = $('devmodal-stats-summary');
     if (statsEl) {
@@ -2116,48 +2159,152 @@ async function openDeviceAuditModal(deviceId) {
       deployBtn.textContent = pendingTotal === 0 ? 'Equipo Totalmente al Día' : `Actualizar ${pendingTotal} Controladores Pendientes`;
     }
 
-    // Tabla de controladores
-    const tbody = $('devmodal-drivers-tbody');
-    if (tbody) {
-      const drivers = dev.drivers || [];
-      if (drivers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--text-muted);">No hay inventario de controladores registrado aún.</td></tr>`;
-      } else {
-        tbody.innerHTML = drivers.map(d => {
-          let statusBadge = '';
-          if (d.status === 'ACTUALIZADO') {
-            statusBadge = `<span class="status-pill compliant">Actualizado</span>`;
-          } else if (d.status === 'DESACTUALIZADO') {
-            statusBadge = `<span class="status-pill outdated">Desactualizado</span>`;
-          } else {
-            statusBadge = `<span class="status-pill critical">Pendiente</span>`;
-          }
+    // Actualizar etiquetas con conteo de controladores
+    const allD = dev.drivers || [];
+    const uptodateD = allD.filter(d => d.status === 'ACTUALIZADO').length;
+    const pendingD = allD.filter(d => d.status !== 'ACTUALIZADO').length;
 
-          const sevClass = String(d.severity || '').toLowerCase().includes('cr') ? 'critical' : (String(d.severity || '').toLowerCase().includes('op') ? 'optional' : 'recommended');
-          const isAdmitted = d.is_admitted ? '<span class="status-pill compliant" style="font-size:10px;">Admitido WU</span>' : '<span class="status-pill outdated" style="font-size:10px;">Catálogo OEM</span>';
-
-          return `
-            <tr>
-              <td>
-                <div style="font-weight:600; color:var(--text-primary);">${escapeHtml(d.driver_name)}</div>
-                ${d.download_url ? `<a href="${escapeHtml(d.download_url)}" target="_blank" rel="noopener noreferrer" style="font-size:11px; color:var(--accent-cyan); text-decoration:none;">Descarga Oficial (${escapeHtml(d.file_size || '—')}) ↗</a>` : ''}
-              </td>
-              <td><span class="category-badge" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.category || 'General')}</span></td>
-              <td class="font-mono" style="font-size:12px; color:var(--text-secondary);">${escapeHtml(d.installed_version || 'No detectada')}</td>
-              <td class="font-mono" style="font-size:12px; color:var(--accent-cyan); font-weight:600;">${escapeHtml(d.target_version || '—')}</td>
-              <td>${statusBadge}</td>
-              <td><span class="severity-badge ${sevClass}" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.severity || 'Recomendado')}</span></td>
-              <td>${isAdmitted}</td>
-            </tr>
-          `;
-        }).join('');
-      }
+    const btnAll = $('devdriver-filter-all');
+    if (btnAll) {
+      btnAll.textContent = `Todos (${allD.length})`;
+      btnAll.className = 'export-btn selected';
     }
+    const btnPending = $('devdriver-filter-pending');
+    if (btnPending) {
+      btnPending.textContent = `Pendientes / Desactualizados (${pendingD})`;
+      btnPending.className = 'export-btn';
+    }
+    const btnUptodate = $('devdriver-filter-uptodate');
+    if (btnUptodate) {
+      btnUptodate.textContent = `Al Día (${uptodateD})`;
+      btnUptodate.className = 'export-btn';
+    }
+
+    // Renderizar tabla de controladores con filtro
+    renderDevModalDrivers();
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   } catch (err) {
     showToast('Error al abrir detalle del equipo: ' + err.message, 'error');
+  }
+}
+
+function filterDevModalDrivers(filterType) {
+  currentModalDriverFilter = filterType;
+  const btnAll = $('devdriver-filter-all');
+  const btnPending = $('devdriver-filter-pending');
+  const btnUptodate = $('devdriver-filter-uptodate');
+
+  if (btnAll) btnAll.className = filterType === 'all' ? 'export-btn selected' : 'export-btn';
+  if (btnPending) btnPending.className = filterType === 'pending' ? 'export-btn selected' : 'export-btn';
+  if (btnUptodate) btnUptodate.className = filterType === 'uptodate' ? 'export-btn selected' : 'export-btn';
+
+  renderDevModalDrivers();
+}
+
+function renderDevModalDrivers() {
+  if (!currentDeviceUnderAudit) return;
+  const tbody = $('devmodal-drivers-tbody');
+  if (!tbody) return;
+
+  let drivers = currentDeviceUnderAudit.drivers || [];
+  if (currentModalDriverFilter === 'pending') {
+    drivers = drivers.filter(d => d.status !== 'ACTUALIZADO');
+  } else if (currentModalDriverFilter === 'uptodate') {
+    drivers = drivers.filter(d => d.status === 'ACTUALIZADO');
+  }
+
+  if (drivers.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--text-muted);">No hay controladores para el filtro seleccionado.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = drivers.map(d => {
+    let statusBadge = '';
+    if (d.status === 'ACTUALIZADO') {
+      statusBadge = `<span class="status-pill compliant">Actualizado</span>`;
+    } else if (d.status === 'DESACTUALIZADO') {
+      statusBadge = `<span class="status-pill outdated">Desactualizado</span>`;
+    } else {
+      statusBadge = `<span class="status-pill critical">Pendiente</span>`;
+    }
+
+    const sevClass = String(d.severity || '').toLowerCase().includes('cr') ? 'critical' : (String(d.severity || '').toLowerCase().includes('op') ? 'optional' : 'recommended');
+    const isAdmitted = d.is_admitted ? '<span class="status-pill compliant" style="font-size:10px;">Admitido WU</span>' : '<span class="status-pill outdated" style="font-size:10px;">Catálogo OEM</span>';
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight:600; color:var(--text-primary);">${escapeHtml(d.driver_name)}</div>
+          ${d.download_url ? `<a href="${escapeHtml(d.download_url)}" target="_blank" rel="noopener noreferrer" style="font-size:11px; color:var(--accent-cyan); text-decoration:none;">Descarga Oficial (${escapeHtml(d.file_size || '—')}) ↗</a>` : ''}
+        </td>
+        <td><span class="category-badge" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.category || 'General')}</span></td>
+        <td class="font-mono" style="font-size:12px; color:var(--text-secondary);">${escapeHtml(d.installed_version || 'No detectada')}</td>
+        <td class="font-mono" style="font-size:12px; color:var(--accent-cyan); font-weight:600;">${escapeHtml(d.target_version || '—')}</td>
+        <td>${statusBadge}</td>
+        <td><span class="severity-badge ${sevClass}" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.severity || 'Recomendado')}</span></td>
+        <td>${isAdmitted}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function confirmDeleteCurrentDevice() {
+  if (!currentDeviceUnderAudit) return;
+  const ok = confirm(`¿Estás seguro de eliminar el equipo "${currentDeviceUnderAudit.hostname}" (${currentDeviceUnderAudit.id}) de la flota? Esta acción eliminará su inventario y telemetría de la base de datos.`);
+  if (!ok) return;
+
+  try {
+    const res = await fetch(`/api/fleet/devices/${encodeURIComponent(currentDeviceUnderAudit.id)}`, {
+      method: 'DELETE'
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Error al eliminar');
+
+    showToast(`Equipo "${currentDeviceUnderAudit.hostname}" eliminado de la flota`, 'success');
+    closeDeviceAuditModal();
+    loadFleetData(true);
+  } catch (err) {
+    showToast('Error al eliminar equipo: ' + err.message, 'error');
+  }
+}
+
+async function confirmClearDemoDevices() {
+  const ok = confirm('¿Deseas eliminar todos los equipos de prueba/demostración para ver únicamente tus equipos reales conectados?');
+  if (!ok) return;
+
+  try {
+    const res = await fetch('/api/fleet/clear-demo', { method: 'POST' });
+    const data = await res.json();
+    showToast(`Se han eliminado ${data.count || 0} equipos de demostración. Flota lista para tus equipos reales.`, 'success');
+    loadFleetData(true);
+  } catch (err) {
+    showToast('Error al limpiar datos demo: ' + err.message, 'error');
+  }
+}
+
+async function seedDemoDevicesForTesting() {
+  try {
+    const res = await fetch('/api/fleet/seed-demo', { method: 'POST' });
+    const data = await res.json();
+    showToast('Datos de prueba cargados correctamente para verificación visual', 'info');
+    loadFleetData(true);
+  } catch (err) {
+    showToast('Error cargando datos demo: ' + err.message, 'error');
+  }
+}
+
+function copyMsiInstallCommand() {
+  const el = $('msi-install-cmd-display');
+  if (!el) return;
+  const text = el.textContent.trim();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Comando de instalación MSI copiado al portapapeles', 'success');
+    }).catch(() => fallbackAgentCopy(text, null));
+  } else {
+    fallbackAgentCopy(text, null);
   }
 }
 
@@ -2498,6 +2645,11 @@ function updateAgentEnrollCommandString() {
   const cmd = `powershell -ExecutionPolicy Bypass -Command "irm ${serverUrl}/api/agent/install | iex"`;
   const display = $('agent-enroll-cmd-display');
   if (display) display.textContent = cmd;
+
+  const msiDisplay = $('msi-install-cmd-display');
+  if (msiDisplay) {
+    msiDisplay.textContent = `msiexec /i OEM-Client-Agent-1.0.0.msi /qn SERVER_URL="${serverUrl}"`;
+  }
 }
 
 function openAgentEnrollModal() {
@@ -2751,6 +2903,11 @@ window.openTerminalCommandModal = openTerminalCommandModal;
 window.closeTerminalCommandModal = closeTerminalCommandModal;
 window.copyTerminalCommand = copyTerminalCommand;
 window.downloadPowerShellScript = downloadPowerShellScript;
+window.filterDevModalDrivers = filterDevModalDrivers;
+window.confirmDeleteCurrentDevice = confirmDeleteCurrentDevice;
+window.confirmClearDemoDevices = confirmClearDemoDevices;
+window.seedDemoDevicesForTesting = seedDemoDevicesForTesting;
+window.copyMsiInstallCommand = copyMsiInstallCommand;
 
 document.addEventListener('DOMContentLoaded', init);
 

@@ -9,6 +9,7 @@
 const express = require('express');
 const cors    = require('cors');
 const helmet  = require('helmet');
+const fs      = require('fs');
 const path    = require('path');
 
 const { fetchDrivers: lenovoFetch }              = require('./lib/lenovoService');
@@ -31,21 +32,23 @@ const app = express();
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      defaultSrc:  ["'self'"],
-      scriptSrc:   ["'self'", "'unsafe-inline'"],
-      styleSrc:    ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-      fontSrc:     ["'self'", 'https://fonts.gstatic.com'],
-      imgSrc:      ["'self'", 'data:'],
-      connectSrc:  ["'self'"],
+      defaultSrc:    ["'self'"],
+      scriptSrc:     ["'self'", "'unsafe-inline'"],
+      scriptSrcAttr: ["'unsafe-inline'"],
+      scriptSrcElem: ["'self'", "'unsafe-inline'"],
+      styleSrc:      ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      fontSrc:       ["'self'", 'https://fonts.gstatic.com'],
+      imgSrc:        ["'self'", 'data:'],
+      connectSrc:    ["'self'"],
     },
   },
 }));
 
-// CORS: permite el mismo origen (frontend servido por Express)
-// En producción interna podrías añadir dominios corporativos específicos.
+// CORS: permite conexiones desde el dashboard y agentes clientes en red
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
-  methods: ['GET'],
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -340,6 +343,30 @@ app.post('/api/fleet/devices/:id/deploy', (req, res) => {
   res.json({ success: true, task, driversCount: toDeploy.length });
 });
 
+// Eliminar un dispositivo individual de la flota
+app.delete('/api/fleet/devices/:id', (req, res) => {
+  const success = fleetStorage.deleteDevice(req.params.id);
+  res.json({ success, message: success ? 'Dispositivo eliminado' : 'No se pudo eliminar el dispositivo' });
+});
+
+// Purgar dispositivos de prueba / demostración
+app.post('/api/fleet/clear-demo', (_req, res) => {
+  const count = fleetStorage.clearDemoDevices();
+  res.json({ success: true, count, message: `Se eliminaron ${count} equipos de demostración` });
+});
+
+// Purgar todos los dispositivos de la flota (inicio limpio)
+app.post('/api/fleet/purge', (_req, res) => {
+  const success = fleetStorage.clearAllDevices();
+  res.json({ success, message: 'Flota vaciada completamente. Lista para recibir clientes reales.' });
+});
+
+// Cargar flota de prueba (solo para pruebas si el usuario lo solicita explícitamente)
+app.post('/api/fleet/seed-demo', (_req, res) => {
+  fleetStorage.seedSampleDataIfEmpty();
+  res.json({ success: true, message: 'Datos de prueba cargados correctamente' });
+});
+
 // Consulta de configuración y políticas de la flota
 app.get('/api/fleet/settings', (_req, res) => {
   res.json(fleetStorage.getSettings());
@@ -355,7 +382,7 @@ app.post('/api/fleet/settings', (req, res) => {
 // API del Agente Cliente (Endpoints de comunicación y telemetría)
 // ------------------------------------------------------------------
 
-// Heartbeat / Check-in del cliente
+// Heartbeat / Check-in del cliente con telemetría completa
 app.post('/api/agent/checkin', (req, res) => {
   const {
     deviceId,
@@ -365,6 +392,12 @@ app.post('/api/agent/checkin', (req, res) => {
     modelName,
     osBuild,
     biosVersion,
+    cpu,
+    ram,
+    serialNumber,
+    macAddress,
+    motherboard,
+    osEdition,
     auditResults = []
   } = req.body || {};
 
@@ -384,6 +417,12 @@ app.post('/api/agent/checkin', (req, res) => {
     osBuild,
     biosVersion,
     ipAddress: clientIp,
+    cpu,
+    ram,
+    serialNumber,
+    macAddress,
+    motherboard,
+    osEdition,
     auditResults
   });
 
@@ -532,6 +571,152 @@ Write-Host "El equipo ya esta vinculado y reportando a $ServerUrl" -ForegroundCo
 
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
   res.send(agentScript);
+});
+
+// Descarga directa del instalador MSI para agentes clientes (Intune)
+app.get('/api/agent/download-msi', (_req, res) => {
+  const msiPath = path.join(__dirname, 'public', 'downloads', 'OEM-Client-Agent-1.0.0.msi');
+  if (fs.existsSync(msiPath)) {
+    return res.download(msiPath, 'OEM-Client-Agent-1.0.0.msi');
+  }
+
+  const rootMsiPath = path.join(__dirname, '..', 'OEM-Client-Agent-1.0.0.msi');
+  if (fs.existsSync(rootMsiPath)) {
+    return res.download(rootMsiPath, 'OEM-Client-Agent-1.0.0.msi');
+  }
+
+  res.status(404).json({
+    error: 'Instalador MSI no disponible aún en el servidor.'
+  });
+});
+
+// ------------------------------------------------------------------
+// Estado de Salud de Conectores y APIs Oficiales
+// ------------------------------------------------------------------
+app.get('/api/connectors/status', async (_req, res) => {
+  const desktopHeaders = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*',
+    'Referer': 'https://pcsupport.lenovo.com/',
+    'Origin': 'https://pcsupport.lenovo.com'
+  };
+
+  const checks = [
+    {
+      id: 'lenovo',
+      name: 'Lenovo PC Support API v4',
+      provider: 'Lenovo Group Ltd.',
+      endpoint: 'https://pcsupport.lenovo.com/es/es/api/v4/downloads/drivers',
+      probeUrl: 'https://pcsupport.lenovo.com/es/es/api/v4/downloads/drivers?productId=20W0',
+      headers: desktopHeaders,
+      method: 'GET',
+      protocol: 'REST / JSON (HTTPS)',
+      description: 'Catálogo oficial de controladores, firmwares UEFI/BIOS y paquetes SCCM para ThinkPad, ThinkCentre y ThinkStation.'
+    },
+    {
+      id: 'hp',
+      name: 'HP Image Assistant & SoftPaq CDN',
+      provider: 'HP Development Company, L.P.',
+      endpoint: 'https://ftp.hp.com/pub/softpaq/',
+      probeUrl: 'https://ftp.hp.com/pub/softpaq/sp142501-143000/sp142980.exe',
+      headers: {},
+      method: 'HEAD',
+      protocol: 'HTTP / HTTPS CDN',
+      description: 'Repositorio oficial SoftPaq corporativo de Hewlett-Packard para portátiles EliteBook, ProBook y ZBook Workstations.'
+    },
+    {
+      id: 'microsoft',
+      name: 'Microsoft Update Catalog & WHQL',
+      provider: 'Microsoft Corporation',
+      endpoint: 'https://www.catalog.update.microsoft.com',
+      probeUrl: 'https://www.catalog.update.microsoft.com/',
+      headers: {},
+      method: 'GET',
+      protocol: 'HTTPS / WHQL Taxonomy',
+      description: 'Catálogo oficial de controladores certificados y firmados digitalmente para distribución mediante Windows Update y WSUS.'
+    },
+    {
+      id: 'fleet_core',
+      name: 'Servidor Local OEM Auditor Core',
+      provider: 'OEM Driver Auditor (Instancia Local)',
+      endpoint: `http://localhost:${PORT}/api/health`,
+      probeUrl: `http://localhost:${PORT}/api/health`,
+      headers: {},
+      method: 'GET',
+      protocol: 'REST / SQLite WAL',
+      description: 'Base de datos de flota, motor de auditoría de agentes clientes y servidor de políticas corporativas.'
+    }
+  ];
+
+  const results = await Promise.all(checks.map(async (c) => {
+    const start = Date.now();
+    try {
+      const resp = await fetch(c.probeUrl, {
+        method: c.method,
+        headers: c.headers,
+        signal: AbortSignal.timeout(6000)
+      });
+      const latency = Date.now() - start;
+      const isOk = resp.status >= 200 && resp.status < 400;
+      return {
+        id: c.id,
+        name: c.name,
+        provider: c.provider,
+        endpoint: c.endpoint,
+        status: isOk ? 'online' : 'degraded',
+        statusCode: resp.status,
+        latencyMs: latency,
+        protocol: c.protocol,
+        description: c.description,
+        lastChecked: new Date().toISOString()
+      };
+    } catch (err) {
+      const latency = Date.now() - start;
+      return {
+        id: c.id,
+        name: c.name,
+        provider: c.provider,
+        endpoint: c.endpoint,
+        status: 'offline',
+        statusCode: 0,
+        latencyMs: latency,
+        error: err.message,
+        protocol: c.protocol,
+        description: c.description,
+        lastChecked: new Date().toISOString()
+      };
+    }
+  }));
+
+  const totalOnline = results.filter(r => r.status === 'online').length;
+  res.json({
+    summary: {
+      total: results.length,
+      online: totalOnline,
+      allOperational: totalOnline === results.length,
+      timestamp: new Date().toISOString()
+    },
+    connectors: results
+  });
+});
+
+// ------------------------------------------------------------------
+// Vistas Dedicadas HTML (Arquitectura Modular)
+// ------------------------------------------------------------------
+app.get('/flota', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'flota.html'));
+});
+
+app.get('/equipo', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'equipo.html'));
+});
+
+app.get('/configuracion', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'configuracion.html'));
+});
+
+app.get('/conectores', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'conectores.html'));
 });
 
 // ------------------------------------------------------------------

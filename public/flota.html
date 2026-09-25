@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OEM Driver Explorer — Flota Corporativa de Equipos Conectados y Telemetría en Tiempo Real." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Flota Corporativa — OEM Driver Explorer</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="style.css?v=10.0" />
+</head>
+<body>
+
+  <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+          <div class="logo-mark" aria-hidden="true">OEM</div>
+          <div class="logo-title-group">
+            <span class="logo-text">Driver Explorer</span>
+            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navegación limpia entre Vistas Independientes -->
+      <nav class="nav-tabs-wrapper" role="navigation" aria-label="Secciones de la plataforma">
+        <a href="/" class="nav-tab-btn" id="nav-btn-catalog" style="text-decoration:none;">
+          <span class="nav-tab-label">Catálogo OEM</span>
+        </a>
+        <a href="/flota" class="nav-tab-btn active" id="nav-btn-fleet" style="text-decoration:none;">
+          <span class="nav-tab-label">Flota de Equipos</span>
+          <span id="nav-fleet-count-badge" class="nav-count-badge">1</span>
+        </a>
+        <a href="/configuracion" class="nav-tab-btn" id="nav-btn-settings" style="text-decoration:none;">
+          <span class="nav-tab-label">Políticas y Configuración</span>
+          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
+        </a>
+        <a href="/conectores" class="nav-tab-btn" id="nav-btn-connectors" style="text-decoration:none;">
+          <span class="nav-tab-label">Conectores &amp; APIs</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Contenido Principal de Flota ──────────────────────────────── -->
+  <main class="main-content" role="main" style="max-width:1440px; margin:0 auto; padding:24px 20px;">
+    
+    <!-- Encabezado de la Flota -->
+    <div class="fleet-header-row" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h1 class="fleet-view-title" style="font-size:24px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">
+          Flota Corporativa de Equipos Conectados
+        </h1>
+        <p class="fleet-view-subtitle" style="color:var(--text-secondary); font-size:14px;">
+          Monitoreo en tiempo real de endpoints, telemetría de hardware y estado de controladores oficiales.
+        </p>
+      </div>
+
+      <div class="fleet-actions-row" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="/api/agent/download-msi" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar instalador MSI para despliegue corporativo">
+          Descargar Agente MSI (.msi)
+        </a>
+        <button type="button" id="btn-fleet-refresh" class="fleet-btn-secondary" onclick="loadFleetData(true)">
+          Refrescar Flota
+        </button>
+      </div>
+    </div>
+
+    <!-- Métricas Clave de la Flota (KPIs) -->
+    <div class="fleet-stats-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:24px;">
+      <div class="fleet-stat-card">
+        <div class="fleet-stat-label">Total Equipos Conectados</div>
+        <div class="fleet-stat-value font-mono" id="stat-total-devices">0</div>
+        <div class="fleet-stat-sub" id="stat-devices-breakdown">Cargando flota...</div>
+      </div>
+
+      <div class="fleet-stat-card border-green">
+        <div class="fleet-stat-label">Equipos 100% al Día</div>
+        <div class="fleet-stat-value font-mono text-green" id="stat-uptodate-devices">0</div>
+        <div class="fleet-stat-sub">Cumplimiento total de controladores</div>
+      </div>
+
+      <div class="fleet-stat-card border-yellow">
+        <div class="fleet-stat-label">Con Actualizaciones Pendientes</div>
+        <div class="fleet-stat-value font-mono text-yellow" id="stat-outdated-devices">0</div>
+        <div class="fleet-stat-sub">Requieren actualización de controladores</div>
+      </div>
+
+      <div class="fleet-stat-card border-red">
+        <div class="fleet-stat-label">Parches Críticos de Seguridad</div>
+        <div class="fleet-stat-value font-mono text-red" id="stat-critical-count">0</div>
+        <div class="fleet-stat-sub">Firmware BIOS y vulnerabilidades CVE</div>
+      </div>
+    </div>
+
+    <!-- Barra de Filtros de la Tabla de Flota -->
+    <div class="fleet-toolbar-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:16px; margin-bottom:20px;">
+      <div class="fleet-toolbar-grid" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+        <div class="fleet-search-box" style="flex:1; min-width:280px;">
+          <input
+            type="text"
+            id="fleet-search-input"
+            class="fleet-input"
+            placeholder="Buscar por equipo, IP, modelo, CPU o número de serie..."
+            oninput="filterFleetTable()"
+            style="width:100%;"
+          />
+        </div>
+
+        <div class="fleet-filters-row" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <select id="fleet-filter-group" class="fleet-select" onchange="filterFleetTable()">
+            <option value="">Todos los Grupos</option>
+            <option value="pilot">Grupo Piloto / IT</option>
+            <option value="general">Grupo General / Producción</option>
+            <option value="vip">Grupo VIP / Dirección</option>
+          </select>
+
+          <select id="fleet-filter-oem" class="fleet-select" onchange="filterFleetTable()">
+            <option value="">Todos los Fabricantes</option>
+            <option value="lenovo">Solo Lenovo</option>
+            <option value="hp">Solo HP</option>
+          </select>
+
+          <select id="fleet-filter-status" class="fleet-select" onchange="filterFleetTable()">
+            <option value="">Todos los Estados</option>
+            <option value="compliant">Al Día (100%)</option>
+            <option value="outdated">Desactualizados</option>
+            <option value="critical">Con Parches Críticos</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de Equipos Conectados -->
+    <div class="fleet-table-card">
+      <div class="table-container">
+        <table class="fleet-table" aria-label="Listado de equipos conectados a la flota">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Equipo / Hostname</th>
+              <th>Fabricante &amp; Modelo</th>
+              <th>Hardware (CPU / RAM)</th>
+              <th>Sistema &amp; BIOS</th>
+              <th>Grupo de Políticas</th>
+              <th>Cumplimiento</th>
+              <th>Controladores</th>
+              <th>Última Conexión</th>
+              <th style="text-align:right;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="fleet-table-tbody">
+            <!-- Inyectado dinámicamente por flota.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Estado vacío cuando no hay equipos -->
+      <div id="fleet-empty-state" class="fleet-empty-box" style="display:none; text-align:center; padding:56px 24px;">
+        <div style="font-size:32px; margin-bottom:12px; opacity:0.8;">[FLOTA]</div>
+        <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:8px;">No hay equipos conectados a la flota actualmente</h3>
+        <p style="color:var(--text-muted); max-width:620px; margin:0 auto 24px auto; font-size:14px; line-height:1.6;">
+          Para registrar equipos en este panel, descarga el <strong>Agente Cliente (.MSI)</strong> e instálalo en tus puestos o despliégalo mediante Microsoft Intune.
+        </p>
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
+            Descargar Instalador MSI (.msi)
+          </a>
+          <button type="button" class="fleet-btn-secondary" onclick="openAgentEnrollModal()" style="padding:10px 20px; font-size:14px;">
+            Ver Guía de Despliegue Intune
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Modal Enrolamiento y Despliegue de Agente (Intune) ────────── -->
+  <div id="agent-enroll-modal" class="modal-overlay" style="display:none;" onclick="if(event.target === this) closeAgentEnrollModal()">
+    <div class="modal-card modal-card-terminal" role="dialog" aria-modal="true" aria-labelledby="agent-enroll-title" style="max-width:820px;">
+      
+      <div class="modal-header">
+        <div class="modal-badges-group">
+          <span class="category-badge">Microsoft Intune</span>
+          <span class="severity-badge recommended">Despliegue Corporativo</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeAgentEnrollModal()" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <h3 id="agent-enroll-title" class="modal-title">Despliegue del Agente en Equipos Clientes</h3>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+        Instala el agente en los equipos de tu organización para que reporten automáticamente su modelo, hardware, BIOS y estado de controladores a este servidor.
+      </p>
+
+      <!-- OPCIÓN 1 RECOMENDADA: PAQUETE MSI -->
+      <div style="background:rgba(6, 182, 212, 0.08); border:1px solid rgba(6, 182, 212, 0.3); border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="status-pill compliant" style="font-size:11px; font-weight:700;">OPCIÓN RECOMENDADA</span>
+            <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Paquete Instalador MSI Autónomo (.msi)</h4>
+          </div>
+          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
+            Descargar OEM-Client-Agent-1.0.0.msi
+          </a>
+        </div>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">
+          Compatible con despliegue de línea de negocio (LOB) o Win32 en Microsoft Intune, GPO o SCCM.
+        </p>
+        <div class="terminal-cmd-header" style="border-radius:var(--radius-sm) var(--radius-sm) 0 0;">
+          <span>Comando de Instalación Silenciosa:</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyMsiInstallCommand()">Copiar msiexec</button>
+        </div>
+        <pre class="terminal-cmd-code" id="msi-install-cmd-display" style="border-radius:0 0 var(--radius-sm) var(--radius-sm);">msiexec /i OEM-Client-Agent-1.0.0.msi /qn SERVER_URL="http://localhost:3000"</pre>
+      </div>
+
+      <!-- Configuración de Host / Dominio del Servidor -->
+      <div class="terminal-host-config">
+        <label for="agent-server-host-input" style="font-size:11px; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:4px;">
+          URL / Dominio del Servidor (Coolify o Red Local):
+        </label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="agent-server-host-input" class="filter-search-input" placeholder="https://oem.elfakir.com o http://localhost:3000" oninput="updateAgentEnrollCommandString()" style="max-width:360px;" />
+          <button type="button" class="export-btn" onclick="resetAgentServerHost()" style="font-size:12px;">Restablecer</button>
+        </div>
+      </div>
+
+      <!-- OPCIÓN 2: COMANDO POWERSHELL -->
+      <div class="terminal-cmd-box" style="margin-top:16px;">
+        <div class="terminal-cmd-header">
+          <span>Opción 2: Script Directo de Enrolamiento (PowerShell Admin)</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyAgentEnrollCommand()" id="copy-agent-cmd-btn">
+            Copiar Comando
+          </button>
+        </div>
+        <pre class="terminal-cmd-code" id="agent-enroll-cmd-display"></pre>
+      </div>
+
+      <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between;">
+        <div style="display:flex; gap:8px;">
+          <a href="/api/agent/download-msi" class="modal-btn-primary" style="text-decoration:none;">
+            Descargar Agente MSI
+          </a>
+          <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
+            Descargar Script .ps1
+          </button>
+        </div>
+        <button type="button" class="modal-btn-secondary" onclick="closeAgentEnrollModal()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo" style="margin-top:40px;">
+    <p>
+      OEM Driver Explorer &mdash; Auditoría de Controladores y Plataformas Corporativas.
+      Fuentes oficiales: Lenovo PC Support · HP Image Assistant · Microsoft Update Catalog.
+    </p>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Script Dedicado de Flota -->
+  <script src="flota.js?v=1.0"></script>
+</body>
+</html>

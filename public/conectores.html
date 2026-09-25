@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Estado y conectividad en tiempo real de los servicios y APIs oficiales de Lenovo, HP y Microsoft WHQL." />
+  <title>Conectores y APIs Oficiales — OEM Driver Explorer</title>
+  <link rel="stylesheet" href="style.css?v=2.0" />
+</head>
+<body>
+
+  <!-- Barra Superior de Navegación -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+          <div class="logo-mark" aria-hidden="true">OEM</div>
+          <div class="logo-title-group">
+            <span class="logo-text">Driver Explorer</span>
+            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navegación entre Vistas -->
+      <nav class="primary-nav" role="navigation" aria-label="Secciones de la plataforma">
+        <a href="/" class="nav-tab-btn" id="nav-btn-catalog">
+          <span class="nav-tab-label">Catálogo OEM</span>
+        </a>
+        <a href="/flota" class="nav-tab-btn" id="nav-btn-fleet">
+          <span class="nav-tab-label">Flota de Equipos</span>
+        </a>
+        <a href="/configuracion" class="nav-tab-btn" id="nav-btn-settings">
+          <span class="nav-tab-label">Políticas y Configuración</span>
+        </a>
+        <a href="/conectores" class="nav-tab-btn active" id="nav-btn-connectors">
+          <span class="nav-tab-label">Conectores &amp; APIs</span>
+          <span id="nav-conn-status-dot" style="width:7px; height:7px; border-radius:50%; background:var(--ms-admitted); display:inline-block; box-shadow:0 0 6px var(--ms-admitted);"></span>
+        </a>
+      </nav>
+
+      <div class="header-badges">
+        <span id="header-timestamp-label" style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+          Sincronizado
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="main-content" role="main" style="max-width:1400px; margin:0 auto; padding:28px 24px;">
+    
+    <div class="fleet-header-row" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h1 class="fleet-view-title" style="font-size:24px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">
+          Estado de Conectores y APIs Oficiales
+        </h1>
+        <p class="fleet-view-subtitle" style="color:var(--text-secondary); font-size:14px;">
+          Direcciones de conexión oficiales, protocolos de enlace y verificación de disponibilidad en tiempo real.
+        </p>
+      </div>
+
+      <div class="fleet-actions-row" style="display:flex; gap:10px;">
+        <button type="button" id="btn-refresh-all-connectors" class="fleet-btn-primary" onclick="loadConnectorsStatus(true)">
+          Comprobar Todos los Conectores
+        </button>
+      </div>
+    </div>
+
+    <!-- KPIs de Estado de Conectividad -->
+    <div class="fleet-stats-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:28px;">
+      <div class="fleet-stat-card">
+        <div class="fleet-stat-label">Conectores Monitoreados</div>
+        <div class="fleet-stat-value font-mono" id="stat-total-connectors">4</div>
+        <div class="fleet-stat-sub">Servicios upstream oficiales</div>
+      </div>
+
+      <div class="fleet-stat-card border-green">
+        <div class="fleet-stat-label">Estado Global del Sistema</div>
+        <div class="fleet-stat-value font-mono text-green" id="stat-global-status">OPERATIVO</div>
+        <div class="fleet-stat-sub" id="stat-online-ratio">4 de 4 servicios activos</div>
+      </div>
+
+      <div class="fleet-stat-card border-yellow">
+        <div class="fleet-stat-label">Latencia Media de Respuesta</div>
+        <div class="fleet-stat-value font-mono text-yellow" id="stat-avg-latency">—</div>
+        <div class="fleet-stat-sub">Medición HTTP/HTTPS directa</div>
+      </div>
+
+      <div class="fleet-stat-card">
+        <div class="fleet-stat-label">Última Comprobación</div>
+        <div class="fleet-stat-value font-mono" id="stat-last-check" style="font-size:18px;">—</div>
+        <div class="fleet-stat-sub">Verificación automática continua</div>
+      </div>
+    </div>
+
+    <!-- Grid de Tarjetas de Conectores -->
+    <div id="connectors-cards-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(420px, 1fr)); gap:20px; margin-bottom:32px;">
+      <!-- Se inyecta dinámicamente desde conectores.js -->
+      <div style="padding:40px; text-align:center; color:var(--text-muted); grid-column: 1 / -1;">
+        Comprobando conectividad con los servicios oficiales...
+      </div>
+    </div>
+
+    <!-- Nota Informativa de Arquitectura -->
+    <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:20px 24px; box-shadow:var(--shadow-card);">
+      <h3 style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">
+        Arquitectura de Conectores y Resiliencia
+      </h3>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:8px;">
+        Esta plataforma consulta directamente los servidores de catálogo oficiales de los fabricantes de hardware mediante firmas de cabecera autorizadas y certificados TLS. En caso de corte de red o mantenimiento por parte de un fabricante, el sistema conmuta automáticamente a sus tablas de taxonomía local en caché para garantizar continuidad operativa a los agentes.
+      </p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--text-muted); font-family:var(--font-mono); margin-top:12px;">
+        <span>Lenovo: API v4 Downloads REST</span>
+        <span>&bull;</span>
+        <span>HP: CDN SoftPaq HTTP/FTP</span>
+        <span>&bull;</span>
+        <span>Microsoft: Windows Update Catalog WHQL</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo" style="margin-top:40px;">
+    <p>
+      OEM Driver Explorer &mdash; Auditoría de Controladores y Plataformas Corporativas.
+    </p>
+  </footer>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="conectores.js?v=1.0"></script>
+</body>
+</html>

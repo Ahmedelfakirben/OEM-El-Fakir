@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OEM Driver Explorer — Políticas y Configuración de Flota." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Políticas y Configuración — OEM Driver Explorer</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+
+  <link rel="stylesheet" href="style.css?v=10.0" />
+</head>
+<body>
+
+  <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+          <div class="logo-mark" aria-hidden="true">OEM</div>
+          <div class="logo-title-group">
+            <span class="logo-text">Driver Explorer</span>
+            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="nav-tabs-wrapper" role="navigation" aria-label="Secciones de la plataforma">
+        <a href="/" class="nav-tab-btn" style="text-decoration:none;">
+          <span class="nav-tab-label">Catálogo OEM</span>
+        </a>
+        <a href="/flota" class="nav-tab-btn" style="text-decoration:none;">
+          <span class="nav-tab-label">Flota de Equipos</span>
+        </a>
+        <a href="/configuracion" class="nav-tab-btn active" style="text-decoration:none;">
+          <span class="nav-tab-label">Políticas y Configuración</span>
+          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
+        </a>
+        <a href="/conectores" class="nav-tab-btn" style="text-decoration:none;">
+          <span class="nav-tab-label">Conectores &amp; APIs</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Contenido de Configuración ────────────────────────────────── -->
+  <main class="main-content" role="main" style="max-width:1200px; margin:0 auto; padding:24px 20px;">
+    
+    <div class="fleet-header-row" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h1 class="fleet-view-title" style="font-size:24px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">
+          Políticas y Configuración de Flota
+        </h1>
+        <p class="fleet-view-subtitle" style="color:var(--text-secondary); font-size:14px;">
+          Define las reglas de automatización mensual, ventanas de mantenimiento y directivas por modelo o grupo.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:10px;">
+        <button type="button" id="reset-settings-btn" class="fleet-btn-secondary" onclick="resetSettingsToDefaults()">Restablecer Valores</button>
+        <button type="button" class="fleet-btn-primary" id="save-settings-btn" onclick="saveFleetSettings()">Guardar Políticas</button>
+      </div>
+    </div>
+
+    <!-- MODO MAESTRO DE LA FLOTA -->
+    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
+      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:16px;">Modo de Operación de la Flota</h2>
+      
+      <div class="mode-selector-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+        
+        <label class="mode-selector-card selected" id="mode-card-audit" onclick="selectFleetModeCard('audit_only')" style="cursor:pointer; display:block;">
+          <input type="radio" name="fleet_mode" value="audit_only" id="fleet-mode-audit" checked style="display:none;" />
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <span class="status-pill compliant" style="font-size:10px;">MODO SEGURO</span>
+            <h3 style="font-size:15px; font-weight:700; color:var(--text-primary);">Solo Saber (Modo Auditoría)</h3>
+          </div>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
+            Los agentes reportan telemetría y estado de controladores. No se instala nada automáticamente en los equipos a menos que se pulse "Actualizar" manualmente.
+          </p>
+        </label>
+
+        <label class="mode-selector-card" id="mode-card-scheduled" onclick="selectFleetModeCard('scheduled')" style="cursor:pointer; display:block;">
+          <input type="radio" name="fleet_mode" value="scheduled" id="fleet-mode-scheduled" style="display:none;" />
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <span class="status-pill critical" style="font-size:10px;">AUTOMÁTICO</span>
+            <h3 style="font-size:15px; font-weight:700; color:var(--text-primary);">Actualización Programada</h3>
+          </div>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
+            Las actualizaciones se aplican automáticamente según el calendario mensual establecido para los modelos y grupos habilitados.
+          </p>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- CALENDARIO Y VENTANA MENSUAL -->
+    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
+      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:16px;">Frecuencia y Ventana de Despliegue</h2>
+      
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
+          <input type="radio" name="schedule_type" value="monthly" id="schedule-monthly" checked />
+          <span><strong>Una vez al mes:</strong> Ejecutar actualizaciones el día:</span>
+          <input type="number" id="settings-monthly-day" class="fleet-input" min="1" max="28" value="15" style="width:70px; padding:4px 8px;" />
+          <span style="color:var(--text-muted); font-size:12px;">de cada mes (Recomendado post-Patch Tuesday de Microsoft)</span>
+        </label>
+
+        <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
+          <input type="radio" name="schedule_type" value="manual" id="schedule-manual" />
+          <span><strong>Despliegue Manual:</strong> Solo cuando el administrador envíe la orden desde la ficha del equipo.</span>
+        </label>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:14px; margin-top:8px; display:flex; flex-direction:column; gap:10px;">
+          <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
+            <input type="checkbox" id="settings-critical-only" checked />
+            <span>Aplicar <strong>exclusivamente parches críticos</strong> de seguridad y firmware BIOS en actualizaciones automáticas.</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
+            <input type="checkbox" id="settings-pilot-immediate" checked />
+            <span>Permitir despliegue anticipado inmediato para los equipos del <strong>Grupo Piloto / IT</strong>.</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLÍTICAS POR MODELO -->
+    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
+      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Control de Actualización por Modelo de Equipo</h2>
+      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+        Habilita o pausa las actualizaciones de forma independiente para cada plataforma de hardware presente en tu parque corporativo.
+      </p>
+
+      <div class="table-container">
+        <table class="fleet-table">
+          <thead>
+            <tr>
+              <th>Modelo de Hardware</th>
+              <th>Fabricante</th>
+              <th>ID de Plataforma</th>
+              <th>Estado de Política</th>
+              <th>Modo Crítico</th>
+            </tr>
+          </thead>
+          <tbody id="models-policies-tbody">
+            <!-- Inyectado dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo" style="margin-top:40px;">
+    <p>OEM Driver Explorer &mdash; Auditoría de Controladores y Plataformas Corporativas.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="configuracion.js?v=1.0"></script>
+</body>
+</html>

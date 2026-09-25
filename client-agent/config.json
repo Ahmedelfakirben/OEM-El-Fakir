@@ -1,0 +1,6 @@
+{
+  "ServerUrl": "http://localhost:3000",
+  "IntervalMinutes": 1440,
+  "AutoUpdate": true,
+  "LogPath": "C:\\ProgramData\\OEMDriverAgent\\agent.log"
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Product Id="*" 
+           Name="OEM Client Agent" 
+           Language="1033" 
+           Codepage="1252"
+           Version="1.0.0.0" 
+           Manufacturer="El Fakir" 
+           UpgradeCode="{7C51AA47-814E-4BB5-8022-386B033A899C}">
+
+    <Package InstallerVersion="301" 
+             Compressed="yes" 
+             InstallScope="perMachine" 
+             Description="OEM Client Agent para Telemetria de Hardware y Controladores" 
+             Comments="Compatible con Microsoft Intune, SCCM y GPO" />
+
+    <MajorUpgrade DowngradeErrorMessage="Ya hay una version mas reciente de OEM Client Agent instalada." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Propiedad Publica Configurable para Microsoft Intune / msiexec -->
+    <Property Id="SERVER_URL" Value="http://localhost:3000" />
+
+    <!-- Estructura de Directorios -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="OEMDriverAgent">
+          <Component Id="AgentFilesComponent" Guid="{9C4D357A-3622-4217-B5E3-A1208D121701}">
+            <File Id="OEMAgentPs1" Source="client-agent\OEMAgent.ps1" KeyPath="yes" />
+            <File Id="ConfigJson" Source="client-agent\config.json" />
+            <File Id="InstallTaskPs1" Source="client-agent\install-task.ps1" />
+            <File Id="UninstallTaskPs1" Source="client-agent\uninstall-task.ps1" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="MainFeature" Title="OEM Client Agent" Level="1">
+      <ComponentRef Id="AgentFilesComponent" />
+    </Feature>
+
+    <!-- Custom Actions para registrar y desregistrar la Tarea Programada de Windows -->
+    <CustomAction Id="ExecInstallTask" 
+                  Directory="INSTALLFOLDER" 
+                  ExeCommand="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;[INSTALLFOLDER]install-task.ps1&quot; -ServerUrl &quot;[SERVER_URL]&quot;" 
+                  Execute="deferred" 
+                  Impersonate="no" 
+                  Return="ignore" />
+
+    <CustomAction Id="ExecUninstallTask" 
+                  Directory="INSTALLFOLDER" 
+                  ExeCommand="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;[INSTALLFOLDER]uninstall-task.ps1&quot;" 
+                  Execute="deferred" 
+                  Impersonate="no" 
+                  Return="ignore" />
+
+    <InstallExecuteSequence>
+      <Custom Action="ExecUninstallTask" Before="RemoveFiles">Installed AND (REMOVE="ALL")</Custom>
+      <Custom Action="ExecInstallTask" After="InstallFiles">NOT Installed</Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>
