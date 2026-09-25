@@ -16,7 +16,7 @@
   <!-- Favicon SVG limpio -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
 
-  <link rel="stylesheet" href="style.css?v=6.5" />
+  <link rel="stylesheet" href="style.css?v=7.1" />
 </head>
 <body>
 
@@ -30,6 +30,21 @@
           <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
         </div>
       </div>
+
+      <!-- Pestañas de Navegación Principal -->
+      <nav class="primary-nav" aria-label="Navegación principal">
+        <button type="button" id="nav-btn-catalog" class="nav-tab-btn active" onclick="switchMainView('catalog')">
+          <span class="nav-tab-label">Catálogo OEM</span>
+        </button>
+        <button type="button" id="nav-btn-fleet" class="nav-tab-btn" onclick="switchMainView('fleet')">
+          <span class="nav-tab-label">Flota de Equipos</span>
+          <span id="nav-fleet-count-badge" class="nav-count-badge">0</span>
+        </button>
+        <button type="button" id="nav-btn-settings" class="nav-tab-btn" onclick="switchMainView('settings')">
+          <span class="nav-tab-label">Políticas y Configuración</span>
+          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
+        </button>
+      </nav>
 
       <div class="header-services" aria-label="Estado de conectores OEM oficiales">
         <div class="service-pill" title="API Oficial v4 de Lenovo PC Support">
@@ -47,6 +62,9 @@
       </div>
     </div>
   </header>
+
+  <!-- ── VISTA 1: Catálogo OEM y Búsqueda ───────────────────────── -->
+  <div id="view-catalog" class="app-view-container active">
 
   <!-- ── Panel Principal de Búsqueda y Control de Flota ───────────── -->
   <section class="control-center-section" aria-labelledby="section-title">
@@ -455,6 +473,345 @@
     </div>
 
   </main>
+  </div> <!-- /view-catalog -->
+
+  <!-- ── VISTA 2: Flota Corporativa de Equipos Conectados ──────────── -->
+  <div id="view-fleet" class="app-view-container" style="display:none;">
+    <section class="fleet-dashboard-section">
+      <div class="fleet-dashboard-container">
+        
+        <!-- Encabezado de la Flota -->
+        <div class="fleet-header-row">
+          <div>
+            <h1 class="fleet-view-title">Flota Corporativa de Equipos Conectados</h1>
+            <p class="fleet-view-subtitle">
+              Monitoreo en tiempo real de endpoints, inventario de controladores instalados y estado de cumplimiento WHQL.
+            </p>
+          </div>
+          <div class="fleet-actions-row">
+            <button type="button" class="fleet-btn-primary" onclick="openAgentEnrollModal()">
+              Desplegar Agente en Equipos (Intune)
+            </button>
+            <button type="button" class="fleet-btn-secondary" onclick="loadFleetData(true)">
+              Refrescar Flota
+            </button>
+          </div>
+        </div>
+
+        <!-- Métricas Clave de la Flota (KPIs) -->
+        <div class="fleet-stats-grid">
+          <div class="fleet-stat-card">
+            <div class="fleet-stat-label">Total Equipos Conectados</div>
+            <div class="fleet-stat-value font-mono" id="stat-total-devices">0</div>
+            <div class="fleet-stat-sub" id="stat-devices-breakdown">Cargando flota...</div>
+          </div>
+
+          <div class="fleet-stat-card border-green">
+            <div class="fleet-stat-label">Equipos 100% al Día</div>
+            <div class="fleet-stat-value font-mono text-green" id="stat-uptodate-devices">0</div>
+            <div class="fleet-stat-sub">Cumplimiento total de controladores</div>
+          </div>
+
+          <div class="fleet-stat-card border-yellow">
+            <div class="fleet-stat-label">Con Actualizaciones Pendientes</div>
+            <div class="fleet-stat-value font-mono text-yellow" id="stat-outdated-devices">0</div>
+            <div class="fleet-stat-sub">Requieren actualización de controladores</div>
+          </div>
+
+          <div class="fleet-stat-card border-red">
+            <div class="fleet-stat-label">Parches Críticos de Seguridad</div>
+            <div class="fleet-stat-value font-mono text-red" id="stat-critical-count">0</div>
+            <div class="fleet-stat-sub">Firmware BIOS y vulnerabilidades CVE</div>
+          </div>
+        </div>
+
+        <!-- Barra de Filtros de la Tabla de Flota -->
+        <div class="fleet-toolbar-card">
+          <div class="fleet-toolbar-grid">
+            <div class="fleet-search-box">
+              <input
+                type="text"
+                id="fleet-search-input"
+                class="fleet-input"
+                placeholder="Buscar por equipo, IP, modelo o versión de BIOS..."
+                oninput="filterFleetTable()"
+              />
+            </div>
+
+            <div class="fleet-filters-row">
+              <select id="fleet-filter-group" class="fleet-select" onchange="filterFleetTable()">
+                <option value="">Todos los Grupos</option>
+                <option value="pilot">Grupo Piloto / IT</option>
+                <option value="general">Grupo General / Producción</option>
+                <option value="vip">Grupo VIP / Dirección</option>
+              </select>
+
+              <select id="fleet-filter-oem" class="fleet-select" onchange="filterFleetTable()">
+                <option value="">Todos los Fabricantes</option>
+                <option value="lenovo">Solo Lenovo</option>
+                <option value="hp">Solo HP</option>
+              </select>
+
+              <select id="fleet-filter-status" class="fleet-select" onchange="filterFleetTable()">
+                <option value="">Todos los Estados</option>
+                <option value="compliant">Al Día (100%)</option>
+                <option value="outdated">Desactualizados</option>
+                <option value="critical">Con Parches Críticos</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla de Equipos Conectados -->
+        <div class="fleet-table-card">
+          <div class="table-container">
+            <table class="fleet-table" aria-label="Listado de equipos conectados a la flota">
+              <thead>
+                <tr>
+                  <th>Estado</th>
+                  <th>Equipo / Hostname</th>
+                  <th>Fabricante &amp; Modelo</th>
+                  <th>Sistema &amp; BIOS</th>
+                  <th>Grupo de Políticas</th>
+                  <th>Cumplimiento</th>
+                  <th>Controladores</th>
+                  <th>Última Conexión</th>
+                  <th style="text-align:right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="fleet-table-tbody">
+                <!-- Inyectado dinámicamente por app.js -->
+              </tbody>
+            </table>
+          </div>
+          <div id="fleet-empty-state" class="fleet-empty-box" style="display:none;">
+            <p>No se encontraron equipos conectados que coincidan con los filtros aplicados.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div> <!-- /view-fleet -->
+
+  <!-- ── VISTA 3: Políticas y Configuración de Flota ────────────────── -->
+  <div id="view-settings" class="app-view-container" style="display:none;">
+    <section class="settings-dashboard-section">
+      <div class="settings-container">
+        
+        <!-- Encabezado de Políticas -->
+        <div class="settings-header-row">
+          <div>
+            <h1 class="fleet-view-title">Políticas y Configuración de Flota</h1>
+            <p class="fleet-view-subtitle">
+              Define el modo de operación de la herramienta, ventanas automáticas de actualización mensual y reglas selectivas por modelo y grupo.
+            </p>
+          </div>
+          <div class="settings-header-actions">
+            <button type="button" class="fleet-btn-secondary" onclick="resetSettingsToDefaults()">
+              Restablecer Valores
+            </button>
+            <button type="button" class="fleet-btn-primary" onclick="saveFleetSettings()">
+              Guardar Configuración
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Modo Maestro de Operación -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <span class="settings-card-badge">Directiva Global</span>
+            <h2 class="settings-card-title">Modo de Operación de la Flota</h2>
+            <p class="settings-card-desc">
+              Determina si el agente cliente solo recopila información técnica o si tiene autorización para aplicar actualizaciones.
+            </p>
+          </div>
+
+          <div class="settings-mode-grid">
+            <!-- Opción Solo Saber / Auditoría -->
+            <label class="mode-selector-card selected" id="mode-card-audit" onclick="selectFleetModeCard('audit_only')">
+              <input type="radio" name="fleet_mode" value="audit_only" id="fleet-mode-audit" checked onchange="handleModeChange(this.value)" />
+              <div class="mode-card-content">
+                <div class="mode-card-top">
+                  <span class="mode-pill pill-audit">Modo Recomendado</span>
+                  <span class="mode-indicator-dot"></span>
+                </div>
+                <h3 class="mode-title">Modo Solo Saber / Auditoría (Sin Modificaciones)</h3>
+                <p class="mode-desc">
+                  Los clientes recopilan y envían el inventario de controladores, BIOS y versiones de hardware al servidor. La herramienta calcula qué parches faltan y muestra el diagnóstico completo, pero <strong>NUNCA instala nada automáticamente</strong> en los equipos.
+                </p>
+                <div class="mode-features">
+                  <span>Totalmente no intrusivo</span> · 
+                  <span>Sin reinicios ni descargas</span> · 
+                  <span>Ideal para auditoría e inventario</span>
+                </div>
+              </div>
+            </label>
+
+            <!-- Opción Actualizaciones Programadas -->
+            <label class="mode-selector-card" id="mode-card-scheduled" onclick="selectFleetModeCard('scheduled')">
+              <input type="radio" name="fleet_mode" value="scheduled" id="fleet-mode-scheduled" onchange="handleModeChange(this.value)" />
+              <div class="mode-card-content">
+                <div class="mode-card-top">
+                  <span class="mode-pill pill-auto">Automatizado</span>
+                  <span class="mode-indicator-dot"></span>
+                </div>
+                <h3 class="mode-title">Modo Actualizaciones Programadas</h3>
+                <p class="mode-desc">
+                  Permite a los equipos cliente descargar e instalar automáticamente los controladores y parches oficiales validados según la frecuencia mensual configurada y las restricciones por modelo y grupo.
+                </p>
+                <div class="mode-features">
+                  <span>Instalación desatendida en segundo plano</span> · 
+                  <span>Respeta ventana de mantenimiento</span> · 
+                  <span>Control granular</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Programación de Frecuencia y Ventana Mensual -->
+        <div class="settings-card" id="schedule-config-card">
+          <div class="settings-card-header">
+            <span class="settings-card-badge">Programación</span>
+            <h2 class="settings-card-title">Frecuencia de Actualización</h2>
+            <p class="settings-card-desc">
+              Define la periodicidad con la que los equipos evaluarán e instalarán controladores cuando el modo programado esté activo.
+            </p>
+          </div>
+
+          <div class="settings-schedule-box">
+            <div class="schedule-options-row">
+              <label class="schedule-radio-label">
+                <input type="radio" name="schedule_type" value="monthly" id="schedule-monthly" checked onchange="handleScheduleTypeChange(this.value)" />
+                <div class="schedule-radio-info">
+                  <span class="schedule-radio-title">Una vez al mes (Ventana Mensual Recomendada)</span>
+                  <span class="schedule-radio-sub">Aplica actualizaciones de forma ordenada en un día preestablecido del mes para evitar disrupciones laborales.</span>
+                </div>
+              </label>
+
+              <label class="schedule-radio-label">
+                <input type="radio" name="schedule_type" value="manual" id="schedule-manual" onchange="handleScheduleTypeChange(this.value)" />
+                <div class="schedule-radio-info">
+                  <span class="schedule-radio-title">Solo Bajo Demanda / Manual</span>
+                  <span class="schedule-radio-sub">No se ejecutan tareas por calendario. Las actualizaciones solo se aplican cuando el administrador pulsa "Actualizar" en el panel.</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Selector de día del mes -->
+            <div class="monthly-day-picker-row" id="monthly-day-picker">
+              <div class="day-picker-field">
+                <label for="settings-monthly-day" class="settings-field-label">Día del mes para aplicar actualizaciones:</label>
+                <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+                  <input type="number" id="settings-monthly-day" class="fleet-input" min="1" max="28" value="15" style="width:100px;" />
+                  <span style="color:var(--text-secondary); font-size:13px;">de cada mes (Recomendado: día 15 tras el Patch Tuesday de Microsoft)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Filtros de Seguridad y Severidad -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <span class="settings-card-badge">Filtros de Seguridad</span>
+            <h2 class="settings-card-title">Criterio de Admisión de Controladores</h2>
+            <p class="settings-card-desc">
+              Selecciona qué tipos de paquetes se considerarán elegibles durante las ventanas de actualización.
+            </p>
+          </div>
+
+          <div class="settings-checkboxes-list">
+            <label class="settings-checkbox-item">
+              <input type="checkbox" id="settings-critical-only" checked />
+              <div class="checkbox-text-group">
+                <span class="checkbox-title">Solo parches críticos y de seguridad (Recomendado)</span>
+                <span class="checkbox-sub">Aplica únicamente actualizaciones de Firmware BIOS/UEFI, Intel ME y controladores que corrigen vulnerabilidades de seguridad conocidas (CVE) o fallos graves. Excluye utilidades opcionales y mejoras cosméticas.</span>
+              </div>
+            </label>
+
+            <label class="settings-checkbox-item">
+              <input type="checkbox" id="settings-pilot-immediate" checked />
+              <div class="checkbox-text-group">
+                <span class="checkbox-title">Despliegue anticipado inmediato para el Grupo Piloto / IT</span>
+                <span class="checkbox-sub">Los equipos asignados al grupo Piloto recibirán las actualizaciones en su siguiente conexión, sin esperar a la ventana mensual, para comprobar estabilidad antes del despliegue masivo.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. Políticas Selectivas por Modelo de Hardware -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <span class="settings-card-badge">Control Granular</span>
+            <h2 class="settings-card-title">Políticas por Modelo de Hardware</h2>
+            <p class="settings-card-desc">
+              Habilita o pausa las actualizaciones de forma independiente para cada modelo presente en tu flota corporativa. Si un modelo está pausado, funcionará siempre en modo solo auditoría.
+            </p>
+          </div>
+
+          <div class="table-container">
+            <table class="fleet-table" id="models-policies-table" aria-label="Políticas por modelo de hardware">
+              <thead>
+                <tr>
+                  <th>Modelo de Equipo</th>
+                  <th>Código ID</th>
+                  <th>Fabricante</th>
+                  <th>Actualizaciones Automáticas</th>
+                  <th>Solo Parches Críticos</th>
+                  <th>Comportamiento Resultante</th>
+                </tr>
+              </thead>
+              <tbody id="models-policies-tbody">
+                <!-- Inyectado dinámicamente por app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. Políticas por Grupos de Equipos -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <span class="settings-card-badge">Segmentación</span>
+            <h2 class="settings-card-title">Políticas por Grupos de Equipos</h2>
+            <p class="settings-card-desc">
+              Asigna reglas operativas según el departamento o criticidad de los equipos para garantizar la continuidad del negocio.
+            </p>
+          </div>
+
+          <div class="table-container">
+            <table class="fleet-table" id="groups-policies-table" aria-label="Políticas por grupo">
+              <thead>
+                <tr>
+                  <th>Nombre del Grupo</th>
+                  <th>Identificador</th>
+                  <th>Permitir Actualizaciones</th>
+                  <th>Ventana de Aplicación</th>
+                  <th>Descripción y Propósito</th>
+                </tr>
+              </thead>
+              <tbody id="groups-policies-tbody">
+                <!-- Inyectado dinámicamente por app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Barra Inferior de Guardado -->
+        <div class="settings-save-bar">
+          <div>
+            <span style="font-weight:600; color:var(--text-primary); display:block;">Configuración de Flota</span>
+            <span style="font-size:12px; color:var(--text-muted);">Los cambios se aplican de inmediato en la base de datos y se propagan en los próximos check-ins de los equipos cliente.</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <button type="button" class="fleet-btn-secondary" onclick="resetSettingsToDefaults()">Restablecer</button>
+            <button type="button" class="fleet-btn-primary" id="save-settings-btn" onclick="saveFleetSettings()">Guardar Todas las Políticas</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div> <!-- /view-settings -->
 
   <!-- ── Modal Detalle de Parche & Diagnóstico Windows Update ──────── -->
   <div id="patch-modal" class="modal-overlay" style="display:none;" onclick="closeModalOnBackdrop(event)">
@@ -644,6 +1001,150 @@
         <button type="button" id="terminal-modal-close-btn" class="modal-btn-secondary" onclick="closeTerminalCommandModal(); document.getElementById('terminal-modal').style.display='none'; document.body.style.overflow='';">Cerrar</button>
       </div>
 
+  </div>
+  </div>
+
+  <!-- ── Modal Detalle de Auditoría de Equipo de Flota ─────────────── -->
+  <div id="device-audit-modal" class="modal-overlay" style="display:none;" onclick="if(event.target === this) closeDeviceAuditModal()">
+    <div class="modal-card modal-card-fleet-audit" role="dialog" aria-modal="true" aria-labelledby="device-modal-title">
+      
+      <div class="modal-header">
+        <div class="modal-badges-group">
+          <span id="devmodal-oem-badge" class="tab-btn-pill lenovo">LENOVO</span>
+          <span id="devmodal-group-badge" class="service-pill" style="padding:2px 8px; font-size:11px;">General</span>
+          <span id="devmodal-compliance-badge" class="admit-badge-lg admit">100% CUMPLIMIENTO</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeDeviceAuditModal()" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="devmodal-title-row">
+        <div>
+          <h3 id="device-modal-title" class="modal-title font-mono">PC-MAD-FIN-01</h3>
+          <p id="devmodal-subtitle" class="devmodal-sub">ThinkPad T480 (20L5) · IP: 192.168.10.45 · BIOS: N24ET70W (1.47)</p>
+        </div>
+        <div id="devmodal-action-box">
+          <button type="button" id="devmodal-deploy-btn" class="fleet-btn-primary" onclick="triggerDeviceAuditDeploy()">
+            Actualizar Controladores Pendientes
+          </button>
+        </div>
+      </div>
+
+      <!-- Resumen Rápido del Hardware del Equipo -->
+      <div class="modal-meta-grid" style="margin-bottom:16px;">
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Sistema Operativo:</span>
+          <span id="devmodal-os" class="modal-meta-value">Windows 11 24H2</span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Versión de BIOS/UEFI:</span>
+          <span id="devmodal-bios" class="modal-meta-value font-mono">N24ET70W</span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Controladores Analizados:</span>
+          <span id="devmodal-stats-summary" class="modal-meta-value">4 total (2 al día, 2 pendientes)</span>
+        </div>
+        <div class="modal-meta-item">
+          <span class="modal-meta-label">Último Reporte:</span>
+          <span id="devmodal-last-seen" class="modal-meta-value">Hace 5 minutos</span>
+        </div>
+      </div>
+
+      <!-- Tabla de Controladores del Dispositivo -->
+      <div class="table-container" style="max-height:360px; overflow-y:auto; border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+        <table class="fleet-table" aria-label="Controladores analizados en este equipo">
+          <thead>
+            <tr>
+              <th>Controlador / Dispositivo</th>
+              <th>Categoría</th>
+              <th>Versión Instalada</th>
+              <th>Versión Oficial Objetivo</th>
+              <th>Estado</th>
+              <th>Severidad</th>
+              <th>Admisión WHQL</th>
+            </tr>
+          </thead>
+          <tbody id="devmodal-drivers-tbody">
+            <!-- Inyectado dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Historial de Despliegues para este Equipo -->
+      <div id="devmodal-tasks-section" style="margin-top:16px; display:none;">
+        <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Historial de Tareas y Despliegues</h4>
+        <div id="devmodal-tasks-list" class="tasks-timeline-box"></div>
+      </div>
+
+      <div class="modal-footer" style="margin-top:20px;">
+        <button type="button" class="modal-btn-secondary" onclick="closeDeviceAuditModal()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Modal Enrolamiento y Despliegue de Agente (Intune) ────────── -->
+  <div id="agent-enroll-modal" class="modal-overlay" style="display:none;" onclick="if(event.target === this) closeAgentEnrollModal()">
+    <div class="modal-card modal-card-terminal" role="dialog" aria-modal="true" aria-labelledby="agent-enroll-title">
+      
+      <div class="modal-header">
+        <div class="modal-badges-group">
+          <span class="category-badge">Microsoft Intune</span>
+          <span class="severity-badge recommended">Despliegue Corporativo</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeAgentEnrollModal()" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <h3 id="agent-enroll-title" class="modal-title">Despliegue del Agente en Equipos Clientes</h3>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+        Instala el agente en los equipos de tu organización para que reporten automáticamente su modelo, BIOS y estado de controladores a este servidor.
+      </p>
+
+      <!-- Comando One-Liner para PowerShell -->
+      <div class="terminal-cmd-box">
+        <div class="terminal-cmd-header">
+          <span>Comando de Registro Inmediato (PowerShell como Administrador)</span>
+          <button type="button" class="copy-cmd-btn" onclick="copyAgentEnrollCommand()" id="copy-agent-cmd-btn">
+            Copiar Comando
+          </button>
+        </div>
+        <pre class="terminal-cmd-code" id="agent-enroll-cmd-display"></pre>
+      </div>
+
+      <!-- Configuración de Host / Dominio del Servidor -->
+      <div class="terminal-host-config">
+        <label for="agent-server-host-input" style="font-size:11px; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:4px;">
+          URL / Dominio del Servidor (Coolify o Red Local):
+        </label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="agent-server-host-input" class="filter-search-input" placeholder="https://oem.elfakir.com o http://localhost:3000" oninput="updateAgentEnrollCommandString()" style="max-width:360px;" />
+          <button type="button" class="export-btn" onclick="resetAgentServerHost()" style="font-size:12px;">Restablecer</button>
+        </div>
+      </div>
+
+      <!-- Guía Paso a Paso para Microsoft Intune -->
+      <div class="terminal-steps-card">
+        <h4 style="font-size:13px; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:8px;">Guía de Configuración para Microsoft Intune</h4>
+        <ol style="font-size:13px; color:var(--text-secondary); margin-left:18px; display:flex; flex-direction:column; gap:6px;">
+          <li>En el portal de <strong>Microsoft Intune Admin Center</strong>, navega a <strong>Dispositivos &gt; Scripts &gt; Agregar &gt; Windows 10 y posteriores</strong>.</li>
+          <li>Descarga el script de enrolamiento usando el botón inferior y súbelo al perfil de script.</li>
+          <li>En la pestaña de configuración, establece:
+            <ul style="margin-left:16px; margin-top:4px; list-style-type:disc;">
+              <li><strong>Ejecutar este script con las credenciales de inicio de sesión del usuario:</strong> <strong style="color:var(--accent-cyan);">No</strong> (se ejecutará como <code>NT AUTHORITY\SYSTEM</code>).</li>
+              <li><strong>Exigir comprobación de firma del script:</strong> No.</li>
+              <li><strong>Ejecutar script en host de PowerShell de 64 bits:</strong> Sí.</li>
+            </ul>
+          </li>
+          <li>Asigna la directiva al grupo de dispositivos deseado (Piloto o Todos los Equipos).</li>
+        </ol>
+      </div>
+
+      <div class="modal-footer" style="margin-top:20px;">
+        <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
+          Descargar Script de Enrolamiento (.ps1)
+        </button>
+        <button type="button" class="modal-btn-secondary" onclick="closeAgentEnrollModal()">Cerrar</button>
+      </div>
+
     </div>
   </div>
 
@@ -661,6 +1162,6 @@
   <!-- ── Toast de Notificaciones ────────────────────────────────── -->
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
-  <script src="app.js?v=6.5"></script>
+  <script src="app.js?v=7.1"></script>
 </body>
 </html>

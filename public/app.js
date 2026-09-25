@@ -1776,6 +1776,826 @@ function escapeHtml(str) {
 }
 
 // ================================================================
+// Gestión de Vistas Principales (Navegación SPA)
+// ================================================================
+
+let currentMainView = 'catalog';
+
+function switchMainView(viewName) {
+  currentMainView = viewName;
+
+  // Actualizar botones de navegación
+  const navBtns = {
+    catalog: $('nav-btn-catalog'),
+    fleet: $('nav-btn-fleet'),
+    settings: $('nav-btn-settings'),
+  };
+
+  Object.entries(navBtns).forEach(([name, btn]) => {
+    if (btn) {
+      if (name === viewName) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      }
+    }
+  });
+
+  // Mostrar / Ocultar contenedores
+  const viewContainers = {
+    catalog: $('view-catalog'),
+    fleet: $('view-fleet'),
+    settings: $('view-settings'),
+  };
+
+  Object.entries(viewContainers).forEach(([name, el]) => {
+    if (el) {
+      el.style.display = (name === viewName) ? 'block' : 'none';
+    }
+  });
+
+  // Carga de datos según la vista
+  if (viewName === 'fleet') {
+    loadFleetData(false);
+  } else if (viewName === 'settings') {
+    loadFleetSettings();
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ================================================================
+// Dashboard de Flota Corporativa (Endpoints & Cumplimiento)
+// ================================================================
+
+let allFleetDevices = [];
+let currentDeviceUnderAudit = null;
+
+async function loadFleetData(showToastFeedback = false) {
+  try {
+    const [statsRes, devicesRes] = await Promise.all([
+      fetch('/api/fleet/stats'),
+      fetch('/api/fleet/devices')
+    ]);
+
+    if (!statsRes.ok || !devicesRes.ok) {
+      throw new Error('No se pudieron obtener los datos de la flota');
+    }
+
+    const stats = await statsRes.json();
+    const devices = await devicesRes.json();
+
+    allFleetDevices = devices;
+    renderFleetStats(stats, devices);
+    filterFleetTable();
+
+    // Actualizar badge de contador en nav
+    const countBadge = $('nav-fleet-count-badge');
+    if (countBadge) countBadge.textContent = String(stats.totalDevices || devices.length);
+
+    if (showToastFeedback) {
+      showToast('Datos de flota actualizados en tiempo real', 'success');
+    }
+  } catch (err) {
+    console.error('Error al cargar datos de flota:', err);
+    if (showToastFeedback) {
+      showToast('Error al conectar con el servicio de flota', 'error');
+    }
+  }
+}
+
+function renderFleetStats(stats, devices) {
+  const elTotal = $('stat-total-devices');
+  const elUptodate = $('stat-uptodate-devices');
+  const elOutdated = $('stat-outdated-devices');
+  const elCritical = $('stat-critical-count');
+  const elBreakdown = $('stat-devices-breakdown');
+
+  if (elTotal) elTotal.textContent = String(stats.totalDevices ?? devices.length);
+  if (elUptodate) elUptodate.textContent = String(stats.uptodateDevices ?? 0);
+  if (elOutdated) elOutdated.textContent = String(stats.outdatedDevices ?? 0);
+  if (elCritical) elCritical.textContent = String(stats.criticalPendingCount ?? 0);
+
+  if (elBreakdown) {
+    const lenovoCount = devices.filter(d => d.oem === 'lenovo').length;
+    const hpCount = devices.filter(d => d.oem === 'hp').length;
+    elBreakdown.textContent = `Lenovo: ${lenovoCount} · HP: ${hpCount}`;
+  }
+}
+
+function filterFleetTable() {
+  const query = ($('fleet-search-input')?.value || '').toLowerCase().trim();
+  const filterGroup = $('fleet-filter-group')?.value || '';
+  const filterOem = $('fleet-filter-oem')?.value || '';
+  const filterStatus = $('fleet-filter-status')?.value || '';
+
+  const filtered = allFleetDevices.filter(d => {
+    // Filtro por texto
+    if (query) {
+      const matchHost = (d.hostname || '').toLowerCase().includes(query);
+      const matchIp = (d.ip_address || '').toLowerCase().includes(query);
+      const matchModel = (d.model_name || '').toLowerCase().includes(query);
+      const matchModelId = (d.model_id || '').toLowerCase().includes(query);
+      const matchBios = (d.bios_version || '').toLowerCase().includes(query);
+      if (!matchHost && !matchIp && !matchModel && !matchModelId && !matchBios) return false;
+    }
+
+    // Filtro por grupo
+    if (filterGroup && d.group_name !== filterGroup) return false;
+
+    // Filtro por OEM
+    if (filterOem && d.oem !== filterOem) return false;
+
+    // Filtro por estado
+    if (filterStatus) {
+      if (filterStatus === 'compliant' && d.compliance_rate < 100) return false;
+      if (filterStatus === 'outdated' && d.compliance_rate === 100) return false;
+      if (filterStatus === 'critical' && (!d.critical_pending || d.critical_pending === 0)) return false;
+    }
+
+    return true;
+  });
+
+  renderFleetTable(filtered);
+}
+
+function renderFleetTable(devices) {
+  const tbody = $('fleet-table-tbody');
+  const emptyState = $('fleet-empty-state');
+  if (!tbody) return;
+
+  if (devices.length === 0) {
+    tbody.innerHTML = '';
+    if (emptyState) emptyState.style.display = 'block';
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = 'none';
+
+  tbody.innerHTML = devices.map(d => {
+    // Determinar estado y color
+    let statusPill = '';
+    if (d.critical_pending && d.critical_pending > 0) {
+      statusPill = `<span class="status-pill critical">Crítico (${d.critical_pending})</span>`;
+    } else if (d.compliance_rate === 100) {
+      statusPill = `<span class="status-pill compliant">Al Día</span>`;
+    } else {
+      statusPill = `<span class="status-pill outdated">Desactualizado</span>`;
+    }
+
+    // Barra de progreso
+    const rate = Math.min(100, Math.max(0, d.compliance_rate || 0));
+    let barClass = 'high';
+    if (rate < 60) barClass = 'low';
+    else if (rate < 90) barClass = 'mid';
+
+    const pendingTotal = (d.outdated_drivers || 0) + (d.pending_drivers || 0);
+
+    return `
+      <tr>
+        <td>${statusPill}</td>
+        <td>
+          <div style="font-weight:700; color:var(--text-primary); font-family:var(--font-mono); font-size:13px;">
+            ${escapeHtml(d.hostname)}
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+            IP: ${escapeHtml(d.ip_address || '127.0.0.1')}
+          </div>
+        </td>
+        <td>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span class="tab-btn-pill ${d.oem}" style="font-size:10px; padding:1px 6px;">${d.oem.toUpperCase()}</span>
+            <span style="font-weight:600; color:var(--text-primary);">${escapeHtml(d.model_name)}</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-secondary); margin-top:2px; font-family:var(--font-mono);">
+            ID: ${escapeHtml(d.model_id)}
+          </div>
+        </td>
+        <td>
+          <div style="color:var(--text-secondary); font-size:12px;">${escapeHtml(d.os_build || 'Windows 11')}</div>
+          <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">BIOS: ${escapeHtml(d.bios_version || '—')}</div>
+        </td>
+        <td>
+          <select class="fleet-inline-select" onchange="changeDeviceGroup('${escapeHtml(d.id)}', this.value)" title="Asignar directiva de grupo">
+            <option value="pilot" ${d.group_name === 'pilot' ? 'selected' : ''}>Piloto / IT</option>
+            <option value="general" ${d.group_name === 'general' ? 'selected' : ''}>General / Prod</option>
+            <option value="vip" ${d.group_name === 'vip' ? 'selected' : ''}>VIP / Dirección</option>
+          </select>
+        </td>
+        <td>
+          <div class="compliance-bar-wrapper">
+            <div class="compliance-bar-track">
+              <div class="compliance-bar-fill ${barClass}" style="width: ${rate}%;"></div>
+            </div>
+            <span class="compliance-percent">${rate}%</span>
+          </div>
+        </td>
+        <td>
+          <div style="font-size:12px;">
+            <span class="text-green font-bold">${d.uptodate_drivers || 0}</span> al día · 
+            <span class="${pendingTotal > 0 ? 'text-yellow font-bold' : 'text-muted'}">${pendingTotal}</span> pendientes
+          </div>
+          ${d.critical_pending > 0 ? `<div style="font-size:11px; color:var(--severity-critical); font-weight:600;">${d.critical_pending} parches críticos</div>` : ''}
+        </td>
+        <td style="color:var(--text-muted); font-size:12px;">
+          ${formatTimeAgo(d.last_seen)}
+        </td>
+        <td style="text-align:right;">
+          <div style="display:flex; gap:6px; justify-content:flex-end;">
+            <button type="button" class="export-btn" onclick="openDeviceAuditModal('${escapeHtml(d.id)}')" style="font-size:11px; padding:4px 10px;" title="Ver auditoría técnica de controladores">
+              Auditoría
+            </button>
+            <button type="button" class="fleet-btn-primary" onclick="triggerDeviceDeployment('${escapeHtml(d.id)}')" ${pendingTotal === 0 ? 'disabled' : ''} style="font-size:11px; padding:4px 10px; font-weight:600;" title="${pendingTotal === 0 ? 'Equipo totalmente actualizado' : 'Enviar orden de actualización'}">
+              Actualizar
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function changeDeviceGroup(deviceId, newGroup) {
+  try {
+    const res = await fetch(`/api/fleet/devices/${encodeURIComponent(deviceId)}/group`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ group: newGroup })
+    });
+
+    if (!res.ok) throw new Error('Error al actualizar el grupo');
+    const updated = await res.json();
+
+    // Actualizar modelo local en memoria
+    const found = allFleetDevices.find(d => d.id === deviceId);
+    if (found) found.group_name = newGroup;
+
+    showToast(`Grupo de '${found ? found.hostname : deviceId}' actualizado a '${newGroup}'`, 'info');
+  } catch (err) {
+    showToast('Error al cambiar grupo del equipo: ' + err.message, 'error');
+  }
+}
+
+async function triggerDeviceDeployment(deviceId) {
+  try {
+    const res = await fetch(`/api/fleet/devices/${encodeURIComponent(deviceId)}/deploy`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({})
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Error al lanzar despliegue');
+
+    showToast(`Orden de actualización enviada (${data.driversCount} paquetes). Se aplicará en el próximo check-in del equipo.`, 'success', 5000);
+  } catch (err) {
+    showToast('Error al programar actualización: ' + err.message, 'error');
+  }
+}
+
+// ================================================================
+// Modal Detalle de Auditoría de Equipo
+// ================================================================
+
+async function openDeviceAuditModal(deviceId) {
+  try {
+    const res = await fetch(`/api/fleet/devices/${encodeURIComponent(deviceId)}`);
+    if (!res.ok) throw new Error('Dispositivo no encontrado');
+    const dev = await res.json();
+    currentDeviceUnderAudit = dev;
+
+    const modal = $('device-audit-modal');
+    if (!modal) return;
+
+    // Badges superiores
+    const oemBadge = $('devmodal-oem-badge');
+    if (oemBadge) {
+      oemBadge.className = `tab-btn-pill ${dev.oem}`;
+      oemBadge.textContent = dev.oem.toUpperCase();
+    }
+
+    const groupBadge = $('devmodal-group-badge');
+    if (groupBadge) groupBadge.textContent = `Grupo: ${dev.group_name.toUpperCase()}`;
+
+    const compBadge = $('devmodal-compliance-badge');
+    if (compBadge) {
+      compBadge.textContent = `${dev.compliance_rate}% CUMPLIMIENTO`;
+      compBadge.className = dev.compliance_rate >= 90 ? 'admit-badge-lg admit' : (dev.compliance_rate >= 60 ? 'admit-badge-lg' : 'admit-badge-lg rejected');
+    }
+
+    // Título y subtítulo
+    const titleEl = $('device-modal-title');
+    if (titleEl) titleEl.textContent = dev.hostname;
+
+    const subEl = $('devmodal-subtitle');
+    if (subEl) subEl.textContent = `${dev.model_name} (${dev.model_id}) · IP: ${dev.ip_address || '—'} · BIOS: ${dev.bios_version || '—'}`;
+
+    // Metadatos
+    const osEl = $('devmodal-os');
+    if (osEl) osEl.textContent = dev.os_build || 'Windows 11';
+
+    const biosEl = $('devmodal-bios');
+    if (biosEl) biosEl.textContent = dev.bios_version || '—';
+
+    const statsEl = $('devmodal-stats-summary');
+    if (statsEl) {
+      const pendingCount = (dev.outdated_drivers || 0) + (dev.pending_drivers || 0);
+      statsEl.textContent = `${dev.total_drivers || 0} analizados (${dev.uptodate_drivers || 0} al día, ${pendingCount} pendientes)`;
+    }
+
+    const lastSeenEl = $('devmodal-last-seen');
+    if (lastSeenEl) lastSeenEl.textContent = formatTimeAgo(dev.last_seen);
+
+    // Botón de despliegue
+    const deployBtn = $('devmodal-deploy-btn');
+    const pendingTotal = (dev.outdated_drivers || 0) + (dev.pending_drivers || 0);
+    if (deployBtn) {
+      deployBtn.disabled = pendingTotal === 0;
+      deployBtn.textContent = pendingTotal === 0 ? 'Equipo Totalmente al Día' : `Actualizar ${pendingTotal} Controladores Pendientes`;
+    }
+
+    // Tabla de controladores
+    const tbody = $('devmodal-drivers-tbody');
+    if (tbody) {
+      const drivers = dev.drivers || [];
+      if (drivers.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--text-muted);">No hay inventario de controladores registrado aún.</td></tr>`;
+      } else {
+        tbody.innerHTML = drivers.map(d => {
+          let statusBadge = '';
+          if (d.status === 'ACTUALIZADO') {
+            statusBadge = `<span class="status-pill compliant">Actualizado</span>`;
+          } else if (d.status === 'DESACTUALIZADO') {
+            statusBadge = `<span class="status-pill outdated">Desactualizado</span>`;
+          } else {
+            statusBadge = `<span class="status-pill critical">Pendiente</span>`;
+          }
+
+          const sevClass = String(d.severity || '').toLowerCase().includes('cr') ? 'critical' : (String(d.severity || '').toLowerCase().includes('op') ? 'optional' : 'recommended');
+          const isAdmitted = d.is_admitted ? '<span class="status-pill compliant" style="font-size:10px;">Admitido WU</span>' : '<span class="status-pill outdated" style="font-size:10px;">Catálogo OEM</span>';
+
+          return `
+            <tr>
+              <td>
+                <div style="font-weight:600; color:var(--text-primary);">${escapeHtml(d.driver_name)}</div>
+                ${d.download_url ? `<a href="${escapeHtml(d.download_url)}" target="_blank" rel="noopener noreferrer" style="font-size:11px; color:var(--accent-cyan); text-decoration:none;">Descarga Oficial (${escapeHtml(d.file_size || '—')}) ↗</a>` : ''}
+              </td>
+              <td><span class="category-badge" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.category || 'General')}</span></td>
+              <td class="font-mono" style="font-size:12px; color:var(--text-secondary);">${escapeHtml(d.installed_version || 'No detectada')}</td>
+              <td class="font-mono" style="font-size:12px; color:var(--accent-cyan); font-weight:600;">${escapeHtml(d.target_version || '—')}</td>
+              <td>${statusBadge}</td>
+              <td><span class="severity-badge ${sevClass}" style="font-size:10px; padding:2px 6px;">${escapeHtml(d.severity || 'Recomendado')}</span></td>
+              <td>${isAdmitted}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  } catch (err) {
+    showToast('Error al abrir detalle del equipo: ' + err.message, 'error');
+  }
+}
+
+function closeDeviceAuditModal() {
+  const modal = $('device-audit-modal');
+  if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function triggerDeviceAuditDeploy() {
+  if (!currentDeviceUnderAudit) return;
+  triggerDeviceDeployment(currentDeviceUnderAudit.id);
+  closeDeviceAuditModal();
+}
+
+// ================================================================
+// Gestión de Políticas y Configuración (Administración de Flota)
+// ================================================================
+
+let currentFleetSettings = {};
+
+async function loadFleetSettings() {
+  try {
+    const res = await fetch('/api/fleet/settings');
+    if (!res.ok) throw new Error('No se pudo cargar la configuración de políticas');
+    const settings = await res.json();
+    currentFleetSettings = settings;
+
+    // 1. Modo maestro
+    selectFleetModeCard(settings.fleet_mode || 'audit_only');
+
+    // 2. Frecuencia y día del mes
+    const scheduleMonthly = $('schedule-monthly');
+    const scheduleManual = $('schedule-manual');
+    if (settings.schedule_type === 'manual') {
+      if (scheduleManual) scheduleManual.checked = true;
+    } else {
+      if (scheduleMonthly) scheduleMonthly.checked = true;
+    }
+    handleScheduleTypeChange(settings.schedule_type || 'monthly');
+
+    const dayInput = $('settings-monthly-day');
+    if (dayInput) dayInput.value = settings.monthly_day || 15;
+
+    // 3. Checkboxes de seguridad
+    const critCheckbox = $('settings-critical-only');
+    if (critCheckbox) critCheckbox.checked = settings.critical_only !== false;
+
+    const pilotCheckbox = $('settings-pilot-immediate');
+    if (pilotCheckbox) pilotCheckbox.checked = settings.pilot_group_enabled !== false;
+
+    // 4. Tablas por modelo y grupo
+    renderModelPoliciesTable(settings.model_rules || {});
+    renderGroupPoliciesTable(settings.group_rules || {});
+
+    // Actualizar badge en barra superior
+    updateNavModeBadge(settings.fleet_mode || 'audit_only');
+  } catch (err) {
+    console.error('Error cargando políticas de flota:', err);
+    showToast('Error al conectar con el servidor de políticas', 'error');
+  }
+}
+
+function updateNavModeBadge(mode) {
+  const badge = $('nav-mode-badge');
+  if (!badge) return;
+  if (mode === 'audit_only') {
+    badge.textContent = 'Solo Saber';
+    badge.className = 'nav-mode-badge audit';
+    badge.title = 'Flota en modo auditoría: sin instalaciones automáticas';
+  } else {
+    badge.textContent = 'Actualización Auto';
+    badge.className = 'nav-mode-badge auto';
+    badge.title = 'Flota en modo programado: actualizaciones automáticas activas';
+  }
+}
+
+function selectFleetModeCard(mode) {
+  const cardAudit = $('mode-card-audit');
+  const cardScheduled = $('mode-card-scheduled');
+  const radioAudit = $('fleet-mode-audit');
+  const radioScheduled = $('fleet-mode-scheduled');
+
+  if (mode === 'audit_only') {
+    if (cardAudit) cardAudit.classList.add('selected');
+    if (cardScheduled) cardScheduled.classList.remove('selected');
+    if (radioAudit) radioAudit.checked = true;
+  } else {
+    if (cardAudit) cardAudit.classList.remove('selected');
+    if (cardScheduled) cardScheduled.classList.add('selected');
+    if (radioScheduled) radioScheduled.checked = true;
+  }
+}
+
+function handleModeChange(mode) {
+  selectFleetModeCard(mode);
+}
+
+function handleScheduleTypeChange(type) {
+  const dayPicker = $('monthly-day-picker');
+  if (dayPicker) {
+    dayPicker.style.display = (type === 'monthly') ? 'block' : 'none';
+  }
+}
+
+// Modelos por defecto para la matriz de políticas
+const KNOWN_FLEET_MODELS = [
+  { id: '20L5', name: 'ThinkPad T480', oem: 'lenovo' },
+  { id: '20N2', name: 'ThinkPad T490', oem: 'lenovo' },
+  { id: '20U1', name: 'ThinkPad L14 Gen 1', oem: 'lenovo' },
+  { id: '20X1', name: 'ThinkPad L14 Gen 2', oem: 'lenovo' },
+  { id: '888A', name: 'HP ProBook 440 G8', oem: 'hp' },
+  { id: '8A4E', name: 'HP ProBook 440 G9', oem: 'hp' },
+  { id: '880D', name: 'HP EliteBook 840 G7', oem: 'hp' },
+  { id: '8936', name: 'HP EliteBook 840 G8', oem: 'hp' },
+];
+
+function renderModelPoliciesTable(modelRules) {
+  const tbody = $('models-policies-tbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = KNOWN_FLEET_MODELS.map(m => {
+    const rule = modelRules[m.id] || { enabled: true, criticalOnly: true };
+    const isEnabled = rule.enabled !== false;
+    const isCritical = rule.criticalOnly !== false;
+
+    return `
+      <tr>
+        <td>
+          <span style="font-weight:600; color:var(--text-primary);">${escapeHtml(m.name)}</span>
+        </td>
+        <td>
+          <code class="font-mono text-cyan" style="font-size:12px;">${escapeHtml(m.id)}</code>
+        </td>
+        <td>
+          <span class="tab-btn-pill ${m.oem}" style="font-size:10px; padding:2px 6px;">${m.oem.toUpperCase()}</span>
+        </td>
+        <td>
+          <label class="toggle-switch">
+            <input type="checkbox" id="model-toggle-${m.id}" ${isEnabled ? 'checked' : ''} onchange="updateModelRowStatus('${m.id}')" />
+            <span class="toggle-slider"></span>
+          </label>
+        </td>
+        <td>
+          <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="checkbox" id="model-crit-${m.id}" ${isCritical ? 'checked' : ''} />
+            <span style="font-size:12px; color:var(--text-secondary);">Solo Críticos</span>
+          </label>
+        </td>
+        <td id="model-status-cell-${m.id}">
+          ${isEnabled 
+            ? '<span class="status-pill compliant" style="font-size:11px;">Actualizaciones Habilitadas</span>' 
+            : '<span class="status-pill outdated" style="font-size:11px;">Pausado / Solo Saber</span>'}
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function updateModelRowStatus(modelId) {
+  const toggle = $(`model-toggle-${modelId}`);
+  const statusCell = $(`model-status-cell-${modelId}`);
+  if (!toggle || !statusCell) return;
+
+  if (toggle.checked) {
+    statusCell.innerHTML = '<span class="status-pill compliant" style="font-size:11px;">Actualizaciones Habilitadas</span>';
+  } else {
+    statusCell.innerHTML = '<span class="status-pill outdated" style="font-size:11px;">Pausado / Solo Saber</span>';
+  }
+}
+
+const KNOWN_GROUPS = [
+  { id: 'pilot', name: 'Grupo Piloto / IT', desc: 'Validación previa de parches e instalación inmediata sin esperar ventana.' },
+  { id: 'general', name: 'Grupo General / Producción', desc: 'Despliegue ordenado en la ventana mensual programada (día seleccionado).' },
+  { id: 'vip', name: 'Grupo VIP / Dirección', desc: 'Siempre en modo auditoría (sin reinicios ni modificaciones en segundo plano).' },
+];
+
+function renderGroupPoliciesTable(groupRules) {
+  const tbody = $('groups-policies-tbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = KNOWN_GROUPS.map(g => {
+    const rule = groupRules[g.id] || { enabled: g.id !== 'vip', immediate: g.id === 'pilot' };
+    const isEnabled = rule.enabled !== false;
+
+    let windowText = 'Ventana Mensual (Día 15)';
+    if (g.id === 'pilot') windowText = 'Inmediata (Sin Espera)';
+    else if (!isEnabled || g.id === 'vip') windowText = 'Pausado / Solo Auditoría';
+
+    return `
+      <tr>
+        <td><strong style="color:var(--text-primary);">${escapeHtml(g.name)}</strong></td>
+        <td><code class="font-mono text-muted">${escapeHtml(g.id)}</code></td>
+        <td>
+          <label class="toggle-switch">
+            <input type="checkbox" id="group-toggle-${g.id}" ${isEnabled ? 'checked' : ''} />
+            <span class="toggle-slider"></span>
+          </label>
+        </td>
+        <td style="font-size:12px; color:var(--accent-cyan); font-weight:500;">
+          ${windowText}
+        </td>
+        <td style="font-size:12px; color:var(--text-secondary); max-width:320px;">
+          ${escapeHtml(g.desc)}
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function saveFleetSettings() {
+  const saveBtn = $('save-settings-btn');
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Guardando...';
+  }
+
+  try {
+    // 1. Recopilar modo maestro
+    const modeAuditRadio = $('fleet-mode-audit');
+    const fleet_mode = (modeAuditRadio && modeAuditRadio.checked) ? 'audit_only' : 'scheduled';
+
+    // 2. Frecuencia y día
+    const scheduleManualRadio = $('schedule-manual');
+    const schedule_type = (scheduleManualRadio && scheduleManualRadio.checked) ? 'manual' : 'monthly';
+    const monthly_day = parseInt($('settings-monthly-day')?.value, 10) || 15;
+
+    // 3. Filtros
+    const critical_only = $('settings-critical-only')?.checked !== false;
+    const pilot_group_enabled = $('settings-pilot-immediate')?.checked !== false;
+
+    // 4. Modelos
+    const model_rules = {};
+    KNOWN_FLEET_MODELS.forEach(m => {
+      const toggle = $(`model-toggle-${m.id}`);
+      const crit = $(`model-crit-${m.id}`);
+      model_rules[m.id] = {
+        name: m.name,
+        enabled: toggle ? toggle.checked : true,
+        criticalOnly: crit ? crit.checked : true,
+      };
+    });
+
+    // 5. Grupos
+    const group_rules = {};
+    KNOWN_GROUPS.forEach(g => {
+      const toggle = $(`group-toggle-${g.id}`);
+      group_rules[g.id] = {
+        name: g.name,
+        enabled: toggle ? toggle.checked : (g.id !== 'vip'),
+        immediate: g.id === 'pilot',
+      };
+    });
+
+    const payload = {
+      fleet_mode,
+      schedule_type,
+      monthly_day,
+      critical_only,
+      pilot_group_enabled,
+      model_rules,
+      group_rules,
+    };
+
+    const res = await fetch('/api/fleet/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) throw new Error('Error al guardar en el servidor');
+    const data = await res.json();
+    currentFleetSettings = data.settings;
+
+    updateNavModeBadge(fleet_mode);
+    showToast('Políticas de flota guardadas y aplicadas exitosamente', 'success', 4000);
+  } catch (err) {
+    console.error('Error al guardar políticas:', err);
+    showToast('Error al guardar políticas: ' + err.message, 'error');
+  } finally {
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Guardar Todas las Políticas';
+    }
+  }
+}
+
+function resetSettingsToDefaults() {
+  if (!confirm('¿Deseas restablecer las políticas a los valores predeterminados seguros (Modo Solo Saber, ventana mensual día 15, solo parches críticos)?')) return;
+
+  selectFleetModeCard('audit_only');
+  const scheduleMonthly = $('schedule-monthly');
+  if (scheduleMonthly) scheduleMonthly.checked = true;
+  handleScheduleTypeChange('monthly');
+
+  const dayInput = $('settings-monthly-day');
+  if (dayInput) dayInput.value = 15;
+
+  const critCheckbox = $('settings-critical-only');
+  if (critCheckbox) critCheckbox.checked = true;
+
+  const pilotCheckbox = $('settings-pilot-immediate');
+  if (pilotCheckbox) pilotCheckbox.checked = true;
+
+  KNOWN_FLEET_MODELS.forEach(m => {
+    const toggle = $(`model-toggle-${m.id}`);
+    const crit = $(`model-crit-${m.id}`);
+    if (toggle) toggle.checked = m.id !== '880D';
+    if (crit) crit.checked = true;
+    updateModelRowStatus(m.id);
+  });
+
+  KNOWN_GROUPS.forEach(g => {
+    const toggle = $(`group-toggle-${g.id}`);
+    if (toggle) toggle.checked = g.id !== 'vip';
+  });
+
+  showToast('Valores predeterminados cargados en el formulario. Pulsa Guardar para confirmar.', 'info');
+}
+
+// ================================================================
+// Modal de Enrolamiento y Despliegue de Agente (Intune)
+// ================================================================
+
+function getAgentServerHost() {
+  const customHost = ($('agent-server-host-input')?.value || '').trim();
+  if (customHost) {
+    if (customHost.startsWith('http://') || customHost.startsWith('https://')) {
+      return customHost;
+    }
+    return `https://${customHost}`;
+  }
+  return window.location.origin;
+}
+
+function updateAgentEnrollCommandString() {
+  const serverUrl = getAgentServerHost();
+  const cmd = `powershell -ExecutionPolicy Bypass -Command "irm ${serverUrl}/api/agent/install | iex"`;
+  const display = $('agent-enroll-cmd-display');
+  if (display) display.textContent = cmd;
+}
+
+function openAgentEnrollModal() {
+  const hostInput = $('agent-server-host-input');
+  if (hostInput && !hostInput.value) {
+    hostInput.placeholder = window.location.origin;
+  }
+  updateAgentEnrollCommandString();
+
+  const modal = $('agent-enroll-modal');
+  if (modal) modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAgentEnrollModal() {
+  const modal = $('agent-enroll-modal');
+  if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function resetAgentServerHost() {
+  const hostInput = $('agent-server-host-input');
+  if (hostInput) hostInput.value = '';
+  updateAgentEnrollCommandString();
+}
+
+function copyAgentEnrollCommand() {
+  const display = $('agent-enroll-cmd-display');
+  const btn = $('copy-agent-cmd-btn');
+  if (!display) return;
+
+  const cmd = display.textContent.trim();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(cmd).then(() => {
+      onAgentCommandCopied(btn);
+    }).catch(() => fallbackAgentCopy(cmd, btn));
+  } else {
+    fallbackAgentCopy(cmd, btn);
+  }
+}
+
+function fallbackAgentCopy(text, btn) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    onAgentCommandCopied(btn);
+  } catch {
+    showToast('Selecciona el comando manualmente para copiar', 'error');
+  }
+}
+
+function onAgentCommandCopied(btn) {
+  showToast('Comando de registro del agente copiado al portapapeles', 'success');
+  if (btn) {
+    const oldText = btn.textContent;
+    btn.textContent = '¡Copiado!';
+    setTimeout(() => { btn.textContent = oldText; }, 2500);
+  }
+}
+
+function downloadAgentInstallScript() {
+  const serverUrl = getAgentServerHost();
+  const url = `${serverUrl}/api/agent/install`;
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Instalar-OEM-Agent.ps1';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('Descargando script de enrolamiento de agente...', 'info');
+}
+
+function formatTimeAgo(dateStr) {
+  if (!dateStr) return '—';
+  try {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffSec = Math.floor((now - date) / 1000);
+    if (diffSec < 60) return 'Hace unos segundos';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `Hace ${diffMin} min`;
+    const diffHours = Math.floor(diffMin / 60);
+    if (diffHours < 24) return `Hace ${diffHours} h`;
+    const diffDays = Math.floor(diffHours / 24);
+    return `Hace ${diffDays} días`;
+  } catch {
+    return String(dateStr);
+  }
+}
+
+// ================================================================
 // Inicialización
 // ================================================================
 
@@ -1854,10 +2674,45 @@ function init() {
     });
   }
 
+  // Listeners directos para pestañas de navegación principal (SPA)
+  const navBtnCatalog = $('nav-btn-catalog');
+  if (navBtnCatalog) {
+    navBtnCatalog.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchMainView('catalog');
+    });
+  }
+
+  const navBtnFleet = $('nav-btn-fleet');
+  if (navBtnFleet) {
+    navBtnFleet.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchMainView('fleet');
+    });
+  }
+
+  const navBtnSettings = $('nav-btn-settings');
+  if (navBtnSettings) {
+    navBtnSettings.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchMainView('settings');
+    });
+  }
+
   // Inicializa en Lenovo
   selectOEM('lenovo');
 
+  // Inicializar datos de flota y políticas en segundo plano
+  loadFleetData(false);
+  loadFleetSettings();
+
   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closePatchModal();
+      closeTerminalCommandModal();
+      closeDeviceAuditModal();
+      closeAgentEnrollModal();
+    }
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
       e.preventDefault();
       if ($('search-id-input')) $('search-id-input').focus();
@@ -1865,4 +2720,37 @@ function init() {
   });
 }
 
+// Exponer todas las funciones al objeto global window para invocaciones inline desde HTML
+window.switchMainView = switchMainView;
+window.loadFleetData = loadFleetData;
+window.filterFleetTable = filterFleetTable;
+window.changeDeviceGroup = changeDeviceGroup;
+window.triggerDeviceDeployment = triggerDeviceDeployment;
+window.openDeviceAuditModal = openDeviceAuditModal;
+window.closeDeviceAuditModal = closeDeviceAuditModal;
+window.triggerDeviceAuditDeploy = triggerDeviceAuditDeploy;
+window.loadFleetSettings = loadFleetSettings;
+window.saveFleetSettings = saveFleetSettings;
+window.resetSettingsToDefaults = resetSettingsToDefaults;
+window.selectFleetModeCard = selectFleetModeCard;
+window.handleModeChange = handleModeChange;
+window.handleScheduleTypeChange = handleScheduleTypeChange;
+window.updateModelRowStatus = updateModelRowStatus;
+window.openAgentEnrollModal = openAgentEnrollModal;
+window.closeAgentEnrollModal = closeAgentEnrollModal;
+window.updateAgentEnrollCommandString = updateAgentEnrollCommandString;
+window.copyAgentEnrollCommand = copyAgentEnrollCommand;
+window.resetAgentServerHost = resetAgentServerHost;
+window.downloadAgentInstallScript = downloadAgentInstallScript;
+window.selectOEM = selectOEM;
+window.handleFleetSelection = handleFleetSelection;
+window.triggerSearch = triggerSearch;
+window.openPatchModal = openPatchModal;
+window.closePatchModal = closePatchModal;
+window.openTerminalCommandModal = openTerminalCommandModal;
+window.closeTerminalCommandModal = closeTerminalCommandModal;
+window.copyTerminalCommand = copyTerminalCommand;
+window.downloadPowerShellScript = downloadPowerShellScript;
+
 document.addEventListener('DOMContentLoaded', init);
+

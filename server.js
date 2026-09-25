@@ -14,6 +14,7 @@ const path    = require('path');
 const { fetchDrivers: lenovoFetch }              = require('./lib/lenovoService');
 const { fetchDrivers: hpFetch, getKnownPlatforms } = require('./lib/hpService');
 const { generatePowerShellScript }                = require('./lib/scriptGeneratorService');
+const fleetStorage                                = require('./lib/fleetStorageService');
 
 // ------------------------------------------------------------------
 // Configuración
@@ -288,6 +289,249 @@ app.get('/api/script/:oem/:modelId', timeoutMiddleware(REQUEST_TIMEOUT_MS), asyn
   } catch (err) {
     handleServiceError(err, res, `script/${oem}/${modelId}`);
   }
+});
+
+// ------------------------------------------------------------------
+// API de Flota Corporativa y Políticas
+// ------------------------------------------------------------------
+
+// Métricas de la flota
+app.get('/api/fleet/stats', (_req, res) => {
+  res.json(fleetStorage.getFleetStats());
+});
+
+// Listado de dispositivos
+app.get('/api/fleet/devices', (req, res) => {
+  const group = req.query.group || '';
+  res.json(fleetStorage.getDevices(group));
+});
+
+// Detalle de un dispositivo con su inventario de controladores
+app.get('/api/fleet/devices/:id', (req, res) => {
+  const dev = fleetStorage.getDeviceById(req.params.id);
+  if (!dev) return res.status(404).json({ error: 'Dispositivo no encontrado' });
+  res.json(dev);
+});
+
+// Cambiar grupo de un dispositivo (Piloto, General, VIP)
+app.put('/api/fleet/devices/:id/group', (req, res) => {
+  const { group } = req.body || {};
+  if (!group) return res.status(400).json({ error: 'Grupo requerido' });
+  const updated = fleetStorage.setDeviceGroup(req.params.id, group);
+  res.json(updated);
+});
+
+// Lanzar orden de despliegue para un dispositivo
+app.post('/api/fleet/devices/:id/deploy', (req, res) => {
+  const { drivers = [], criticalOnly = false } = req.body || {};
+  const dev = fleetStorage.getDeviceById(req.params.id);
+  if (!dev) return res.status(404).json({ error: 'Dispositivo no encontrado' });
+
+  let toDeploy = drivers;
+  if (!toDeploy || toDeploy.length === 0) {
+    toDeploy = (dev.drivers || []).filter(d => {
+      if (d.status === 'ACTUALIZADO') return false;
+      if (criticalOnly) return String(d.severity).toLowerCase().includes('cr');
+      return true;
+    });
+  }
+
+  const task = fleetStorage.createDeploymentTask(req.params.id, toDeploy);
+  res.json({ success: true, task, driversCount: toDeploy.length });
+});
+
+// Consulta de configuración y políticas de la flota
+app.get('/api/fleet/settings', (_req, res) => {
+  res.json(fleetStorage.getSettings());
+});
+
+// Guardar configuración y políticas
+app.post('/api/fleet/settings', (req, res) => {
+  const updated = fleetStorage.updateSettings(req.body);
+  res.json({ success: true, settings: updated });
+});
+
+// ------------------------------------------------------------------
+// API del Agente Cliente (Endpoints de comunicación y telemetría)
+// ------------------------------------------------------------------
+
+// Heartbeat / Check-in del cliente
+app.post('/api/agent/checkin', (req, res) => {
+  const {
+    deviceId,
+    hostname,
+    oem,
+    modelId,
+    modelName,
+    osBuild,
+    biosVersion,
+    auditResults = []
+  } = req.body || {};
+
+  if (!deviceId) {
+    return res.status(400).json({ error: 'deviceId es requerido' });
+  }
+
+  const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+
+  // 1. Guardar/actualizar dispositivo e inventario en base de datos
+  const device = fleetStorage.registerOrUpdateDevice({
+    id: deviceId,
+    hostname,
+    oem,
+    modelId,
+    modelName,
+    osBuild,
+    biosVersion,
+    ipAddress: clientIp,
+    auditResults
+  });
+
+  // 2. Evaluar directivas y tareas pendientes
+  const settings = fleetStorage.getSettings();
+
+  // Si la flota está en modo "Solo Saber / Auditoría", no enviar órdenes de instalación
+  if (settings.fleet_mode === 'audit_only') {
+    return res.json({
+      action: 'none',
+      mode: 'audit_only',
+      message: 'Flota en modo solo monitorización (sin cambios en clientes)'
+    });
+  }
+
+  // Comprobar si el modelo del equipo está habilitado para actualización
+  const modelRule = (settings.model_rules && settings.model_rules[modelId]) || { enabled: true };
+  if (modelRule.enabled === false) {
+    return res.json({
+      action: 'none',
+      mode: 'model_paused',
+      message: `Actualizaciones pausadas para el modelo ${modelId}`
+    });
+  }
+
+  // Comprobar si el grupo del equipo está habilitado
+  const groupRule = (settings.group_rules && settings.group_rules[device.group_name]) || { enabled: true };
+  if (groupRule.enabled === false) {
+    return res.json({
+      action: 'none',
+      mode: 'group_paused',
+      message: `Actualizaciones pausadas para el grupo ${device.group_name}`
+    });
+  }
+
+  // Comprobar si hay una tarea manual específica en cola para este equipo
+  const pendingTask = fleetStorage.getPendingTaskForDevice(deviceId);
+  if (pendingTask) {
+    const drivers = JSON.parse(pendingTask.drivers_payload || '[]');
+    return res.json({
+      action: 'install',
+      taskId: pendingTask.id,
+      trigger: 'manual_dispatch',
+      drivers
+    });
+  }
+
+  // Comprobar si corresponde la ventana mensual programada
+  if (settings.schedule_type === 'monthly') {
+    const today = new Date().getDate();
+    const scheduledDay = Number(settings.monthly_day) || 15;
+    if (today === scheduledDay) {
+      const pendingDrivers = auditResults.filter(d => {
+        if (d.status === 'ACTUALIZADO') return false;
+        if (settings.critical_only || modelRule.criticalOnly) {
+          return String(d.severity).toLowerCase().includes('cr');
+        }
+        return true;
+      });
+
+      if (pendingDrivers.length > 0) {
+        const autoTask = fleetStorage.createDeploymentTask(deviceId, pendingDrivers);
+        return res.json({
+          action: 'install',
+          taskId: autoTask ? autoTask.id : Date.now(),
+          trigger: 'monthly_schedule',
+          drivers: pendingDrivers
+        });
+      }
+    }
+  }
+
+  // Ninguna orden pendiente
+  res.json({
+    action: 'none',
+    mode: 'compliant',
+    message: 'Equipo al día o fuera de ventana de actualización'
+  });
+});
+
+// Reporte de resultado de instalación por el cliente
+app.post('/api/agent/report', (req, res) => {
+  const { taskId, exitCode, logOutput } = req.body || {};
+  if (taskId) {
+    fleetStorage.completeTask(taskId, exitCode ?? 0, logOutput || 'Completado');
+  }
+  res.json({ success: true, message: 'Reporte procesado' });
+});
+
+// Script de instalación/onboarding del agente cliente para Intune o PowerShell
+app.get('/api/agent/install', (req, res) => {
+  const host = req.headers.host || 'localhost:3000';
+  const protocol = req.protocol || 'http';
+  const serverUrl = `${protocol}://${host}`;
+
+  const agentScript = `# ================================================================
+# OEM Driver Explorer — Script de Instalacion y Registro del Agente
+# Despliegue automatico para Microsoft Intune / PowerShell
+# ================================================================
+
+$ServerUrl = "${serverUrl}"
+Write-Host "Instalando OEM Driver Agent (Servidor: $ServerUrl)..." -ForegroundColor Cyan
+
+# 1. Identificar equipo
+$cs = Get-CimInstance Win32_ComputerSystem
+$bb = Get-CimInstance Win32_BaseBoard
+$bios = Get-CimInstance Win32_Bios
+
+$oem = if ($cs.Manufacturer -like "*Lenovo*") { "lenovo" } else { "hp" }
+$modelId = if ($oem -eq "lenovo") {
+    if ($cs.Model.Length -ge 4) { $cs.Model.Substring(0,4) } else { $cs.Model }
+} else {
+    $bb.Product
+}
+
+$deviceId = (Get-CimInstance Win32_ComputerSystemProduct).UUID
+if (-not $deviceId) { $deviceId = "$($env:COMPUTERNAME)-$modelId" }
+
+Write-Host "Equipo identificado: $($env:COMPUTERNAME) | $oem | $modelId | UUID: $deviceId" -ForegroundColor White
+
+# 2. Directorio de instalacion
+$installDir = "C:\\Program Files\\OEMDriverAgent"
+if (-not (Test-Path $installDir)) { New-Item -ItemType Directory -Path $installDir -Force | Out-Null }
+
+# 3. Guardar configuracion del cliente
+$config = @{
+    ServerUrl = $ServerUrl
+    DeviceId = $deviceId
+    OEM = $oem
+    ModelId = $modelId
+    IntervalMinutes = 120
+}
+$config | ConvertTo-Json | Out-File (Join-Path $installDir "config.json") -Encoding UTF8
+
+Write-Host "Configuracion guardada en $installDir\\config.json" -ForegroundColor Green
+
+# 4. Crear tarea programada en Windows (SYSTEM)
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -Command \`"irm $ServerUrl/api/script/$oem/$modelId | iex\`""
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+Register-ScheduledTask -TaskName "OEMDriverAuditorAgent" -Action $action -Trigger $trigger -Settings $settings -User "NT AUTHORITY\\SYSTEM" -RunLevel Highest -Force | Out-Null
+
+Write-Host "(OK) Agente registrado exitosamente como Tarea de Windows (NT AUTHORITY\\SYSTEM)." -ForegroundColor Green
+Write-Host "El equipo ya esta vinculado y reportando a $ServerUrl" -ForegroundColor Cyan
+`;
+
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.send(agentScript);
 });
 
 // ------------------------------------------------------------------
