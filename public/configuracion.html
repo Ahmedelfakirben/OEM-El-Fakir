@@ -15,11 +15,11 @@
   <!-- Favicon SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
 
-  <link rel="stylesheet" href="style.css?v=10.0" />
+  <link rel="stylesheet" href="style.css?v=11.0" />
 </head>
 <body>
 
-  <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
+  <!-- Barra Superior de Navegación -->
   <header class="site-header" role="banner">
     <div class="header-inner">
       <div class="logo">
@@ -32,26 +32,32 @@
         </a>
       </div>
 
-      <nav class="nav-tabs-wrapper" role="navigation" aria-label="Secciones de la plataforma">
-        <a href="/" class="nav-tab-btn" style="text-decoration:none;">
+      <nav class="primary-nav" role="navigation" aria-label="Secciones de la plataforma">
+        <a href="/" class="nav-tab-btn" id="nav-btn-catalog">
           <span class="nav-tab-label">Catálogo OEM</span>
         </a>
-        <a href="/flota" class="nav-tab-btn" style="text-decoration:none;">
+        <a href="/flota" class="nav-tab-btn" id="nav-btn-fleet">
           <span class="nav-tab-label">Flota de Equipos</span>
         </a>
-        <a href="/configuracion" class="nav-tab-btn active" style="text-decoration:none;">
+        <a href="/configuracion" class="nav-tab-btn active" id="nav-btn-settings">
           <span class="nav-tab-label">Políticas y Configuración</span>
           <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
         </a>
-        <a href="/conectores" class="nav-tab-btn" style="text-decoration:none;">
+        <a href="/conectores" class="nav-tab-btn" id="nav-btn-connectors">
           <span class="nav-tab-label">Conectores &amp; APIs</span>
         </a>
       </nav>
+
+      <div class="header-badges">
+        <span id="header-timestamp-label" style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+          Políticas Sincronizadas
+        </span>
+      </div>
     </div>
   </header>
 
-  <!-- ── Contenido de Configuración ────────────────────────────────── -->
-  <main class="main-content" role="main" style="max-width:1200px; margin:0 auto; padding:24px 20px;">
+  <!-- Contenido de Configuración -->
+  <main class="main-content" role="main" style="max-width:1300px; margin:0 auto; padding:28px 24px 60px;">
     
     <div class="fleet-header-row" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
       <div>
@@ -59,93 +65,238 @@
           Políticas y Configuración de Flota
         </h1>
         <p class="fleet-view-subtitle" style="color:var(--text-secondary); font-size:14px;">
-          Define las reglas de automatización mensual, ventanas de mantenimiento y directivas por modelo o grupo.
+          Define las directivas maestras de automatización, periodicidad de actualización, anillos de despliegue y compatibilidad por hardware.
         </p>
       </div>
 
-      <div style="display:flex; gap:10px;">
-        <button type="button" id="reset-settings-btn" class="fleet-btn-secondary" onclick="resetSettingsToDefaults()">Restablecer Valores</button>
-        <button type="button" class="fleet-btn-primary" id="save-settings-btn" onclick="saveFleetSettings()">Guardar Políticas</button>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button type="button" id="btn-reset-settings" class="fleet-btn-secondary">Restablecer Valores</button>
+        <button type="button" id="btn-evaluate-impact" class="fleet-btn-secondary">Evaluar Impacto en Flota</button>
+        <button type="button" id="btn-save-settings" class="fleet-btn-primary">Guardar Políticas</button>
       </div>
     </div>
 
-    <!-- MODO MAESTRO DE LA FLOTA -->
-    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
-      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:16px;">Modo de Operación de la Flota</h2>
-      
-      <div class="mode-selector-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
-        
-        <label class="mode-selector-card selected" id="mode-card-audit" onclick="selectFleetModeCard('audit_only')" style="cursor:pointer; display:block;">
-          <input type="radio" name="fleet_mode" value="audit_only" id="fleet-mode-audit" checked style="display:none;" />
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <span class="status-pill compliant" style="font-size:10px;">MODO SEGURO</span>
-            <h3 style="font-size:15px; font-weight:700; color:var(--text-primary);">Solo Saber (Modo Auditoría)</h3>
+    <!-- BANNER DE ESTADO GLOBAL ACTIVO -->
+    <div id="settings-active-banner" class="settings-card" style="margin-bottom:24px; background:linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.85) 100%); border:1px solid rgba(56,189,248,0.25);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div id="active-banner-indicator" style="width:14px; height:14px; border-radius:50%; background:var(--accent-cyan); box-shadow:0 0 10px var(--accent-cyan);"></div>
+          <div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span id="active-banner-title" style="font-size:15px; font-weight:700; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.04em;">MODO: SOLO SABER (AUDITORÍA)</span>
+              <span id="active-banner-pill" class="status-pill compliant" style="font-size:10px;">SEGURO</span>
+            </div>
+            <p id="active-banner-desc" style="font-size:13px; color:var(--text-secondary); margin-top:2px;">
+              La telemetría se recopila con normalidad. No se aplican cambios ni descargas automáticas en los equipos de la flota.
+            </p>
           </div>
-          <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
-            Los agentes reportan telemetría y estado de controladores. No se instala nada automáticamente en los equipos a menos que se pulse "Actualizar" manualmente.
-          </p>
-        </label>
+        </div>
 
-        <label class="mode-selector-card" id="mode-card-scheduled" onclick="selectFleetModeCard('scheduled')" style="cursor:pointer; display:block;">
-          <input type="radio" name="fleet_mode" value="scheduled" id="fleet-mode-scheduled" style="display:none;" />
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <span class="status-pill critical" style="font-size:10px;">AUTOMÁTICO</span>
-            <h3 style="font-size:15px; font-weight:700; color:var(--text-primary);">Actualización Programada</h3>
+        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Próxima Ventana</div>
+            <div id="active-banner-window" class="font-mono" style="font-size:13px; font-weight:600; color:var(--accent-cyan);">Manual</div>
           </div>
-          <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
-            Las actualizaciones se aplican automáticamente según el calendario mensual establecido para los modelos y grupos habilitados.
-          </p>
-        </label>
-
-      </div>
-    </div>
-
-    <!-- CALENDARIO Y VENTANA MENSUAL -->
-    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
-      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:16px;">Frecuencia y Ventana de Despliegue</h2>
-      
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
-          <input type="radio" name="schedule_type" value="monthly" id="schedule-monthly" checked />
-          <span><strong>Una vez al mes:</strong> Ejecutar actualizaciones el día:</span>
-          <input type="number" id="settings-monthly-day" class="fleet-input" min="1" max="28" value="15" style="width:70px; padding:4px 8px;" />
-          <span style="color:var(--text-muted); font-size:12px;">de cada mes (Recomendado post-Patch Tuesday de Microsoft)</span>
-        </label>
-
-        <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
-          <input type="radio" name="schedule_type" value="manual" id="schedule-manual" />
-          <span><strong>Despliegue Manual:</strong> Solo cuando el administrador envíe la orden desde la ficha del equipo.</span>
-        </label>
-
-        <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:14px; margin-top:8px; display:flex; flex-direction:column; gap:10px;">
-          <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
-            <input type="checkbox" id="settings-critical-only" checked />
-            <span>Aplicar <strong>exclusivamente parches críticos</strong> de seguridad y firmware BIOS en actualizaciones automáticas.</span>
-          </label>
-          <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer;">
-            <input type="checkbox" id="settings-pilot-immediate" checked />
-            <span>Permitir despliegue anticipado inmediato para los equipos del <strong>Grupo Piloto / IT</strong>.</span>
-          </label>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Equipos Elegibles</div>
+            <div id="active-banner-eligible-devices" class="font-mono" style="font-size:16px; font-weight:700; color:var(--text-primary);">0 / 1</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Parches en Espera</div>
+            <div id="active-banner-pending-drivers" class="font-mono text-yellow" style="font-size:16px; font-weight:700;">14 Críticos</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- POLÍTICAS POR MODELO -->
-    <div class="settings-card" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; box-shadow:var(--shadow-card);">
-      <h2 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Control de Actualización por Modelo de Equipo</h2>
-      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-        Habilita o pausa las actualizaciones de forma independiente para cada plataforma de hardware presente en tu parque corporativo.
-      </p>
+    <!-- 1. MODO MAESTRO DE OPERACIÓN DE LA FLOTA -->
+    <div class="settings-card" style="margin-bottom:24px;">
+      <div class="settings-card-header">
+        <span class="settings-card-badge">Directiva Global</span>
+        <h2 class="settings-card-title">Modo de Operación de la Flota</h2>
+        <p class="settings-card-desc">
+          Determina si el agente cliente solo recopila telemetría de controladores y hardware o si tiene autorización para aplicar actualizaciones de forma desatendida.
+        </p>
+      </div>
+
+      <div class="settings-mode-grid">
+        
+        <!-- Opción Solo Saber / Auditoría -->
+        <label class="mode-selector-card selected" id="mode-card-audit">
+          <input type="radio" name="fleet_mode" value="audit_only" id="fleet-mode-audit" checked />
+          <div class="mode-card-content">
+            <div class="mode-card-top">
+              <span class="mode-pill pill-audit">Modo Seguro</span>
+              <span class="mode-indicator-dot"></span>
+            </div>
+            <h3 class="mode-title">Solo Saber / Auditoría (Sin Modificaciones)</h3>
+            <p class="mode-desc">
+              Los clientes envían el inventario completo de controladores y telemetría PnP. La plataforma diagnostica el estado de cumplimiento respecto al catálogo oficial y Windows Update, pero <strong>NUNCA instala nada automáticamente</strong> en los equipos a menos que se pulse "Actualizar" manualmente.
+            </p>
+            <div class="mode-features">
+              <span>Totalmente no intrusivo</span> · 
+              <span>Sin descargas ni reinicios imprevistos</span> · 
+              <span>Auditoría de flota</span>
+            </div>
+          </div>
+        </label>
+
+        <!-- Opción Actualizaciones Programadas -->
+        <label class="mode-selector-card" id="mode-card-scheduled">
+          <input type="radio" name="fleet_mode" value="scheduled" id="fleet-mode-scheduled" />
+          <div class="mode-card-content">
+            <div class="mode-card-top">
+              <span class="mode-pill pill-auto">Automatizado</span>
+              <span class="mode-indicator-dot"></span>
+            </div>
+            <h3 class="mode-title">Actualización Programada (Automático)</h3>
+            <p class="mode-desc">
+              Permite a los equipos cliente descargar e instalar automáticamente los controladores y firmware validados en segundo plano, respetando la ventana de mantenimiento configurada y las restricciones por modelo y grupo.
+            </p>
+            <div class="mode-features">
+              <span>Instalación silenciosa desatendida</span> · 
+              <span>Ventana de mantenimiento</span> · 
+              <span>Anillos de riesgo</span>
+            </div>
+          </div>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- 2. FRECUENCIA Y VENTANA DE DESPLIEGUE -->
+    <div class="settings-card" id="schedule-config-card" style="margin-bottom:24px;">
+      <div class="settings-card-header">
+        <span class="settings-card-badge">Programación</span>
+        <h2 class="settings-card-title">Frecuencia y Ventana de Despliegue</h2>
+        <p class="settings-card-desc">
+          Define la periodicidad con la que los equipos evaluarán e instalarán controladores cuando el modo programado esté activo.
+        </p>
+      </div>
+
+      <div class="settings-schedule-box">
+        <div class="schedule-options-row">
+          
+          <label class="schedule-radio-label">
+            <input type="radio" name="schedule_type" value="continuous" id="schedule-continuous" />
+            <div class="schedule-radio-info">
+              <span class="schedule-radio-title">En cada Check-in (Inmediato / En tiempo real)</span>
+              <span class="schedule-radio-sub">Aplica los parches elegibles tan pronto como el agente cliente se conecte al servidor. Recomendado para mantener siempre la flota al día con parches de seguridad.</span>
+            </div>
+          </label>
+
+          <label class="schedule-radio-label">
+            <input type="radio" name="schedule_type" value="monthly" id="schedule-monthly" checked />
+            <div class="schedule-radio-info">
+              <span class="schedule-radio-title">Una vez al mes (Ventana Mensual Programada)</span>
+              <span class="schedule-radio-sub">Aplica actualizaciones de forma ordenada en un día preestablecido del mes para evitar disrupciones laborales.</span>
+            </div>
+          </label>
+
+          <label class="schedule-radio-label">
+            <input type="radio" name="schedule_type" value="manual" id="schedule-manual" />
+            <div class="schedule-radio-info">
+              <span class="schedule-radio-title">Solo Bajo Demanda / Despliegue Manual</span>
+              <span class="schedule-radio-sub">No se ejecutan tareas por calendario. Las actualizaciones solo se aplican cuando el administrador pulsa "Actualizar" en el panel.</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Selector de día del mes -->
+        <div class="monthly-day-picker-row" id="monthly-day-picker">
+          <div class="day-picker-field">
+            <label for="settings-monthly-day" class="settings-field-label">Día del mes para aplicar actualizaciones automáticas:</label>
+            <div style="display:flex; align-items:center; gap:12px; margin-top:8px; flex-wrap:wrap;">
+              <input type="number" id="settings-monthly-day" class="fleet-input" min="1" max="28" value="15" style="width:85px; padding:6px 12px; font-weight:700;" />
+              <span style="color:var(--text-secondary); font-size:13px;">de cada mes</span>
+              <div style="display:flex; gap:8px;">
+                <button type="button" id="btn-preset-day-15" class="tab-btn-pill" style="cursor:pointer; border:1px solid var(--border-normal);">Día 15 (Patch Tuesday)</button>
+                <button type="button" id="btn-preset-day-today" class="tab-btn-pill" style="cursor:pointer; border:1px solid var(--border-normal);">Día de Hoy (<span id="preset-today-num">25</span>)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkboxes de Seguridad y Filtros -->
+        <div style="border-top:1px solid var(--border-subtle); margin-top:18px; padding-top:18px;" class="settings-checkboxes-list">
+          <label class="settings-checkbox-item">
+            <input type="checkbox" id="settings-critical-only" checked />
+            <div class="checkbox-text-group">
+              <span class="checkbox-title">Solo parches Críticos y de Seguridad (Recomendado)</span>
+              <span class="checkbox-sub">Aplica únicamente actualizaciones de Firmware BIOS/UEFI, Intel ME y controladores que corrigen vulnerabilidades de seguridad conocidas (CVE) o fallos graves. Excluye utilidades opcionales y mejoras cosméticas.</span>
+            </div>
+          </label>
+
+          <label class="settings-checkbox-item">
+            <input type="checkbox" id="settings-pilot-immediate" checked />
+            <div class="checkbox-text-group">
+              <span class="checkbox-title">Despliegue anticipado inmediato para el Grupo Piloto / IT (Anillo 1)</span>
+              <span class="checkbox-sub">Los equipos asignados al grupo Piloto recibirán las actualizaciones en su siguiente conexión, sin esperar a la ventana mensual, para validar estabilidad antes del despliegue masivo.</span>
+            </div>
+          </label>
+
+          <label class="settings-checkbox-item">
+            <input type="checkbox" id="settings-auto-retry" checked />
+            <div class="checkbox-text-group">
+              <span class="checkbox-title">Reintentar automáticamente parches fallidos</span>
+              <span class="checkbox-sub">Si un instalador silencioso finaliza con código de error, el agente volverá a intentar la descarga e instalación limpia en el siguiente ciclo.</span>
+            </div>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. ANILLOS Y SEGMENTACIÓN POR GRUPOS -->
+    <div class="settings-card" style="margin-bottom:24px;">
+      <div class="settings-card-header">
+        <span class="settings-card-badge">Segmentación</span>
+        <h2 class="settings-card-title">Anillos y Políticas por Grupo de Equipos</h2>
+        <p class="settings-card-desc">
+          Asigna reglas de automatización según la criticidad de cada grupo para garantizar la continuidad del negocio y validar estabilidad de forma escalonada.
+        </p>
+      </div>
 
       <div class="table-container">
-        <table class="fleet-table">
+        <table class="fleet-table" id="groups-policies-table" aria-label="Políticas por grupo">
           <thead>
             <tr>
-              <th>Modelo de Hardware</th>
+              <th>Nombre del Grupo</th>
+              <th>Identificador</th>
+              <th>Equipos Conectados</th>
+              <th>Permitir Actualizaciones</th>
+              <th>Ventana de Aplicación</th>
+              <th>Descripción y Propósito</th>
+            </tr>
+          </thead>
+          <tbody id="groups-policies-tbody">
+            <!-- Inyectado dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. CONTROL POR MODELO DE HARDWARE -->
+    <div class="settings-card" style="margin-bottom:24px;">
+      <div class="settings-card-header">
+        <span class="settings-card-badge">Control Granular</span>
+        <h2 class="settings-card-title">Políticas por Modelo de Hardware</h2>
+        <p class="settings-card-desc">
+          Habilita o pausa las actualizaciones de forma independiente para cada modelo presente en tu parque corporativo. Si un modelo está pausado, funcionará siempre en modo solo auditoría.
+        </p>
+      </div>
+
+      <div class="table-container">
+        <table class="fleet-table" id="models-policies-table" aria-label="Políticas por modelo de hardware">
+          <thead>
+            <tr>
+              <th>Modelo de Equipo</th>
+              <th>Código ID</th>
               <th>Fabricante</th>
-              <th>ID de Plataforma</th>
-              <th>Estado de Política</th>
-              <th>Modo Crítico</th>
+              <th>Equipos en Flota</th>
+              <th>Actualizaciones Automáticas</th>
+              <th>Solo Parches Críticos</th>
+              <th>Comportamiento Resultante</th>
             </tr>
           </thead>
           <tbody id="models-policies-tbody">
@@ -155,14 +306,54 @@
       </div>
     </div>
 
+    <!-- 5. SIMULADOR DE IMPACTO Y DISPARO INMEDIATO -->
+    <div class="settings-card" style="margin-bottom:24px; border:1px solid rgba(79,110,247,0.3);">
+      <div class="settings-card-header">
+        <span class="settings-card-badge" style="background:rgba(79,110,247,0.15); color:var(--accent-blue);">Operaciones en Vivo</span>
+        <h2 class="settings-card-title">Simulador de Impacto &amp; Disparo de Ciclo en Flota</h2>
+        <p class="settings-card-desc">
+          Verifica en tiempo real cuántos equipos y controladores recibirán actualizaciones bajo la directiva activa y lanza el ciclo de forma inmediata si es necesario.
+        </p>
+      </div>
+
+      <div style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <span style="font-size:14px; font-weight:700; color:var(--text-primary);">Evaluación de Despliegue:</span>
+            <span id="sim-status-pill" class="status-pill compliant" style="font-size:11px;">LISTO PARA EVALUAR</span>
+          </div>
+          <p id="sim-impact-summary" style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
+            Calculando equipos elegibles y controladores pendientes según las políticas configuradas...
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" id="btn-recalc-sim" class="fleet-btn-secondary">Actualizar Simulación</button>
+          <button type="button" id="btn-trigger-cycle-now" class="fleet-btn-primary">Disparar Ciclo Inmediato Ahora</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Inferior de Guardado -->
+    <div class="settings-save-bar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <span style="font-weight:600; color:var(--text-primary); display:block;">Persistencia de Políticas Corporativas</span>
+        <span style="font-size:12px; color:var(--text-muted);">Los cambios se guardan de inmediato en la base de datos y se propagan en los próximos check-ins de los agentes cliente.</span>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button type="button" id="btn-reset-bottom" class="fleet-btn-secondary">Restablecer</button>
+        <button type="button" id="btn-save-bottom" class="fleet-btn-primary">Guardar Todas las Políticas</button>
+      </div>
+    </div>
+
   </main>
 
-  <footer class="site-footer" role="contentinfo" style="margin-top:40px;">
+  <footer class="site-footer" role="contentinfo">
     <p>OEM Driver Explorer &mdash; Auditoría de Controladores y Plataformas Corporativas.</p>
   </footer>
 
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
-  <script src="configuracion.js?v=1.0"></script>
+  <script src="configuracion.js?v=2.0"></script>
 </body>
 </html>

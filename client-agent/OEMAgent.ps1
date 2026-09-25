@@ -208,15 +208,17 @@ try {
         $logOutput = ""
 
         foreach ($drv in $checkinResp.drivers) {
-            Write-AgentLog "Descargando controlador: $($drv.name)..." "INFO"
-            if ($drv.downloadUrl) {
+            $drvName = if ($drv.name) { $drv.name } elseif ($drv.driver_name) { $drv.driver_name } else { "Controlador" }
+            $drvUrl = if ($drv.downloadUrl) { $drv.downloadUrl } elseif ($drv.download_url) { $drv.download_url } else { "" }
+            Write-AgentLog "Descargando controlador: $drvName..." "INFO"
+            if ($drvUrl) {
                 try {
-                    $fileName = [System.IO.Path]::GetFileName($drv.downloadUrl)
+                    $fileName = [System.IO.Path]::GetFileName($drvUrl)
                     if (-not $fileName -or -not $fileName.Contains(".")) { $fileName = "patch_$($drv.id).exe" }
                     $destPath = Join-Path $cacheDir $fileName
 
                     # Descarga
-                    Invoke-WebRequest -Uri $drv.downloadUrl -OutFile $destPath -TimeoutSec 120
+                    Invoke-WebRequest -Uri $drvUrl -OutFile $destPath -TimeoutSec 120
                     Write-AgentLog "Archivo descargado en: $destPath. Ejecutando instalador silencioso..." "INFO"
 
                     # Ejecución silenciosa segun extension
@@ -238,16 +240,19 @@ try {
                     $proc.WaitForExit(600000) # Max 10 min por parche
                     $exitCode = $proc.ExitCode
                     Write-AgentLog "Instalador finalizo con codigo de salida: $exitCode" "INFO"
-                    $logOutput += "[$($drv.name)]: Codigo $exitCode`n"
+                    $logOutput += "[$drvName]: Codigo $exitCode`n"
 
                     if ($exitCode -ne 0 -and $exitCode -ne 3010) {
                         $overallExitCode = $exitCode
                     }
                 } catch {
-                    Write-AgentLog "Error instalando $($drv.name): $($_.Exception.Message)" "ERROR"
-                    $logOutput += "[$($drv.name)]: Error $($_.Exception.Message)`n"
+                    Write-AgentLog "Error instalando $drvName: $($_.Exception.Message)" "ERROR"
+                    $logOutput += "[$drvName]: Error $($_.Exception.Message)`n"
                     $overallExitCode = 1
                 }
+            } else {
+                Write-AgentLog "El controlador $drvName no dispone de URL directa de descarga." "WARN"
+                $logOutput += "[$drvName]: Sin URL de descarga directa`n"
             }
         }
 

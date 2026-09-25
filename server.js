@@ -367,15 +367,175 @@ app.post('/api/fleet/seed-demo', (_req, res) => {
   res.json({ success: true, message: 'Datos de prueba cargados correctamente' });
 });
 
-// Consulta de configuración y políticas de la flota
+// Consulta de configuración y políticas de la flota (con metadatos de modelos y grupos detectados)
 app.get('/api/fleet/settings', (_req, res) => {
-  res.json(fleetStorage.getSettings());
+  const settings = fleetStorage.getSettings();
+  const detectedModels = fleetStorage.getDetectedModels ? fleetStorage.getDetectedModels() : [];
+  const groupCounts = fleetStorage.getGroupCounts ? fleetStorage.getGroupCounts() : {};
+  res.json({
+    ...settings,
+    _meta: {
+      detectedModels,
+      groupCounts
+    }
+  });
 });
 
 // Guardar configuración y políticas
 app.post('/api/fleet/settings', (req, res) => {
   const updated = fleetStorage.updateSettings(req.body);
   res.json({ success: true, settings: updated });
+});
+
+// Simulador y evaluación de impacto de políticas en la flota
+app.get('/api/fleet/policy-impact', (_req, res) => {
+  const settings = fleetStorage.getSettings();
+  const devices = fleetStorage.getDevices();
+
+  let eligibleDevices = 0;
+  let pausedDevices = 0;
+  let eligibleDriversTotal = 0;
+  const breakdown = [];
+
+  for (const dev of devices) {
+    const fullDev = fleetStorage.getDeviceById(dev.id);
+    const modelRule = (settings.model_rules && settings.model_rules[dev.model_id]) || { enabled: true, criticalOnly: true };
+    const groupRule = (settings.group_rules && settings.group_rules[dev.group_name]) || { enabled: true };
+
+    const isModelEnabled = modelRule.enabled !== false;
+    const isGroupEnabled = groupRule.enabled !== false;
+    const isEligible = (settings.fleet_mode === 'scheduled') && isModelEnabled && isGroupEnabled;
+
+    let pendingDrivers = [];
+    if (fullDev && fullDev.drivers) {
+      const isCritOnly = settings.critical_only || modelRule.criticalOnly;
+      pendingDrivers = fullDev.drivers.filter(d => {
+        if (d.status === 'ACTUALIZADO') return false;
+        if (isCritOnly) {
+          const sev = String(d.severity || '').toLowerCase();
+          if (!sev.includes('cr') && !sev.includes('seguridad') && !sev.includes('bios') && !sev.includes('firmware')) {
+            return false;
+          }
+        }
+        const url = (d.download_url || d.downloadUrl || '').toLowerCase();
+        if (url && !url.endsWith('.exe') && !url.endsWith('.msi')) {
+          return false;
+        }
+        return true;
+      });
+    }
+
+    if (isEligible) {
+      eligibleDevices++;
+      eligibleDriversTotal += pendingDrivers.length;
+    } else {
+      pausedDevices++;
+    }
+
+    let reason = 'Elegible para actualización';
+    if (settings.fleet_mode === 'audit_only') reason = 'Flota en modo Solo Saber';
+    else if (!isModelEnabled) reason = `Modelo ${dev.model_id} pausado`;
+    else if (!isGroupEnabled) reason = `Grupo ${dev.group_name} pausado`;
+
+    breakdown.push({
+      id: dev.id,
+      hostname: dev.hostname,
+      modelId: dev.model_id,
+      modelName: dev.model_name,
+      groupName: dev.group_name,
+      isEligible,
+      reason,
+      pendingCount: pendingDrivers.length
+    });
+  }
+
+  const today = new Date().getDate();
+  const scheduledDay = Number(settings.monthly_day) || 15;
+  let windowDescription = '';
+  if (settings.fleet_mode === 'audit_only') {
+    windowDescription = 'Modo Solo Saber (Auditoría segura activa — Sin instalaciones automáticas)';
+  } else if (settings.schedule_type === 'continuous' || settings.schedule_type === 'immediate') {
+    windowDescription = 'Inmediato en el próximo check-in de cada equipo conectado';
+  } else if (settings.schedule_type === 'monthly') {
+    if (today === scheduledDay) {
+      windowDescription = `Ventana mensual activa HOY (Día ${scheduledDay} del mes)`;
+    } else {
+      windowDescription = `Programado para el día ${scheduledDay} de cada mes`;
+    }
+  } else {
+    windowDescription = 'Despliegue Manual bajo demanda del administrador';
+  }
+
+  res.json({
+    fleetMode: settings.fleet_mode,
+    scheduleType: settings.schedule_type,
+    monthlyDay: scheduledDay,
+    criticalOnly: settings.critical_only,
+    totalDevices: devices.length,
+    eligibleDevices,
+    pausedDevices,
+    eligibleDriversTotal,
+    windowDescription,
+    breakdown
+  });
+});
+
+// Disparar ciclo de actualización inmediato para todos los equipos elegibles
+app.post('/api/fleet/trigger-cycle', (_req, res) => {
+  const settings = fleetStorage.getSettings();
+  const devices = fleetStorage.getDevices();
+  let queuedCount = 0;
+  let driversQueuedTotal = 0;
+  const queuedDevices = [];
+
+  for (const dev of devices) {
+    const modelRule = (settings.model_rules && settings.model_rules[dev.model_id]) || { enabled: true, criticalOnly: true };
+    const groupRule = (settings.group_rules && settings.group_rules[dev.group_name]) || { enabled: true };
+
+    if (modelRule.enabled === false || groupRule.enabled === false) continue;
+
+    const fullDev = fleetStorage.getDeviceById(dev.id);
+    if (!fullDev || !fullDev.drivers) continue;
+
+    const isCritOnly = settings.critical_only || modelRule.criticalOnly;
+    const toDeploy = fullDev.drivers.filter(d => {
+      if (d.status === 'ACTUALIZADO') return false;
+      if (isCritOnly) {
+        const sev = String(d.severity || '').toLowerCase();
+        if (!sev.includes('cr') && !sev.includes('seguridad') && !sev.includes('bios') && !sev.includes('firmware')) {
+          return false;
+        }
+      }
+      const url = (d.download_url || d.downloadUrl || '').toLowerCase();
+      if (url && !url.endsWith('.exe') && !url.endsWith('.msi')) return false;
+      return true;
+    }).map(d => ({
+      ...d,
+      name: d.driver_name || d.name,
+      downloadUrl: d.download_url || d.downloadUrl
+    }));
+
+    if (toDeploy.length > 0) {
+      const task = fleetStorage.createDeploymentTask(dev.id, toDeploy);
+      queuedCount++;
+      driversQueuedTotal += toDeploy.length;
+      queuedDevices.push({
+        hostname: dev.hostname,
+        taskId: task ? task.id : null,
+        driversCount: toDeploy.length
+      });
+    }
+  }
+
+  res.json({
+    success: true,
+    queuedCount,
+    driversQueuedTotal,
+    queuedDevices,
+    message: queuedCount > 0 
+      ? `Ciclo de actualización iniciado: ${driversQueuedTotal} parches encolados para ${queuedCount} equipo(s)`
+      : 'No hay equipos con parches pendientes elegibles para actualizar'
+  });
 });
 
 // ------------------------------------------------------------------
@@ -429,7 +589,25 @@ app.post('/api/agent/checkin', (req, res) => {
   // 2. Evaluar directivas y tareas pendientes
   const settings = fleetStorage.getSettings();
 
-  // Si la flota está en modo "Solo Saber / Auditoría", no enviar órdenes de instalación
+  // Comprobar si hay una tarea pendiente específica en cola para este equipo (manual o por trigger-cycle)
+  const pendingTask = fleetStorage.getPendingTaskForDevice(deviceId);
+  if (pendingTask) {
+    const rawDrivers = JSON.parse(pendingTask.drivers_payload || '[]');
+    const drivers = rawDrivers.map(d => ({
+      ...d,
+      name: d.name || d.driver_name,
+      downloadUrl: d.downloadUrl || d.download_url
+    }));
+    return res.json({
+      action: 'install',
+      taskId: pendingTask.id,
+      trigger: 'queued_dispatch',
+      drivers,
+      message: `Tarea pendiente despachada (${drivers.length} controladores)`
+    });
+  }
+
+  // Si la flota está en modo "Solo Saber / Auditoría", no enviar órdenes automáticas
   if (settings.fleet_mode === 'audit_only') {
     return res.json({
       action: 'none',
@@ -439,7 +617,7 @@ app.post('/api/agent/checkin', (req, res) => {
   }
 
   // Comprobar si el modelo del equipo está habilitado para actualización
-  const modelRule = (settings.model_rules && settings.model_rules[modelId]) || { enabled: true };
+  const modelRule = (settings.model_rules && settings.model_rules[modelId]) || { enabled: true, criticalOnly: true };
   if (modelRule.enabled === false) {
     return res.json({
       action: 'none',
@@ -458,40 +636,41 @@ app.post('/api/agent/checkin', (req, res) => {
     });
   }
 
-  // Comprobar si hay una tarea manual específica en cola para este equipo
-  const pendingTask = fleetStorage.getPendingTaskForDevice(deviceId);
-  if (pendingTask) {
-    const drivers = JSON.parse(pendingTask.drivers_payload || '[]');
-    return res.json({
-      action: 'install',
-      taskId: pendingTask.id,
-      trigger: 'manual_dispatch',
-      drivers
-    });
-  }
+  // 3. Evaluar ventana de actualización programada
+  const isPilotImmediate = (device.group_name === 'pilot' && settings.pilot_group_enabled !== false);
+  const today = new Date().getDate();
+  const scheduledDay = Number(settings.monthly_day) || 15;
+  const isContinuous = settings.schedule_type === 'continuous' || settings.schedule_type === 'immediate';
+  const isScheduledMonthly = settings.schedule_type === 'monthly' && today === scheduledDay;
 
-  // Comprobar si corresponde la ventana mensual programada
-  if (settings.schedule_type === 'monthly') {
-    const today = new Date().getDate();
-    const scheduledDay = Number(settings.monthly_day) || 15;
-    if (today === scheduledDay) {
-      const pendingDrivers = auditResults.filter(d => {
-        if (d.status === 'ACTUALIZADO') return false;
-        if (settings.critical_only || modelRule.criticalOnly) {
-          return String(d.severity).toLowerCase().includes('cr');
+  if (isPilotImmediate || isContinuous || isScheduledMonthly) {
+    const isCritOnly = settings.critical_only || modelRule.criticalOnly;
+    const pendingDrivers = auditResults.filter(d => {
+      if (d.status === 'ACTUALIZADO') return false;
+      if (isCritOnly) {
+        const sev = String(d.severity || '').toLowerCase();
+        if (!sev.includes('cr') && !sev.includes('seguridad') && !sev.includes('bios') && !sev.includes('firmware')) {
+          return false;
         }
-        return true;
-      });
-
-      if (pendingDrivers.length > 0) {
-        const autoTask = fleetStorage.createDeploymentTask(deviceId, pendingDrivers);
-        return res.json({
-          action: 'install',
-          taskId: autoTask ? autoTask.id : Date.now(),
-          trigger: 'monthly_schedule',
-          drivers: pendingDrivers
-        });
       }
+      const url = (d.downloadUrl || d.download_url || '').toLowerCase();
+      if (url && !url.endsWith('.exe') && !url.endsWith('.msi')) return false;
+      return true;
+    }).map(d => ({
+      ...d,
+      name: d.name || d.driver_name,
+      downloadUrl: d.downloadUrl || d.download_url
+    }));
+
+    if (pendingDrivers.length > 0) {
+      const autoTask = fleetStorage.createDeploymentTask(deviceId, pendingDrivers);
+      return res.json({
+        action: 'install',
+        taskId: autoTask ? autoTask.id : Date.now(),
+        trigger: isPilotImmediate ? 'pilot_immediate' : (isContinuous ? 'continuous_dispatch' : 'monthly_schedule'),
+        drivers: pendingDrivers,
+        message: `Orden de actualización automática emitida (${pendingDrivers.length} controladores)`
+      });
     }
   }
 
