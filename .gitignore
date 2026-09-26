@@ -16,4 +16,7 @@ test-audit.ps1
 .gemini/
 data/*.db*
 data/*.json
-
+!data/hpPlatforms.json
+!data/lenovoPlatforms.json
+data/*.cab
+data/*.xml

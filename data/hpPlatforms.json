@@ -1,0 +1,4244 @@
+[
+  {
+    "id": "0266",
+    "name": "HP 402 G1 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "874D",
+    "name": "HP Collaboration G6 24 All-in-One with Zoom Rooms",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "874E",
+    "name": "HP Collaboration G6 24 All-in-One with Zoom Rooms",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8B63",
+    "name": "HP Dragonfly 13.5 inch G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "8A05",
+    "name": "HP Dragonfly Folio 13.5 inch G3 2-in-1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "897F",
+    "name": "HP Elite Dragonfly 13.5 inch G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "8716",
+    "name": "HP Elite Dragonfly G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "8890",
+    "name": "HP Elite Dragonfly Max Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "861F",
+    "name": "HP Elite Dragonfly Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "8952",
+    "name": "HP Elite Mini 600 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC6",
+    "name": "HP Elite Mini 600 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "894F",
+    "name": "HP Elite Mini 800 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC3",
+    "name": "HP Elite Mini 800 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8951",
+    "name": "HP Elite SFF 600 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC5",
+    "name": "HP Elite SFF 600 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "894E",
+    "name": "HP Elite SFF 800 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC2",
+    "name": "HP Elite SFF 800 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8D0A",
+    "name": "HP Elite SFF 805 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "81C3",
+    "name": "HP Elite Slice for Meeting Rooms",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8396",
+    "name": "HP Elite Slice for Meeting Rooms",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8950",
+    "name": "HP Elite Tower 680 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC4",
+    "name": "HP Elite Tower 680 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8B39",
+    "name": "HP Elite Tower 680 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "894D",
+    "name": "HP Elite Tower 800 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC1",
+    "name": "HP Elite Tower 800 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "2009",
+    "name": "HP Elite x2 1011 G1 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "80FC",
+    "name": "HP Elite x2 1012 G1 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "82CA",
+    "name": "HP Elite x2 1012 G2 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8414",
+    "name": "HP Elite x2 1013 G3 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "85B9",
+    "name": "HP Elite x2 G4 Tablet with Keyboard",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "870D",
+    "name": "HP Elite x2 G8 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "896E",
+    "name": "HP Elite x360 830 13.3 inch G9 2-in-1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8E8A",
+    "name": "HP EliteBoard G1a Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8EF0",
+    "name": "HP EliteBoard G2a Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "80FB",
+    "name": "HP EliteBook 1030 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C52",
+    "name": "HP EliteBook 1040 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "80FA",
+    "name": "HP EliteBook 1040 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "82DE",
+    "name": "HP EliteBook 1040 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8417",
+    "name": "HP EliteBook 1040 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "84E9",
+    "name": "HP EliteBook 1050 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E0D",
+    "name": "HP EliteBook 6 G1a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8DFB",
+    "name": "HP EliteBook 6 G1ah 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8DEB",
+    "name": "HP EliteBook 6 G1i 13 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E4D",
+    "name": "HP EliteBook 6 G1iR 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E06",
+    "name": "HP EliteBook 6 G1q 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F14",
+    "name": "HP EliteBook 6 G2a 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F9A",
+    "name": "HP EliteBook 6 G2a 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F16",
+    "name": "HP EliteBook 6 G2a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F1B",
+    "name": "HP EliteBook 6 G2a 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F19",
+    "name": "HP EliteBook 6 G2a 16 inch Notebook Thin Client",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F9B",
+    "name": "HP EliteBook 6 G2a 16 inch Notebook Thin Client",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F37",
+    "name": "HP EliteBook 6 G2i 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8EB9",
+    "name": "HP EliteBook 6 G2i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F39",
+    "name": "HP EliteBook 6 G2i 16 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8EBA",
+    "name": "HP EliteBook 6 G2i 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F92",
+    "name": "HP EliteBook 6 G2iR 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F2B",
+    "name": "HP EliteBook 6 G2q 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "897A",
+    "name": "HP EliteBook 630 13 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B86",
+    "name": "HP EliteBook 630 13.3 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C85",
+    "name": "HP EliteBook 630 13.3 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B88",
+    "name": "HP EliteBook 640 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C86",
+    "name": "HP EliteBook 640 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "897B",
+    "name": "HP EliteBook 640 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8AA6",
+    "name": "HP EliteBook 640 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B5F",
+    "name": "HP EliteBook 645 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C7A",
+    "name": "HP EliteBook 645 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "89D2",
+    "name": "HP EliteBook 645 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B12",
+    "name": "HP EliteBook 645 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B8C",
+    "name": "HP EliteBook 650 15.6 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "897C",
+    "name": "HP EliteBook 650 15.6 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8AA9",
+    "name": "HP EliteBook 650 15.6 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C87",
+    "name": "HP EliteBook 660 16 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "221D",
+    "name": "HP EliteBook 725 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8084",
+    "name": "HP EliteBook 725 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8238",
+    "name": "HP EliteBook 725 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "83DA",
+    "name": "HP EliteBook 735 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8589",
+    "name": "HP EliteBook 735 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "221C",
+    "name": "HP EliteBook 745 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "807E",
+    "name": "HP EliteBook 745 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8236",
+    "name": "HP EliteBook 745 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "83D5",
+    "name": "HP EliteBook 745 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8584",
+    "name": "HP EliteBook 745 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E14",
+    "name": "HP EliteBook 8 G1a 13 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E16",
+    "name": "HP EliteBook 8 G1a 13 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E15",
+    "name": "HP EliteBook 8 G1a 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E17",
+    "name": "HP EliteBook 8 G1a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D89",
+    "name": "HP EliteBook 8 G1i 13 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D8A",
+    "name": "HP EliteBook 8 G1i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F40",
+    "name": "HP EliteBook 8 G2a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F94",
+    "name": "HP EliteBook 8 G2a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F41",
+    "name": "HP EliteBook 8 G2a 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8F95",
+    "name": "HP EliteBook 8 G2a 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8ED5",
+    "name": "HP EliteBook 8 G2i 13 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "1991",
+    "name": "HP EliteBook 820 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "225A",
+    "name": "HP EliteBook 820 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "807C",
+    "name": "HP EliteBook 820 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8292",
+    "name": "HP EliteBook 820 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B41",
+    "name": "HP EliteBook 830 13 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C26",
+    "name": "HP EliteBook 830 13 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "896D",
+    "name": "HP EliteBook 830 13.3 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "854A",
+    "name": "HP EliteBook 830 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8723",
+    "name": "HP EliteBook 830 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "880D",
+    "name": "HP EliteBook 830 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8AB3",
+    "name": "HP EliteBook 830 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8AB8",
+    "name": "HP EliteBook 830 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C10",
+    "name": "HP EliteBook 835 13 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C6D",
+    "name": "HP EliteBook 835 13 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D04",
+    "name": "HP EliteBook 835 13 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8990",
+    "name": "HP EliteBook 835 13.3 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8760",
+    "name": "HP EliteBook 835 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8895",
+    "name": "HP EliteBook 835 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "83B3",
+    "name": "HP EliteBook 836 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8ABB",
+    "name": "HP EliteBook 840 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8AD6",
+    "name": "HP EliteBook 840 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "198F",
+    "name": "HP EliteBook 840 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "2216",
+    "name": "HP EliteBook 840 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8079",
+    "name": "HP EliteBook 840 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "845D",
+    "name": "HP EliteBook 840 G5 Healthcare Edition Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8549",
+    "name": "HP EliteBook 840 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8B6E",
+    "name": "HP EliteBook 845 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8C6E",
+    "name": "HP EliteBook 845 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D03",
+    "name": "HP EliteBook 845 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8418",
+    "name": "HP EliteBook 846r G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "83B2",
+    "name": "HP EliteBook 850 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8724",
+    "name": "HP EliteBook 850 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8846",
+    "name": "HP EliteBook 850 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "176C",
+    "name": "HP EliteBook 8770w Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "2271",
+    "name": "HP EliteBook Folio 1020 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "213E",
+    "name": "HP EliteBook Folio 1040 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "2270",
+    "name": "HP EliteBook Folio 1040 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "22DA",
+    "name": "HP EliteBook Folio 9480m Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8170",
+    "name": "HP EliteBook Folio G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "21B3",
+    "name": "HP EliteBook Revolve 810 G2 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "22FB",
+    "name": "HP EliteBook Revolve 810 G3 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8CBE",
+    "name": "HP EliteBook Ultra 14 inch G1q Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8CE0",
+    "name": "HP EliteBook Ultra G1i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8CCF",
+    "name": "HP EliteBook Ultra G1q8 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D08",
+    "name": "HP EliteBook X G1a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8D84",
+    "name": "HP EliteBook X G1i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8EF5",
+    "name": "HP EliteBook X G2a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E86",
+    "name": "HP EliteBook X G2i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8E91",
+    "name": "HP EliteBook X G2q 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8300",
+    "name": "HP EliteBook x360 1020 G2",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "827D",
+    "name": "HP EliteBook x360 1030 G2 Base Model",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8438",
+    "name": "HP EliteBook x360 1030 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8637",
+    "name": "HP EliteBook x360 1030 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8720",
+    "name": "HP EliteBook x360 1030 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8470",
+    "name": "HP EliteBook x360 1040 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "857F",
+    "name": "HP EliteBook x360 1040 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "876D",
+    "name": "HP EliteBook x360 1040 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "853D",
+    "name": "HP EliteBook x360 830 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8548",
+    "name": "HP EliteBook x360 830 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8725",
+    "name": "HP EliteBook x360 830 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8847",
+    "name": "HP EliteBook x360 830 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "8027",
+    "name": "HP EliteDesk 700 G1 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E9",
+    "name": "HP EliteDesk 705 65W G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8464",
+    "name": "HP EliteDesk 705 65W G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "225E",
+    "name": "HP EliteDesk 705 G1 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "2215",
+    "name": "HP EliteDesk 705 G1 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "805A",
+    "name": "HP EliteDesk 705 G2 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8266",
+    "name": "HP EliteDesk 705 G3 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8265",
+    "name": "HP EliteDesk 705 G3 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "835B",
+    "name": "HP EliteDesk 705 G3 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E7",
+    "name": "HP EliteDesk 705 G4 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8460",
+    "name": "HP EliteDesk 705 G4 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8461",
+    "name": "HP EliteDesk 705 G4 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E8",
+    "name": "HP EliteDesk 705 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8462",
+    "name": "HP EliteDesk 705 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8463",
+    "name": "HP EliteDesk 705 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8619",
+    "name": "HP EliteDesk 705 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8617",
+    "name": "HP EliteDesk 705 G5 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8618",
+    "name": "HP EliteDesk 705 G5 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8DAA",
+    "name": "HP EliteDesk 8 Mini G1a Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8DAB",
+    "name": "HP EliteDesk 8 Mini G1a Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8D15",
+    "name": "HP EliteDesk 8 Mini G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8F12",
+    "name": "HP EliteDesk 8 Mini G2a Desktop Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8E6E",
+    "name": "HP EliteDesk 8 Mini G2i Desktop Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8D12",
+    "name": "HP EliteDesk 8 SFF G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8FAF",
+    "name": "HP EliteDesk 8 SFF G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8E89",
+    "name": "HP EliteDesk 8 SFF G2a Desktop Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8D10",
+    "name": "HP EliteDesk 8 Tower G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "829A",
+    "name": "HP EliteDesk 800 35W G3 Desktop Mini PC (ENERGY STAR)",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E2",
+    "name": "HP EliteDesk 800 35W G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8409",
+    "name": "HP EliteDesk 800 35W G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "845A",
+    "name": "HP EliteDesk 800 35W G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "1998",
+    "name": "HP EliteDesk 800 G1 Base Model Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "18E5",
+    "name": "HP EliteDesk 800 G1 Base Model Ultra-slim PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "1825",
+    "name": "HP EliteDesk 800 G1 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "18E4",
+    "name": "HP EliteDesk 800 G1 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8299",
+    "name": "HP EliteDesk 800 G3 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E1",
+    "name": "HP EliteDesk 800 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8593",
+    "name": "HP EliteDesk 800 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8594",
+    "name": "HP EliteDesk 800 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8595",
+    "name": "HP EliteDesk 800 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8592",
+    "name": "HP EliteDesk 800 G5 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "870F",
+    "name": "HP EliteDesk 800 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8710",
+    "name": "HP EliteDesk 800 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8711",
+    "name": "HP EliteDesk 800 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "870B",
+    "name": "HP EliteDesk 800 G6 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "870C",
+    "name": "HP EliteDesk 800 G6 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "889F",
+    "name": "HP EliteDesk 800 G8 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "88A0",
+    "name": "HP EliteDesk 800 G8 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "889C",
+    "name": "HP EliteDesk 800 G8 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "872C",
+    "name": "HP EliteDesk 805 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "872B",
+    "name": "HP EliteDesk 805 G6 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8881",
+    "name": "HP EliteDesk 805 G8 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8883",
+    "name": "HP EliteDesk 805 G8 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8053",
+    "name": "HP EliteDesk 880 G2 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8298",
+    "name": "HP EliteDesk 880 G3 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "83E0",
+    "name": "HP EliteDesk 880 G4 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "8591",
+    "name": "HP EliteDesk 880 G5 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteDesk"
+  },
+  {
+    "id": "829F",
+    "name": "HP EliteOne 1000 G1 34-in Curved All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "83E5",
+    "name": "HP EliteOne 1000 G2 23.8-in All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "225F",
+    "name": "HP EliteOne 705 G1 23-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "22AD",
+    "name": "HP EliteOne 800 G1 21.5-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "829B",
+    "name": "HP EliteOne 800 G3 23.8-inch Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "829C",
+    "name": "HP EliteOne 800 G3 23.8-inch Touch GPU All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "83E4",
+    "name": "HP EliteOne 800 G4 23.8-in Healthcare Edition All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "83E3",
+    "name": "HP EliteOne 800 G4 23.8-inch Touch GPU All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "859F",
+    "name": "HP EliteOne 800 G5 23.8-inch All-in-One",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "85A0",
+    "name": "HP EliteOne 800 G5 23.8-inch All-in-One",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "85EB",
+    "name": "HP EliteOne 800 G5 23.8-inch All-in-One",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "88AA",
+    "name": "HP EliteOne 800 G8 24 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "8957",
+    "name": "HP EliteOne 840 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "895F",
+    "name": "HP EliteOne 840 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "8ACB",
+    "name": "HP EliteOne 840 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "8ACC",
+    "name": "HP EliteOne 840 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteOne"
+  },
+  {
+    "id": "2157",
+    "name": "HP ElitePad 1000 G2 Healthcare Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8D18",
+    "name": "HP EliteStudio 8 All-in-One G1i 23.8 inch Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8E00",
+    "name": "HP EliteStudio 8 All-in-One G1i 23.8 inch Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8715",
+    "name": "HP Engage Flex Mini Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8BC5",
+    "name": "HP Engage Flex Pro G2 Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "840A",
+    "name": "HP Engage Flex Pro Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8BC6",
+    "name": "HP Engage Flex Pro-C G2 Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8476",
+    "name": "HP Engage Flex Pro-C Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "888C",
+    "name": "HP Engage Go 10 Mobile System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8A94",
+    "name": "HP Engage Go 13.5 inch Mobile System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "846F",
+    "name": "HP Engage Go Mobile System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "830A",
+    "name": "HP Engage One All-in-One System Model 141",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "890D",
+    "name": "HP Engage One Essential All-in-One System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8EF7",
+    "name": "HP Engage One G2 AiO System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8D09",
+    "name": "HP Engage One Pro 15.6 G2 AiO System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "874F",
+    "name": "HP Engage One Pro AIO System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8D1F",
+    "name": "HP Fortis Flip G1i 11 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8D20",
+    "name": "HP Fortis Flip G1i 11 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8F7B",
+    "name": "HP Limited Edition Scuderia Ferrari Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C6C",
+    "name": "HP Mini Conferencing PC with Zoom Rooms",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8A39",
+    "name": "HP MP9 G4 Retail System",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "885C",
+    "name": "HP Presence Control Kit Zoom Room",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8955",
+    "name": "HP Pro Mini 400 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC9",
+    "name": "HP Pro Mini 400 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C63",
+    "name": "HP Pro Mini 400 G9 PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8954",
+    "name": "HP Pro SFF 400 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC8",
+    "name": "HP Pro SFF 400 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C5A",
+    "name": "HP Pro SFF 400 G9 Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8042",
+    "name": "HP Pro Tablet 608 G1",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8953",
+    "name": "HP Pro Tower 480 G9 PCI Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8AC7",
+    "name": "HP Pro Tower 480 G9 PCI Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C59",
+    "name": "HP Pro Tower 480 G9 PCI Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "221B",
+    "name": "HP Pro x2 612 G1 Tablet",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "828B",
+    "name": "HP Pro x2 612 G2 Tablet Base Model",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8B50",
+    "name": "HP Pro x360 435 13.3 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "89ED",
+    "name": "HP Pro x360 435 13.3 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "89B1",
+    "name": "HP Pro x360 Fortis 11 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8ABD",
+    "name": "HP Pro x360 Fortis 11 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C3B",
+    "name": "HP Pro x360 Fortis 11 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8C3C",
+    "name": "HP Pro x360 Fortis 11 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "89AF",
+    "name": "HP Pro x360 Fortis 11 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8B4A",
+    "name": "HP Pro x360 Fortis 11 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "808F",
+    "name": "HP ProBook 11 EE G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "818F",
+    "name": "HP ProBook 11 EE G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F2F",
+    "name": "HP ProBook 4 Flip G2i 13 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8DF7",
+    "name": "HP ProBook 4 G1ah 16 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8DEA",
+    "name": "HP ProBook 4 G1i 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8E2E",
+    "name": "HP ProBook 4 G1iR 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8E58",
+    "name": "HP ProBook 4 G1iR 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F15",
+    "name": "HP ProBook 4 G2a 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F18",
+    "name": "HP ProBook 4 G2a 16 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F1A",
+    "name": "HP ProBook 4 G2a 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F13",
+    "name": "HP ProBook 4 G2ah 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F98",
+    "name": "HP ProBook 4 G2ah 14 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F99",
+    "name": "HP ProBook 4 G2ah 16 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F31",
+    "name": "HP ProBook 4 G2i 13 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F33",
+    "name": "HP ProBook 4 G2i 14 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8EBB",
+    "name": "HP ProBook 4 G2i 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F35",
+    "name": "HP ProBook 4 G2i 16 inch Notebook AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8EBC",
+    "name": "HP ProBook 4 G2i 16 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8F81",
+    "name": "HP ProBook 4 G2iR 14 inch Notebook Next Gen AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2246",
+    "name": "HP ProBook 430 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "80FF",
+    "name": "HP ProBook 430 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "822C",
+    "name": "HP ProBook 430 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8301",
+    "name": "HP ProBook 430 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8377",
+    "name": "HP ProBook 430 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8536",
+    "name": "HP ProBook 430 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "869B",
+    "name": "HP ProBook 430 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "87DF",
+    "name": "HP ProBook 430 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A73",
+    "name": "HP ProBook 430 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A83",
+    "name": "HP ProBook 430 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8B78",
+    "name": "HP ProBook 440 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8C83",
+    "name": "HP ProBook 440 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8977",
+    "name": "HP ProBook 440 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A9E",
+    "name": "HP ProBook 440 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "1944",
+    "name": "HP ProBook 440 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2247",
+    "name": "HP ProBook 440 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8100",
+    "name": "HP ProBook 440 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "822E",
+    "name": "HP ProBook 440 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "837B",
+    "name": "HP ProBook 440 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8537",
+    "name": "HP ProBook 440 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "869D",
+    "name": "HP ProBook 440 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "87E0",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8807",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A74",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A76",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A84",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A86",
+    "name": "HP ProBook 440 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8B5C",
+    "name": "HP ProBook 445 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8C79",
+    "name": "HP ProBook 445 14 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "89C9",
+    "name": "HP ProBook 445 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8B17",
+    "name": "HP ProBook 445 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2234",
+    "name": "HP ProBook 445 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "85D9",
+    "name": "HP ProBook 445 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8730",
+    "name": "HP ProBook 445 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8861",
+    "name": "HP ProBook 445 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A8E",
+    "name": "HP ProBook 445 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "85AD",
+    "name": "HP ProBook 445R G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8B7C",
+    "name": "HP ProBook 450 15.6 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8978",
+    "name": "HP ProBook 450 15.6 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8AA1",
+    "name": "HP ProBook 450 15.6 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2248",
+    "name": "HP ProBook 450 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8101",
+    "name": "HP ProBook 450 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8231",
+    "name": "HP ProBook 450 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "837D",
+    "name": "HP ProBook 450 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8538",
+    "name": "HP ProBook 450 G6 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "86A0",
+    "name": "HP ProBook 450 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "87E1",
+    "name": "HP ProBook 450 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8808",
+    "name": "HP ProBook 450 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A75",
+    "name": "HP ProBook 450 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A77",
+    "name": "HP ProBook 450 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A85",
+    "name": "HP ProBook 450 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2235",
+    "name": "HP ProBook 455 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2236",
+    "name": "HP ProBook 455 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "80EF",
+    "name": "HP ProBook 455 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "80F0",
+    "name": "HP ProBook 455 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "823C",
+    "name": "HP ProBook 455 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "823E",
+    "name": "HP ProBook 455 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "836E",
+    "name": "HP ProBook 455 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8370",
+    "name": "HP ProBook 455 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8864",
+    "name": "HP ProBook 455 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8A90",
+    "name": "HP ProBook 455 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8C84",
+    "name": "HP ProBook 460 16 inch G11 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "1947",
+    "name": "HP ProBook 470 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2249",
+    "name": "HP ProBook 470 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "224A",
+    "name": "HP ProBook 470 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8102",
+    "name": "HP ProBook 470 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8234",
+    "name": "HP ProBook 470 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "837F",
+    "name": "HP ProBook 470 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8830",
+    "name": "HP ProBook 635 Aero G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8892",
+    "name": "HP ProBook 635 Aero G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "1993",
+    "name": "HP ProBook 640 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "1994",
+    "name": "HP ProBook 640 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2101",
+    "name": "HP ProBook 640 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2102",
+    "name": "HP ProBook 640 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "80FD",
+    "name": "HP ProBook 640 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "82AA",
+    "name": "HP ProBook 640 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "83D2",
+    "name": "HP ProBook 640 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "856D",
+    "name": "HP ProBook 640 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "882C",
+    "name": "HP ProBook 640 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "87EA",
+    "name": "HP ProBook 640 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "87ED",
+    "name": "HP ProBook 640 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "1992",
+    "name": "HP ProBook 645 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "80FE",
+    "name": "HP ProBook 645 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "823A",
+    "name": "HP ProBook 645 G3 Base Model Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8401",
+    "name": "HP ProBook 645 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8125",
+    "name": "HP ProBook 650 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8416",
+    "name": "HP ProBook 650 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "844A",
+    "name": "HP ProBook 650 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "856E",
+    "name": "HP ProBook 650 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "882D",
+    "name": "HP ProBook 650 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "89B2",
+    "name": "HP ProBook Fortis 14 inch G10 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "89B0",
+    "name": "HP ProBook Fortis 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8B4B",
+    "name": "HP ProBook Fortis 14 inch G9 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "82EE",
+    "name": "HP ProBook x360 11 G1 EE Base Model Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8334",
+    "name": "HP ProBook x360 11 G2 EE Base Model Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8521",
+    "name": "HP ProBook x360 11 G3 EE Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8524",
+    "name": "HP ProBook x360 11 G4 EE Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "86CF",
+    "name": "HP ProBook x360 11 G5 EE Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "86D0",
+    "name": "HP ProBook x360 11 G6 EE Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "887D",
+    "name": "HP ProBook x360 11 G7 Education Edition",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8735",
+    "name": "HP ProBook x360 435 G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8886",
+    "name": "HP ProBook x360 435 G8 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "84D8",
+    "name": "HP ProBook x360 440 G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "8D17",
+    "name": "HP ProDesk 4 Mini G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8D14",
+    "name": "HP ProDesk 4 SFF G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8FAE",
+    "name": "HP ProDesk 4 SFF G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8D13",
+    "name": "HP ProDesk 4 Tower G1i Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8076",
+    "name": "HP ProDesk 400 G1 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "18E9",
+    "name": "HP ProDesk 400 G1 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "82A5",
+    "name": "HP ProDesk 400 G3 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83F3",
+    "name": "HP ProDesk 400 G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "82A2",
+    "name": "HP ProDesk 400 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "859C",
+    "name": "HP ProDesk 400 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83F2",
+    "name": "HP ProDesk 400 G5 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "871A",
+    "name": "HP ProDesk 400 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "859B",
+    "name": "HP ProDesk 400 G6 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8717",
+    "name": "HP ProDesk 400 G7 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8719",
+    "name": "HP ProDesk 400 G7 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "2171",
+    "name": "HP ProDesk 405 G1 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "2240",
+    "name": "HP ProDesk 405 G2 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8626",
+    "name": "HP ProDesk 405 G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "872E",
+    "name": "HP ProDesk 405 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8836",
+    "name": "HP ProDesk 405 G6 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "872D",
+    "name": "HP ProDesk 405 G6 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8835",
+    "name": "HP ProDesk 405 G6 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8882",
+    "name": "HP ProDesk 405 G8 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8968",
+    "name": "HP ProDesk 405 G8 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8884",
+    "name": "HP ProDesk 405 G8 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "198E",
+    "name": "HP ProDesk 480 G1 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8060",
+    "name": "HP ProDesk 480 G3 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8599",
+    "name": "HP ProDesk 480 G6 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "859A",
+    "name": "HP ProDesk 480 G6 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8718",
+    "name": "HP ProDesk 480 G7 PCI Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "18EB",
+    "name": "HP ProDesk 490 G1 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "21F5",
+    "name": "HP ProDesk 490 G2 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "21D0",
+    "name": "HP ProDesk 600 G1 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "18E7",
+    "name": "HP ProDesk 600 G1 Tower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "82B4",
+    "name": "HP ProDesk 600 G3 Base Model Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "829E",
+    "name": "HP ProDesk 600 G3 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "829D",
+    "name": "HP ProDesk 600 G3 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "82B3",
+    "name": "HP ProDesk 600 G3 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83EF",
+    "name": "HP ProDesk 600 G4 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83EC",
+    "name": "HP ProDesk 600 G4 Microtower PC (with PCI slot)",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83ED",
+    "name": "HP ProDesk 600 G4 Microtower PC (with PCI slot)",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "83EE",
+    "name": "HP ProDesk 600 G4 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8598",
+    "name": "HP ProDesk 600 G5 Desktop Mini PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8596",
+    "name": "HP ProDesk 600 G5 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "861A",
+    "name": "HP ProDesk 600 G5 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8597",
+    "name": "HP ProDesk 600 G5 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8712",
+    "name": "HP ProDesk 600 G6 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8713",
+    "name": "HP ProDesk 600 G6 PCI Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8714",
+    "name": "HP ProDesk 600 G6 Small Form Factor PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "805D",
+    "name": "HP ProDesk 680 G2 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "8580",
+    "name": "HP ProDesk 680 G4 Microtower PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProDesk"
+  },
+  {
+    "id": "18EA",
+    "name": "HP ProOne 400 G1 19.5-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "2179",
+    "name": "HP ProOne 400 G1 21.5-inch Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8063",
+    "name": "HP ProOne 400 G2 20-inch Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "82A6",
+    "name": "HP ProOne 400 G3 Base Model 20-inch Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "85A1",
+    "name": "HP ProOne 400 G5 20-inch All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "85A2",
+    "name": "HP ProOne 400 G5 20-inch All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "880F",
+    "name": "HP ProOne 400 G6 20 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8810",
+    "name": "HP ProOne 400 G6 20 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8958",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8959",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8ACD",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8ACE",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8C5B",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8C5D",
+    "name": "HP ProOne 440 23.8 inch G9 All-in-One Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "81B7",
+    "name": "HP ProOne 440 G3 23.8-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "82DC",
+    "name": "HP ProOne 440 G3 23.8-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "18E8",
+    "name": "HP ProOne 600 G1 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "805E",
+    "name": "HP ProOne 600 G2 21.5-inch Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "82B5",
+    "name": "HP ProOne 600 G3 21.5-inch Non-Touch All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "83EA",
+    "name": "HP ProOne 600 G4 21.5-inch Touch All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "83EB",
+    "name": "HP ProOne 600 G4 21.5-inch Touch All-in-One Business PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "871B",
+    "name": "HP ProOne 600 G6 22 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "871C",
+    "name": "HP ProOne 600 G6 22 All-in-One PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProOne"
+  },
+  {
+    "id": "8D19",
+    "name": "HP ProStudio 4 All-in-One G1i 23.8 inch Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8E01",
+    "name": "HP ProStudio 4 All-in-One G1i 23.8 inch Desktop AI PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "2176",
+    "name": "HP RP2 Retail System Model 2000",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "2175",
+    "name": "HP RP5 Retail System Model 5810",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8139",
+    "name": "HP RP9 G1 Retail System Model 9115",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8397",
+    "name": "HP RP9 G1 Retail System Model 9115",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8590",
+    "name": "HP VR Backpack G2",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8376",
+    "name": "HP Z VR Backpack G1 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8115",
+    "name": "HP Z1 All-in-One G3 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "3561",
+    "name": "HP Z1 All-in-One Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "88BE",
+    "name": "HP Z2 G8 Tower Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D1D",
+    "name": "HP Z2 Mini G1a Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D3E",
+    "name": "HP Z2 Mini G1i Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "82BF",
+    "name": "HP Z2 Mini G3 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "82C0",
+    "name": "HP Z2 Mini G3 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8457",
+    "name": "HP Z2 Mini G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8458",
+    "name": "HP Z2 Mini G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8754",
+    "name": "HP Z2 Mini G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8755",
+    "name": "HP Z2 Mini G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "895E",
+    "name": "HP Z2 Mini G9 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D3D",
+    "name": "HP Z2 SFF G1i Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "895D",
+    "name": "HP Z2 SFF G9 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8456",
+    "name": "HP Z2 Small Form Factor G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8752",
+    "name": "HP Z2 Small Form Factor G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8753",
+    "name": "HP Z2 Small Form Factor G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "88BF",
+    "name": "HP Z2 Small Form Factor G8 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D3C",
+    "name": "HP Z2 Tower G1i Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8455",
+    "name": "HP Z2 Tower G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8750",
+    "name": "HP Z2 Tower G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8751",
+    "name": "HP Z2 Tower G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "895C",
+    "name": "HP Z2 Tower G9 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "1790",
+    "name": "HP Z220 Convertible Minitower Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "1791",
+    "name": "HP Z220 Small Form Factor Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "807D",
+    "name": "HP Z228 Microtower Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "1906",
+    "name": "HP Z230 Small Form Factor Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "1905",
+    "name": "HP Z230 Tower Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8183",
+    "name": "HP Z238 Microtower Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "802E",
+    "name": "HP Z240 Small Form Factor Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "802F",
+    "name": "HP Z240 Tower Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "81C5",
+    "name": "HP Z4 G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8962",
+    "name": "HP Z4 G5 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D5A",
+    "name": "HP Z4 G6i Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8B3E",
+    "name": "HP Z4 Rack G5 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "1589",
+    "name": "HP Z420 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "212B",
+    "name": "HP Z440 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "81C6",
+    "name": "HP Z6 G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8B24",
+    "name": "HP Z6 G5 A Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8961",
+    "name": "HP Z6 G5 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "158A",
+    "name": "HP Z620 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "212A",
+    "name": "HP Z640 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "88C1",
+    "name": "HP Z8 Fury G5 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8D59",
+    "name": "HP Z8 Fury G6i Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "81C7",
+    "name": "HP Z8 G4 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "88C0",
+    "name": "HP Z8 G5 Workstation Desktop PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "158B",
+    "name": "HP Z820 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "2129",
+    "name": "HP Z840 Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "2253",
+    "name": "HP ZBook 15 G2 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "80D5",
+    "name": "HP ZBook 15 G3 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8275",
+    "name": "HP ZBook 15 G4 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "842A",
+    "name": "HP ZBook 15 G5 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "860F",
+    "name": "HP ZBook 15 G6 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "1909",
+    "name": "HP ZBook 15 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "828C",
+    "name": "HP ZBook 15u G4 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "2255",
+    "name": "HP ZBook 17 G2 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "80D6",
+    "name": "HP ZBook 17 G3 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8270",
+    "name": "HP ZBook 17 G4 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "842D",
+    "name": "HP Zbook 17 G5 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "860C",
+    "name": "HP ZBook 17 G6 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "190A",
+    "name": "HP ZBook 17 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8E18",
+    "name": "HP ZBook 8 G1ah 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8E19",
+    "name": "HP ZBook 8 G1ak 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8E1A",
+    "name": "HP ZBook 8 G1as 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8D94",
+    "name": "HP ZBook 8 G1i 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8F42",
+    "name": "HP ZBook 8 G2a 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8F62",
+    "name": "HP ZBook 8 G2a 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8ED9",
+    "name": "HP ZBook 8 G2i 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8736",
+    "name": "HP ZBook Create G7 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B75",
+    "name": "HP ZBook Firefly 14 inch G10 A Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8C6F",
+    "name": "HP ZBook Firefly 14 inch G11 A Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CD1",
+    "name": "HP ZBook Firefly 14 inch G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8783",
+    "name": "HP ZBook Fury 15 G7 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8870",
+    "name": "HP ZBook Fury 15.6 inch G8 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B92",
+    "name": "HP ZBook Fury 16 G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B93",
+    "name": "HP ZBook Fury 16 G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B94",
+    "name": "HP ZBook Fury 16 G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8BD8",
+    "name": "HP ZBook Fury 16 G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CA4",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CA6",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CA7",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CA9",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CC8",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CCD",
+    "name": "HP ZBook Fury 16 G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "89C6",
+    "name": "HP ZBook Fury 16 G9 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8780",
+    "name": "HP ZBook Fury 17 G7 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "886D",
+    "name": "HP ZBook Fury 17.3 inch G8 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE2",
+    "name": "HP ZBook Fury G1i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE4",
+    "name": "HP ZBook Fury G1i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE6",
+    "name": "HP ZBook Fury G1i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE8",
+    "name": "HP ZBook Fury G1i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE3",
+    "name": "HP ZBook Fury G1i 18 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE5",
+    "name": "HP ZBook Fury G1i 18 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE7",
+    "name": "HP ZBook Fury G1i 18 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8DE9",
+    "name": "HP ZBook Fury G1i 18 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B95",
+    "name": "HP ZBook Power 15.6 inch G10 A Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8BEF",
+    "name": "HP ZBook Power 15.6 inch G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "888D",
+    "name": "HP ZBook Power 15.6 inch G8 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "89C0",
+    "name": "HP ZBook Power 15.6 inch G9 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8C95",
+    "name": "HP ZBook Power 16 inch G11 A Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CA0",
+    "name": "HP ZBook Power 16 inch G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "87EC",
+    "name": "HP ZBook Power G7 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8873",
+    "name": "HP ZBook Studio 15.6 inch G8 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8B8F",
+    "name": "HP ZBook Studio 16 inch G10 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8CF5",
+    "name": "HP ZBook Studio 16 inch G11 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "89C3",
+    "name": "HP ZBook Studio 16 inch G9 Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "80D4",
+    "name": "HP ZBook Studio G3 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "826B",
+    "name": "HP ZBook Studio G4 Base Model Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8427",
+    "name": "HP ZBook Studio G5 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "844F",
+    "name": "HP ZBook Studio G5 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8D01",
+    "name": "HP ZBook Ultra G1a 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8E1D",
+    "name": "HP ZBook X G1i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8F0C",
+    "name": "HP ZBook X G2i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "8F0D",
+    "name": "HP ZBook X G2i 16 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "824C",
+    "name": "HP ZBook x2 G4 Detachable Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ZBook"
+  },
+  {
+    "id": "873E",
+    "name": "HP ZCentral 4R Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "85A3",
+    "name": "HP ZHAN 66 Pro 13 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "85A5",
+    "name": "HP ZHAN 66 Pro 14 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "86A5",
+    "name": "HP ZHAN 66 Pro 14 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "87E2",
+    "name": "HP ZHAN 66 Pro 14 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8809",
+    "name": "HP ZHAN 66 Pro 14 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8979",
+    "name": "HP ZHAN 66 Pro 14 inch G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8B21",
+    "name": "HP ZHAN 66 Pro 14 inch G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "85AA",
+    "name": "HP ZHAN 66 Pro 15 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "86A8",
+    "name": "HP ZHAN 66 Pro 15 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "876B",
+    "name": "HP ZHAN 66 Pro A 14 G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8867",
+    "name": "HP ZHAN 66 Pro A 14 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8A92",
+    "name": "HP ZHAN 66 Pro A 14 G4 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "89CF",
+    "name": "HP ZHAN 66 Pro A 14 G5 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "83FD",
+    "name": "HP ZHAN 66 Pro G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "8471",
+    "name": "HP ZHAN 66 Pro G1 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  },
+  {
+    "id": "847B",
+    "name": "HP ZHAN 99 G1 Mobile Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Workstation"
+  },
+  {
+    "id": "8655",
+    "name": "HP ZHAN X 13 G2 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Otros HP"
+  }
+]

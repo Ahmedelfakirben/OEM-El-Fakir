@@ -16,6 +16,7 @@ const { fetchDrivers: lenovoFetch }              = require('./lib/lenovoService'
 const { fetchDrivers: hpFetch, getKnownPlatforms } = require('./lib/hpService');
 const { generatePowerShellScript }                = require('./lib/scriptGeneratorService');
 const fleetStorage                                = require('./lib/fleetStorageService');
+const modelSearchService                          = require('./lib/modelSearchService');
 
 // ------------------------------------------------------------------
 // Configuración
@@ -176,6 +177,58 @@ app.get('/api/platforms/hp', (req, res) => {
 });
 
 /**
+ * GET /api/models/search
+ * Búsqueda universal y autocompletado en vivo de modelos HP y Lenovo.
+ * Parámetros query:
+ *   query: texto a buscar (nombre, serie o código ID)
+ *   oem: 'hp', 'lenovo', o vacío para ambos
+ *   limit: cantidad máxima de resultados (defecto 15)
+ */
+app.get('/api/models/search', async (req, res) => {
+  const query = req.query.query || req.query.q || '';
+  const oem = req.query.oem || '';
+  const limit = Math.min(parseInt(req.query.limit, 10) || 15, 50);
+
+  try {
+    const results = await modelSearchService.searchModels(query, oem, limit);
+    res.json({
+      success: true,
+      query,
+      oem,
+      count: results.length,
+      results
+    });
+  } catch (err) {
+    console.error('Error en búsqueda de modelos:', err);
+    res.status(500).json({ error: 'Error al buscar modelos' });
+  }
+});
+
+/**
+ * GET /api/models/resolve
+ * Resuelve un texto libre o código al mejor modelo correspondiente (HP o Lenovo).
+ */
+app.get('/api/models/resolve', async (req, res) => {
+  const query = req.query.query || req.query.q || '';
+  const oem = req.query.oem || 'lenovo';
+
+  try {
+    const model = await modelSearchService.resolveModel(query, oem);
+    if (!model) {
+      return res.status(404).json({ error: 'Modelo no encontrado', query });
+    }
+    res.json({
+      success: true,
+      query,
+      model
+    });
+  } catch (err) {
+    console.error('Error al resolver modelo:', err);
+    res.status(500).json({ error: 'Error al resolver modelo' });
+  }
+});
+
+/**
  * GET /api/drivers/lenovo/:machineType
  * Devuelve los drivers normalizados para un machineType de Lenovo.
  *
@@ -198,9 +251,13 @@ app.get('/api/drivers/lenovo/:machineType', timeoutMiddleware(REQUEST_TIMEOUT_MS
     const drivers = await lenovoFetch(machineType);
     const elapsed = Date.now() - start;
 
+    const modelDetails = modelSearchService.getLenovoPlatformDetails(machineType);
+    const modelName = modelDetails ? modelDetails.name : `Lenovo PC (${machineType})`;
+
     res.json({
       oem:        'Lenovo',
       machineType,
+      modelName,
       count:      drivers.length,
       elapsed_ms: elapsed,
       drivers,
@@ -242,9 +299,13 @@ app.get('/api/drivers/hp/:platformId', timeoutMiddleware(REQUEST_TIMEOUT_MS), as
     const drivers = await hpFetch(platformId, os);
     const elapsed = Date.now() - start;
 
+    const platformDetails = modelSearchService.getHpPlatformDetails(platformId);
+    const modelName = platformDetails ? platformDetails.name : `HP Platform (${platformId})`;
+
     res.json({
       oem:        'HP',
       platformId,
+      modelName,
       os,
       count:      drivers.length,
       elapsed_ms: elapsed,

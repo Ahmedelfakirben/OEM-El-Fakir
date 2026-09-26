@@ -338,34 +338,68 @@ function renderChips(oem) {
 }
 
 // ================================================================
-// Autocompletado interactivo en vivo mientras se escribe
+// Autocompletado interactivo en vivo con catálogo universal (>1200 modelos)
 // ================================================================
 
+let searchDebounceTimer = null;
+let searchAbortCtrl = null;
+
 function handleSearchInput(event) {
-  const query = (event.target.value || '').trim().toLowerCase();
+  const query = (event.target.value || '').trim();
 
   const btn = $('search-btn');
   if (btn) btn.disabled = false;
+
+  if (searchDebounceTimer) {
+    clearTimeout(searchDebounceTimer);
+  }
+
+  if (searchAbortCtrl) {
+    searchAbortCtrl.abort();
+    searchAbortCtrl = null;
+  }
 
   if (!query) {
     closeAutocomplete();
     return;
   }
 
-  // Filtrar sugerencias de flota
-  const matched = FLEET_DATABASE.filter(item => {
-    const idMatch = item.id.toLowerCase().includes(query);
-    const nameMatch = item.name.toLowerCase().includes(query);
-    const seriesMatch = item.series.toLowerCase().includes(query);
+  const qLower = query.toLowerCase();
+
+  // 1. Coincidencias instantáneas locales para respuesta inmediata (<1ms)
+  const instantMatches = FLEET_DATABASE.filter(item => {
+    const idMatch = item.id.toLowerCase().includes(qLower);
+    const nameMatch = item.name.toLowerCase().includes(qLower);
+    const seriesMatch = item.series.toLowerCase().includes(qLower);
     return idMatch || nameMatch || seriesMatch;
   }).slice(0, 8);
 
-  if (matched.length === 0) {
-    closeAutocomplete();
-    return;
+  if (instantMatches.length > 0) {
+    renderAutocomplete(instantMatches, query);
   }
 
-  renderAutocomplete(matched, query);
+  // 2. Consulta en segundo plano al catálogo universal (HP + Lenovo + API en vivo)
+  searchDebounceTimer = setTimeout(async () => {
+    try {
+      searchAbortCtrl = new AbortController();
+      const currentOem = state.currentOEM || '';
+      const response = await fetch(`/api/models/search?query=${encodeURIComponent(query)}&oem=${encodeURIComponent(currentOem)}&limit=12`, {
+        signal: searchAbortCtrl.signal
+      });
+      if (!response.ok) return;
+
+      const data = await response.json();
+      if (data && Array.isArray(data.results) && data.results.length > 0) {
+        renderAutocomplete(data.results, query);
+      } else if (instantMatches.length === 0) {
+        renderAutocompleteHint(query);
+      }
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        console.warn('Error en búsqueda universal de modelos:', err);
+      }
+    }
+  }, 120);
 }
 
 function handleSearchFocus() {
@@ -388,10 +422,12 @@ function renderAutocomplete(items, query) {
     div.dataset.index = idx;
     div.setAttribute('role', 'option');
 
+    const brandName = item.brand ? item.brand.toUpperCase() : (item.oem === 'hp' ? 'HP' : 'LENOVO');
+
     div.innerHTML = `
-      <span class="ac-badge ${item.oem}">${item.brand.toUpperCase()}</span>
+      <span class="ac-badge ${item.oem}">${escapeHtml(brandName)}</span>
       <span class="ac-name">${highlightMatch(item.name, query)}</span>
-      <span class="ac-id">${highlightMatch(item.id, query)}</span>
+      <span class="ac-id font-mono">${highlightMatch(item.id, query)}</span>
     `;
 
     div.addEventListener('click', () => {
@@ -404,8 +440,32 @@ function renderAutocomplete(items, query) {
   dropdown.style.display = 'block';
 }
 
+function renderAutocompleteHint(query) {
+  const dropdown = $('autocomplete-dropdown');
+  if (!dropdown) return;
+
+  state.highlightedIndex = -1;
+  dropdown.innerHTML = '';
+
+  const div = document.createElement('div');
+  div.className = 'autocomplete-item ac-item-hint';
+  div.style.cursor = 'pointer';
+  div.innerHTML = `
+    <span class="ac-name" style="color: var(--text-muted); font-size: 13px;">
+      Presiona <strong>Enter</strong> o haz clic en <strong>Buscar</strong> para consultar "<em>${escapeHtml(query)}</em>"
+    </span>
+  `;
+  div.addEventListener('click', () => {
+    closeAutocomplete();
+    triggerSearch();
+  });
+
+  dropdown.appendChild(div);
+  dropdown.style.display = 'block';
+}
+
 function highlightMatch(text, query) {
-  if (!query) return escapeHtml(text);
+  if (!query || !text) return escapeHtml(text || '');
   const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const regex = new RegExp(`(${escapedQuery})`, 'gi');
   return escapeHtml(text).replace(regex, '<strong class="ac-highlight">$1</strong>');
@@ -420,7 +480,17 @@ function selectSuggestion(item) {
   state.currentId = item.id;
 
   const sel = $('fleet-model-select');
-  if (sel) sel.value = `${item.oem}:${item.id}`;
+  if (sel) {
+    let found = false;
+    for (const opt of sel.options) {
+      if (opt.value === `${item.oem}:${item.id}`) {
+        sel.value = opt.value;
+        found = true;
+        break;
+      }
+    }
+    if (!found) sel.value = '';
+  }
 
   closeAutocomplete();
   fetchDrivers(item.oem, item.id);
@@ -501,7 +571,7 @@ async function triggerSearch() {
 
   const raw = input.value.trim();
   if (!raw) {
-    showToast('Por favor, escribe un modelo o código a buscar (ej. T480, 888A, 20L5)', 'info');
+    showToast('Por favor, escribe un modelo o código a buscar (ej. T480, 888A, 20L5, X1 Carbon, ProBook)', 'info');
     input.focus();
     return;
   }
@@ -511,7 +581,7 @@ async function triggerSearch() {
   closeAutocomplete();
   const cleanRaw = raw.toUpperCase();
 
-  // 1. Coincidencia exacta con ID conocido
+  // 1. Coincidencia exacta con ID conocido en FLEET_MODELS_MAP
   if (FLEET_MODELS_MAP[cleanRaw]) {
     const meta = FLEET_MODELS_MAP[cleanRaw];
     state.currentModelName = meta.name;
@@ -525,28 +595,60 @@ async function triggerSearch() {
     return;
   }
 
-  // 2. Coincidencia por nombre o serie
-  const matched = FLEET_DATABASE.find(item => {
+  // 2. Coincidencia exacta de nombre en base local
+  const localMatch = FLEET_DATABASE.find(item => {
     const query = raw.toLowerCase();
     const name = item.name.toLowerCase();
-    const series = item.series.toLowerCase();
-    return name === query || name.includes(query) || series === query || series.includes(query);
+    return name === query;
   });
 
-  if (matched) {
-    state.currentModelName = matched.name;
-    state.currentId = matched.id;
-    input.value = matched.id;
-    if (state.currentOEM !== matched.oem) {
-      selectOEM(matched.oem);
+  if (localMatch) {
+    state.currentModelName = localMatch.name;
+    state.currentId = localMatch.id;
+    input.value = localMatch.id;
+    if (state.currentOEM !== localMatch.oem) {
+      selectOEM(localMatch.oem);
     }
     const sel = $('fleet-model-select');
-    if (sel) sel.value = `${matched.oem}:${matched.id}`;
-    await fetchDrivers(matched.oem, matched.id);
+    if (sel) sel.value = `${localMatch.oem}:${localMatch.id}`;
+    await fetchDrivers(localMatch.oem, localMatch.id);
     return;
   }
 
-  // 3. Código personalizado ingresado a mano
+  // 3. Resolución universal inteligente en el backend (más de 1200 modelos HP y Lenovo)
+  try {
+    const res = await fetch(`/api/models/resolve?query=${encodeURIComponent(raw)}&oem=${encodeURIComponent(state.currentOEM)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.model) {
+        const model = data.model;
+        state.currentModelName = model.name;
+        state.currentId = model.id;
+        input.value = model.id;
+        if (state.currentOEM !== model.oem) {
+          selectOEM(model.oem);
+        }
+        const sel = $('fleet-model-select');
+        if (sel) {
+          let found = false;
+          for (const opt of sel.options) {
+            if (opt.value === `${model.oem}:${model.id}`) {
+              sel.value = opt.value;
+              found = true;
+              break;
+            }
+          }
+          if (!found) sel.value = '';
+        }
+        await fetchDrivers(model.oem, model.id);
+        return;
+      }
+    }
+  } catch (err) {
+    console.warn('Error resolviendo modelo con el servidor:', err);
+  }
+
+  // 4. Si el usuario ingresó un código alfanumérico manual de 4 a 8 caracteres (ej. SystemID o Machine Type)
   let targetId = raw.trim();
   let targetOem = state.currentOEM;
 
@@ -560,11 +662,16 @@ async function triggerSearch() {
     selectOEM('lenovo');
   }
 
-  state.currentModelName = '';
-  state.currentId = targetId.toUpperCase();
-  input.value = targetId.toUpperCase();
+  if (/^[A-Za-z0-9_-]{4,8}$/.test(targetId)) {
+    state.currentModelName = '';
+    state.currentId = targetId.toUpperCase();
+    input.value = targetId.toUpperCase();
+    await fetchDrivers(targetOem, targetId);
+    return;
+  }
 
-  await fetchDrivers(targetOem, targetId);
+  // 5. Si no se pudo resolver y no tiene estructura de ID válida
+  showToast(`No se encontró el modelo "${raw}". Puedes buscar por nombre de equipo (ej. T14, X1 Carbon, ProBook 450, ZBook) o por código (ej. 20L5, 888A).`, 'error');
 }
 
 window.triggerSearch = triggerSearch;
@@ -605,6 +712,10 @@ async function fetchDrivers(oem, modelId) {
       const errMsg = data?.message || `Error HTTP ${response.status}`;
       showError(errMsg, response.status);
       return;
+    }
+
+    if (data && data.modelName && (!state.currentModelName || state.currentModelName === modelId)) {
+      state.currentModelName = data.modelName;
     }
 
     state.allDrivers      = data.drivers || [];
@@ -1569,7 +1680,7 @@ function updateResultsHeader(count, oem, modelId) {
 
   if ($('model-id-display')) $('model-id-display').textContent = modelId;
 
-  const friendlyName = state.currentModelName || FLEET_MODELS_MAP[modelId]?.name || '';
+  const friendlyName = state.currentModelName || state.lastMeta?.modelName || FLEET_MODELS_MAP[modelId]?.name || '';
   const nameDisplay = $('model-name-display');
   if (nameDisplay) {
     if (friendlyName) {
@@ -2085,6 +2196,7 @@ async function openDeviceAuditModal(deviceId) {
     return;
   }
 
+  try {
     const modal = $('device-audit-modal');
     if (!modal) return;
 

@@ -1,0 +1,4237 @@
+[
+  {
+    "id": "20RB",
+    "name": "E14 (Type 20RA, 20RB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20RA",
+    "name": "E14 (Type 20RA, 20RB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20T6",
+    "name": "E14 Gen 2 (type 20T6, 20T7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20T7",
+    "name": "E14 Gen 2 (type 20T6, 20T7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20TA",
+    "name": "E14 Gen 2 (Type 20TA, 20TB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20TB",
+    "name": "E14 Gen 2 (Type 20TA, 20TB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20YE",
+    "name": "E14 Gen 3 (Type 20YE, 20YD, 20Y7, 20YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20YD",
+    "name": "E14 Gen 3 (Type 20YE, 20YD, 20Y7, 20YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20Y7",
+    "name": "E14 Gen 3 (Type 20YE, 20YD, 20Y7, 20YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20YF",
+    "name": "E14 Gen 3 (Type 20YE, 20YD, 20Y7, 20YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21E4",
+    "name": "E14 Gen 4 (type 21E3, 21E4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21E3",
+    "name": "E14 Gen 4 (type 21E3, 21E4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21EC",
+    "name": "E14 Gen 4 (type 21EB, 21EC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21EB",
+    "name": "E14 Gen 4 (type 21EB, 21EC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21JL",
+    "name": "E14 Gen 5 (Type 21JK, 21JL) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21JK",
+    "name": "E14 Gen 5 (Type 21JK, 21JL) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21JR",
+    "name": "E14 Gen 5 (Type 21JR, 21JS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21JS",
+    "name": "E14 Gen 5 (Type 21JR, 21JS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21M3",
+    "name": "E14 Gen 6 (Type 21M3, 21M4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21M4",
+    "name": "E14 Gen 6 (Type 21M3, 21M4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21M7",
+    "name": "E14 Gen 6 (Type 21M7, 21M8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21M8",
+    "name": "E14 Gen 6 (Type 21M7, 21M8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21SX",
+    "name": "E14 Gen 7 (Type 21SX, 21SY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21SY",
+    "name": "E14 Gen 7 (Type 21SX, 21SY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21T0",
+    "name": "E14 Gen 7 (Type 21T0, 21T1) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21T1",
+    "name": "E14 Gen 7 (Type 21T0, 21T1) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21T9",
+    "name": "E14 Gen 7 (Type 21T9, 21TA) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21TA",
+    "name": "E14 Gen 7 (Type 21T9, 21TA) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21U3",
+    "name": "E14 Gen 7 (Type 21U2, 21U3) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21U2",
+    "name": "E14 Gen 7 (Type 21U2, 21U3) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y3",
+    "name": "E14 Gen 8 (Type 21Y2, 21Y3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y2",
+    "name": "E14 Gen 8 (Type 21Y2, 21Y3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y7",
+    "name": "E14 Gen 8 (Type 21Y6, 21Y7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y6",
+    "name": "E14 Gen 8 (Type 21Y6, 21Y7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y9",
+    "name": "E14 Gen 8 (Type 21Y8, 21Y9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "21Y8",
+    "name": "E14 Gen 8 (Type 21Y8, 21Y9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "20RE",
+    "name": "E15 (Type 20RD, 20RE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20RD",
+    "name": "E15 (Type 20RD, 20RE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20T8",
+    "name": "E15 Gen 2 (type 20T8, 20T9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20T9",
+    "name": "E15 Gen 2 (type 20T8, 20T9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20TD",
+    "name": "E15 Gen 2 (Type 20TD, 20TE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20TE",
+    "name": "E15 Gen 2 (Type 20TD, 20TE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20YK",
+    "name": "E15 Gen 3 (Type 20YG, 20YH, 20YJ, 20YK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20YG",
+    "name": "E15 Gen 3 (Type 20YG, 20YH, 20YJ, 20YK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20YJ",
+    "name": "E15 Gen 3 (Type 20YG, 20YH, 20YJ, 20YK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "20YH",
+    "name": "E15 Gen 3 (Type 20YG, 20YH, 20YJ, 20YK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "21E7",
+    "name": "E15 Gen 4 (type 21E6 21E7) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "21E6",
+    "name": "E15 Gen 4 (type 21E6 21E7) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "21EE",
+    "name": "E15 Gen 4 (type 21ED 21EE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "21ED",
+    "name": "E15 Gen 4 (type 21ED 21EE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E15"
+  },
+  {
+    "id": "21JQ",
+    "name": "E16 Gen 1 (Type 21JN, 21JQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21JN",
+    "name": "E16 Gen 1 (Type 21JN, 21JQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21JU",
+    "name": "E16 Gen 1 (Type 21JT, 21JU) Laptop (Thinkpad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21JT",
+    "name": "E16 Gen 1 (Type 21JT, 21JU) Laptop (Thinkpad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21M6",
+    "name": "E16 Gen 2 (Type 21M5, 21M6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21M5",
+    "name": "E16 Gen 2 (Type 21M5, 21M6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21MB",
+    "name": "E16 Gen 2 (Type 21MA, 21MB) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21MA",
+    "name": "E16 Gen 2 (Type 21MA, 21MB) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21SR",
+    "name": "E16 Gen 3 (Type 21SR, 21SS) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21SS",
+    "name": "E16 Gen 3 (Type 21SR, 21SS) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21SU",
+    "name": "E16 Gen 3 (Type 21ST, 21SU) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21ST",
+    "name": "E16 Gen 3 (Type 21ST, 21SU) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21TG",
+    "name": "E16 Gen 3 (Type 21TF, 21TG) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21TF",
+    "name": "E16 Gen 3 (Type 21TF, 21TG) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "22AY",
+    "name": "E16 Gen 3 (Type 22AY, 22B0) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "22B0",
+    "name": "E16 Gen 3 (Type 22AY, 22B0) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21Y4",
+    "name": "E16 Gen 4 (Type 21Y4, 21Y5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21Y5",
+    "name": "E16 Gen 4 (Type 21Y4, 21Y5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21YD",
+    "name": "E16 Gen 4 (Type 21YC, 21YD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21YC",
+    "name": "E16 Gen 4 (Type 21YC, 21YD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21YF",
+    "name": "E16 Gen 4 (Type 21YE, 21YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "21YE",
+    "name": "E16 Gen 4 (Type 21YE, 21YF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E16"
+  },
+  {
+    "id": "20BC",
+    "name": "Edge E145 (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "F0JB",
+    "name": "IdeaCentre AIO 24AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "F0JC",
+    "name": "IdeaCentre AIO 24AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "F0JD",
+    "name": "IdeaCentre AIO 27AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "F0JE",
+    "name": "IdeaCentre AIO 27AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "91D0",
+    "name": "IdeaCentre Tower 08AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "91CX",
+    "name": "IdeaCentre Tower 08AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "91D1",
+    "name": "IdeaCentre Tower 08AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "91CY",
+    "name": "IdeaCentre Tower 08AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83UH",
+    "name": "IdeaPad 5 2-in-1 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83UJ",
+    "name": "IdeaPad 5 2-in-1 14AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83KT",
+    "name": "IdeaPad 5 2-in-1 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83UM",
+    "name": "IdeaPad 5 2-in-1 15AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83UN",
+    "name": "IdeaPad 5 2-in-1 15AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83KU",
+    "name": "IdeaPad 5 2-in-1 16AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83SG",
+    "name": "IdeaPad Pro 5 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JL",
+    "name": "IdeaPad Pro 5 14AKP10 Laptop",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83LR",
+    "name": "IdeaPad Pro 5 14ASP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83SJ",
+    "name": "IdeaPad Pro 5 16AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JN",
+    "name": "IdeaPad Pro 5 16AKP10 Laptop",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83LS",
+    "name": "IdeaPad Pro 5 16ASP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83K9",
+    "name": "IdeaPad Slim 3 14AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83K6",
+    "name": "IdeaPad Slim 3 14ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83KA",
+    "name": "IdeaPad Slim 3 15AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83MM",
+    "name": "IdeaPad Slim 3 15ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83K7",
+    "name": "IdeaPad Slim 3 15ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83KB",
+    "name": "IdeaPad Slim 3 16AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83K8",
+    "name": "IdeaPad Slim 3 16ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83J2",
+    "name": "IdeaPad Slim 5 13ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83S1",
+    "name": "IdeaPad Slim 5 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83VV",
+    "name": "IdeaPad Slim 5 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HV",
+    "name": "IdeaPad Slim 5 14AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83S3",
+    "name": "IdeaPad Slim 5 14AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HX",
+    "name": "IdeaPad Slim 5 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83NJ",
+    "name": "IdeaPad Slim 5 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HT",
+    "name": "IdeaPad Slim 5 14ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83J3",
+    "name": "IdeaPad Slim 5 15ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83S2",
+    "name": "IdeaPad Slim 5 16AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HW",
+    "name": "IdeaPad Slim 5 16AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83S4",
+    "name": "IdeaPad Slim 5 16AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HY",
+    "name": "IdeaPad Slim 5 16AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83HU",
+    "name": "IdeaPad Slim 5 16ARP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20R4",
+    "name": "L13 (type 20R3, 20R4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20R3",
+    "name": "L13 (type 20R3, 20R4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21LM",
+    "name": "L13 2-in-1 Gen 5 (Type 21LM, 21LN) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21LN",
+    "name": "L13 2-in-1 Gen 5 (Type 21LM, 21LN) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21R8",
+    "name": "L13 2-in-1 Gen 6 (Type 21R7, 21R8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21R7",
+    "name": "L13 2-in-1 Gen 6 (Type 21R7, 21R8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21RD",
+    "name": "L13 2-in-1 Gen 6 (Type 21RD, 21RE) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21RE",
+    "name": "L13 2-in-1 Gen 6 (Type 21RD, 21RE) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21XU",
+    "name": "L13 2-in-1 Gen 7 (Type 21XT, 21XU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21XT",
+    "name": "L13 2-in-1 Gen 7 (Type 21XT, 21XU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20VH",
+    "name": "L13 Gen 2 (type 20VH, 20VJ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20VJ",
+    "name": "L13 Gen 2 (type 20VH, 20VJ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21AB",
+    "name": "L13 Gen 2 (type 21AB, 21AC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21AC",
+    "name": "L13 Gen 2 (type 21AB, 21AC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21B3",
+    "name": "L13 Gen 3 (Type 21B3, 21B4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21B4",
+    "name": "L13 Gen 3 (Type 21B3, 21B4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21B9",
+    "name": "L13 Gen 3 (Type 21B9 21BA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21BA",
+    "name": "L13 Gen 3 (Type 21B9 21BA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FG",
+    "name": "L13 Gen 4 (Type 21FG, 21FH) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FH",
+    "name": "L13 Gen 4 (Type 21FG, 21FH) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FN",
+    "name": "L13 Gen 4 (Type 21FN, 21FQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FQ",
+    "name": "L13 Gen 4 (Type 21FN, 21FQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21LB",
+    "name": "L13 Gen 5 (Type 21LB, 21LC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21LC",
+    "name": "L13 Gen 5 (Type 21LB, 21LC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21R5",
+    "name": "L13 Gen 6 (Type 21R5, 21R6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21R6",
+    "name": "L13 Gen 6 (Type 21R5, 21R6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21RB",
+    "name": "L13 Gen 6 (Type 21RB, 21RC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21RC",
+    "name": "L13 Gen 6 (Type 21RB, 21RC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21XS",
+    "name": "L13 Gen 7 (Type 21XR, 21XS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21XR",
+    "name": "L13 Gen 7 (Type 21XR, 21XS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20R6",
+    "name": "L13 Yoga (type 20R5, 20R6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20R5",
+    "name": "L13 Yoga (type 20R5, 20R6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20VK",
+    "name": "L13 Yoga Gen 2 (type 20VL, 20VK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20VL",
+    "name": "L13 Yoga Gen 2 (type 20VL, 20VK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21AD",
+    "name": "L13 Yoga Gen 2 (type 21AD, 21AE) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21AE",
+    "name": "L13 Yoga Gen 2 (type 21AD, 21AE) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21B5",
+    "name": "L13 Yoga Gen 3 (Type 21B5, 21B6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21B6",
+    "name": "L13 Yoga Gen 3 (Type 21B5, 21B6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21BC",
+    "name": "L13 Yoga Gen 3 (Type 21BB, 21BC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21BB",
+    "name": "L13 Yoga Gen 3 (Type 21BB, 21BC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FK",
+    "name": "L13 Yoga Gen 4 (Type 21FJ, 21FK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FJ",
+    "name": "L13 Yoga Gen 4 (Type 21FJ, 21FK) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FR",
+    "name": "L13 Yoga Gen 4 (Type 21FR, 21FS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "21FS",
+    "name": "L13 Yoga Gen 4 (Type 21FR, 21FS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L13"
+  },
+  {
+    "id": "20U1",
+    "name": "L14 (type 20U1, 20U2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20U2",
+    "name": "L14 (type 20U1, 20U2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20U5",
+    "name": "L14 (type 20U5, 20U6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20U6",
+    "name": "L14 (type 20U5, 20U6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20X6",
+    "name": "L14 Gen 2 (type 20X5, 20X6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20X5",
+    "name": "L14 Gen 2 (type 20X5, 20X6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20X1",
+    "name": "L14 Gen 2 Type 20X1 20X2 Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20X2",
+    "name": "L14 Gen 2 Type 20X1 20X2 Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21C1",
+    "name": "L14 Gen 3 (type 21C1, 21C2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21C2",
+    "name": "L14 Gen 3 (type 21C1, 21C2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21C5",
+    "name": "L14 Gen 3 (type 21C5, 21C6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21C6",
+    "name": "L14 Gen 3 (type 21C5, 21C6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21H2",
+    "name": "L14 Gen 4 (Type 21H1, 21H2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21H1",
+    "name": "L14 Gen 4 (Type 21H1, 21H2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21H5",
+    "name": "L14 Gen 4 (Type 21H5, 21H6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21H6",
+    "name": "L14 Gen 4 (Type 21H5, 21H6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21L1",
+    "name": "L14 Gen 5 (Type 21L1, 21L2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21L2",
+    "name": "L14 Gen 5 (Type 21L1, 21L2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21L6",
+    "name": "L14 Gen 5 (Type 21L5, 21L6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21L5",
+    "name": "L14 Gen 5 (Type 21L5, 21L6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21S6",
+    "name": "L14 Gen 6 (Type 21S6, 21S7) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21S7",
+    "name": "L14 Gen 6 (Type 21S6, 21S7) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21S9",
+    "name": "L14 Gen 6 (Type 21S8, 21S9) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21S8",
+    "name": "L14 Gen 6 (Type 21S8, 21S9) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21SF",
+    "name": "L14 Gen 6 (Type 21SE, 21SF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21SE",
+    "name": "L14 Gen 6 (Type 21SE, 21SF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21X2",
+    "name": "L14 Gen 7 (Type 21X2, 21X3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21X3",
+    "name": "L14 Gen 7 (Type 21X2, 21X3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21X7",
+    "name": "L14 Gen 7 (Type 21X6, 21X7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "21X6",
+    "name": "L14 Gen 7 (Type 21X6, 21X7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L14"
+  },
+  {
+    "id": "20U3",
+    "name": "L15 (type 20U3, 20U4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20U4",
+    "name": "L15 (type 20U3, 20U4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20U7",
+    "name": "L15 (type 20U7, 20U8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20U8",
+    "name": "L15 (type 20U7, 20U8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20X8",
+    "name": "L15 Gen 2 (type 20X7, 20X8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20X7",
+    "name": "L15 Gen 2 (type 20X7, 20X8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20X3",
+    "name": "L15 Gen 2 Type 20X3 20X4 Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "20X4",
+    "name": "L15 Gen 2 Type 20X3 20X4 Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21C3",
+    "name": "L15 Gen 3 (type 21C3, 21C4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21C4",
+    "name": "L15 Gen 3 (type 21C3, 21C4) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21C8",
+    "name": "L15 Gen 3 (type 21C7, 21C8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21C7",
+    "name": "L15 Gen 3 (type 21C7, 21C8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21H4",
+    "name": "L15 Gen 4 (Type 21H3, 21H4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21H3",
+    "name": "L15 Gen 4 (Type 21H3, 21H4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21H8",
+    "name": "L15 Gen 4 (Type 21H7, 21H8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "21H7",
+    "name": "L15 Gen 4 (Type 21H7, 21H8) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "83Q6",
+    "name": "Legion 5 15AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83M0",
+    "name": "Legion 5 15AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83Q7",
+    "name": "Legion 5 15AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83F1",
+    "name": "Legion 5 15AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83Q8",
+    "name": "Legion 7 16AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83L3",
+    "name": "Legion Go S 8ARP1",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "66E4",
+    "name": "Lenovo L15 Monitor",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "L15"
+  },
+  {
+    "id": "82V4",
+    "name": "Lenovo Slim 7 Carbon 13IAP7",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "83B0",
+    "name": "Lenovo Slim 7 Carbon 13IRP8",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "ZG38",
+    "name": "Lenovo Smart Bulb (SE-142DC&SE-242DC)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "E14"
+  },
+  {
+    "id": "ZABM",
+    "name": "Lenovo Tab P11 (2nd Gen) (TB350FU, TB350XU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZABL",
+    "name": "Lenovo Tab P11 (2nd Gen) (TB350FU, TB350XU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZABG",
+    "name": "Lenovo Tab P11 (2nd Gen) (TB350FU, TB350XU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZABF",
+    "name": "Lenovo Tab P11 (2nd Gen) (TB350FU, TB350XU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7Y",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA82",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7X",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7R",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7S",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA83",
+    "name": "Lenovo Tab P11 (Lenovo TB-J606F, TB-J606L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9M",
+    "name": "Lenovo Tab P11 5G (Lenovo TB-J607Z)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA8Y",
+    "name": "Lenovo Tab P11 5G (Lenovo TB-J607Z)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA94",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9L",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9X",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZAAW",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9W",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9N",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9R",
+    "name": "Lenovo Tab P11 Plus (Lenovo TB-J616F, Lenovo TB-J616X) / Moto Tab G70",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZAB5",
+    "name": "Lenovo Tab P11 Pro (2nd Gen) (TB132FU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA8L",
+    "name": "Lenovo Tab P11 Pro (Lenovo TB-J706F, TB-J706L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA8M",
+    "name": "Lenovo Tab P11 Pro (Lenovo TB-J706F, TB-J706L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7D",
+    "name": "Lenovo Tab P11 Pro (Lenovo TB-J706F, TB-J706L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA7C",
+    "name": "Lenovo Tab P11 Pro (Lenovo TB-J706F, TB-J706L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZACL",
+    "name": "Lenovo Tab P12 (TB370FU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZACH",
+    "name": "Lenovo Tab P12 (TB370FU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZACJ",
+    "name": "Lenovo Tab P12 (TB370FU)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZAD5",
+    "name": "Lenovo Tab P12 with Matte Display (TB372FC)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZAE3",
+    "name": "Lenovo Tab P12 with Matte Display (TB372FC) - Type ZAE3",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JG",
+    "name": "LOQ 15AHP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "84AH",
+    "name": "LOQ 15AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83TN",
+    "name": "LOQ 15AHP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83S0",
+    "name": "LOQ 15ARP10E",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83VA",
+    "name": "LOQ Essential 15ARP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "1452",
+    "name": "LT1421 Wide Flat Panel Monitor",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20ME",
+    "name": "P1 Gen 1 (Type 20MD, 20ME) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20MD",
+    "name": "P1 Gen 1 (Type 20MD, 20ME) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20QU",
+    "name": "P1 Gen 2 (Type 20QT, 20QU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20QT",
+    "name": "P1 Gen 2 (Type 20QT, 20QU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20TJ",
+    "name": "P1 Gen 3 (type 20TH, 20TJ ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20TH",
+    "name": "P1 Gen 3 (type 20TH, 20TJ ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20Y3",
+    "name": "P1 Gen 4 (type 20Y3, 20Y4 ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20Y4",
+    "name": "P1 Gen 4 (type 20Y3, 20Y4 ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21DC",
+    "name": "P1 Gen 5 (Type 21DC 21DD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21DD",
+    "name": "P1 Gen 5 (Type 21DC 21DD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FV",
+    "name": "P1 Gen 6 (Type 21FV, 21FW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FW",
+    "name": "P1 Gen 6 (Type 21FV, 21FW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KW",
+    "name": "P1 Gen 7 (Type 21KV, 21KW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KV",
+    "name": "P1 Gen 7 (Type 21KV, 21KW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21Q8",
+    "name": "P1 Gen 8 (Type 21Q8, 21Q9) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21Q9",
+    "name": "P1 Gen 8 (Type 21Q8, 21Q9) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21UE",
+    "name": "P1 Gen 9 (Type 21UE, 21UF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21UF",
+    "name": "P1 Gen 9 (Type 21UE, 21UF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20S4",
+    "name": "P14s Gen 1 (type 20S4, 20S5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20S5",
+    "name": "P14s Gen 1 (type 20S4, 20S5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20Y2",
+    "name": "P14s Gen 1 (type 20Y1, 20Y2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20Y1",
+    "name": "P14s Gen 1 (type 20Y1, 20Y2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20VX",
+    "name": "P14s Gen 2 (Type 20VX, 20VY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20VY",
+    "name": "P14s Gen 2 (Type 20VX, 20VY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21A0",
+    "name": "P14s Gen 2 (type 21A0, 21A1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21A1",
+    "name": "P14s Gen 2 (type 21A0, 21A1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21AL",
+    "name": "P14s Gen 3 (Type 21AK, 21AL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21AK",
+    "name": "P14s Gen 3 (Type 21AK, 21AL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21J6",
+    "name": "P14s Gen 3 (Type 21J5, 21J6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21J5",
+    "name": "P14s Gen 3 (Type 21J5, 21J6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21HG",
+    "name": "P14s Gen 4 (Type 21HF, 21HG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21HF",
+    "name": "P14s Gen 4 (Type 21HF, 21HG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21K5",
+    "name": "P14s Gen 4 (Type 21K5, 21K6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21K6",
+    "name": "P14s Gen 4 (Type 21K5, 21K6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21G2",
+    "name": "P14s Gen 5 (Type 21G2, 21G3) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21G3",
+    "name": "P14s Gen 5 (Type 21G2, 21G3) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21MF",
+    "name": "P14s Gen 5 (Type 21ME, 21MF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21ME",
+    "name": "P14s Gen 5 (Type 21ME, 21MF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QL",
+    "name": "P14s Gen 6 (Type 21QL, 21QM) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QM",
+    "name": "P14s Gen 6 (Type 21QL, 21QM) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QT",
+    "name": "P14s Gen 6 (Type 21QT, 21QU) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QU",
+    "name": "P14s Gen 6 (Type 21QT, 21QU) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RW",
+    "name": "P14s Gen 6 (Type 21RV, 21RW) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RV",
+    "name": "P14s Gen 6 (Type 21RV, 21RW) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21X0",
+    "name": "P14s Gen 7 (Type 21X0, 21X1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21X1",
+    "name": "P14s Gen 7 (Type 21X0, 21X1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XK",
+    "name": "P14s Gen 7 (Type 21XJ, 21XK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XJ",
+    "name": "P14s Gen 7 (Type 21XJ, 21XK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20SU",
+    "name": "P15 Gen 1 (type 20ST, 20SU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20ST",
+    "name": "P15 Gen 1 (type 20ST, 20SU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20YR",
+    "name": "P15 Gen 2 (type 20YQ, 20YR) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20YQ",
+    "name": "P15 Gen 2 (type 20YQ, 20YR) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20T4",
+    "name": "P15s Gen 1 (type 20T4 20T5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20T5",
+    "name": "P15s Gen 1 (type 20T4 20T5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20W6",
+    "name": "P15s Gen 2 (Type 20W6, 20W7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20W7",
+    "name": "P15s Gen 2 (Type 20W6, 20W7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20TR",
+    "name": "P15v Gen 1 type (20TQ, 20TR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20TQ",
+    "name": "P15v Gen 1 type (20TQ, 20TR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21A9",
+    "name": "P15v Gen 2 (type 21A9, 21AA) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21AA",
+    "name": "P15v Gen 2 (type 21A9, 21AA) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21D9",
+    "name": "P15v Gen 3 (Type 21D8 21D9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21D8",
+    "name": "P15v Gen 3 (Type 21D8 21D9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21EM",
+    "name": "P15v Gen 3 (Type 21EN 21EM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21EN",
+    "name": "P15v Gen 3 (Type 21EN 21EM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21D6",
+    "name": "P16 Gen 1 (Type 21D6, 21D7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21D7",
+    "name": "P16 Gen 1 (Type 21D6, 21D7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FB",
+    "name": "P16 Gen 2 (Type 21FA, 21FB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FA",
+    "name": "P16 Gen 2 (Type 21FA, 21FB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RR",
+    "name": "P16 Gen 3 (Type 21RQ, 21RR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RQ",
+    "name": "P16 Gen 3 (Type 21RQ, 21RR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21BT",
+    "name": "P16s Gen 1 (Type 21BT, 21BU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21BU",
+    "name": "P16s Gen 1 (Type 21BT, 21BU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21CK",
+    "name": "P16s Gen 1 (Type 21CK, 21CL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21CL",
+    "name": "P16s Gen 1 (Type 21CK, 21CL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21HL",
+    "name": "P16s Gen 2 (Type 21HK, 21HL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21HK",
+    "name": "P16s Gen 2 (Type 21HK, 21HL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21K9",
+    "name": "P16s Gen 2 (Type 21K9, 21KA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KA",
+    "name": "P16s Gen 2 (Type 21K9, 21KA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KT",
+    "name": "P16s Gen 3 (Type 21KS, 21KT) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KS",
+    "name": "P16s Gen 3 (Type 21KS, 21KT) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QS",
+    "name": "P16s Gen 4 (Type 21QR, 21QS) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QR",
+    "name": "P16s Gen 4 (Type 21QR, 21QS) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QW",
+    "name": "P16s Gen 4 (Type 21QV, 21QW) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21QV",
+    "name": "P16s Gen 4 (Type 21QV, 21QW) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RY",
+    "name": "P16s Gen 4 (Type 21RX, 21RY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RX",
+    "name": "P16s Gen 4 (Type 21RX, 21RY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XE",
+    "name": "P16s Gen 5 (Type 21XE, 21XF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XF",
+    "name": "P16s Gen 5 (Type 21XE, 21XF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XH",
+    "name": "P16s Gen 5 (Type 21XG, 21XH) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21XG",
+    "name": "P16s Gen 5 (Type 21XG, 21XH) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FC",
+    "name": "P16v Gen 1 (Type 21FC, 21FD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FD",
+    "name": "P16v Gen 1 (Type 21FC, 21FD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FF",
+    "name": "P16v Gen 1 (Type 21FE, 21FF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21FE",
+    "name": "P16v Gen 1 (Type 21FE, 21FF) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KX",
+    "name": "P16v Gen 2 (Type 21KX, 21KY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21KY",
+    "name": "P16v Gen 2 (Type 21KX, 21KY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RT",
+    "name": "P16v Gen 3 (Type 21RS, 21RT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "21RS",
+    "name": "P16v Gen 3 (Type 21RS, 21RT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20SN",
+    "name": "P17 Gen 1 (type 20SN, 20SQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20SQ",
+    "name": "P17 Gen 1 (type 20SN, 20SQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20YU",
+    "name": "P17 Gen 2 (type 20YU, 20YV) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "20YV",
+    "name": "P17 Gen 2 (type 20YU, 20YV) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "4ZW1",
+    "name": "Point Of Sales (POS) - POS Monitor (FP-P15)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "82L1",
+    "name": "Slim 7 Carbon-14ACN06 Laptop (IdeaPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20UE",
+    "name": "T14  Gen 1 (type 20UD, 20UE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20UD",
+    "name": "T14  Gen 1 (type 20UD, 20UE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20S1",
+    "name": "T14 Gen 1 (type 20S0, 20S1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20S0",
+    "name": "T14 Gen 1 (type 20S0, 20S1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20S3",
+    "name": "T14 Gen 1 (type 20S2, 20S3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20S2",
+    "name": "T14 Gen 1 (type 20S2, 20S3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20W1",
+    "name": "T14 Gen 2 (Type 20W0, 20W1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20W0",
+    "name": "T14 Gen 2 (Type 20W0, 20W1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20XL",
+    "name": "T14 Gen 2 (Type 20XK, 20XL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20XK",
+    "name": "T14 Gen 2 (Type 20XK, 20XL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21AH",
+    "name": "T14 Gen 3 (Type 21AH, 21AJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21AJ",
+    "name": "T14 Gen 3 (Type 21AH, 21AJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21CG",
+    "name": "T14 Gen 3 (Type 21CF, 21CG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21CF",
+    "name": "T14 Gen 3 (Type 21CF, 21CG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21HE",
+    "name": "T14 Gen 4 (Type 21HD, 21HE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21HD",
+    "name": "T14 Gen 4 (Type 21HD, 21HE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21K3",
+    "name": "T14 Gen 4 (Type 21K3, 21K4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21K4",
+    "name": "T14 Gen 4 (Type 21K3, 21K4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21MC",
+    "name": "T14 Gen 5 (Type 21MC, 21MD) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21MD",
+    "name": "T14 Gen 5 (Type 21MC, 21MD) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21ML",
+    "name": "T14 Gen 5 (Type 21ML, 21MM) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21MM",
+    "name": "T14 Gen 5 (Type 21ML, 21MM) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QC",
+    "name": "T14 Gen 6 (Type 21QC, 21QD) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QD",
+    "name": "T14 Gen 6 (Type 21QC, 21QD) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QG",
+    "name": "T14 Gen 6 (Type 21QG, 21QH) Laptops (ThinkPad )",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QH",
+    "name": "T14 Gen 6 (Type 21QG, 21QH) Laptops (ThinkPad )",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QK",
+    "name": "T14 Gen 6 (Type 21QJ, 21QK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QJ",
+    "name": "T14 Gen 6 (Type 21QJ, 21QK) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21WQ",
+    "name": "T14 Gen 7 (Type 21WN, 21WQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21WN",
+    "name": "T14 Gen 7 (Type 21WN, 21WQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21WW",
+    "name": "T14 Gen 7 (Type 21WV, 21WW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21WV",
+    "name": "T14 Gen 7 (Type 21WV, 21WW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "22AM",
+    "name": "T14 Gen 7 (Type 22AL, 22AM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "22AL",
+    "name": "T14 Gen 7 (Type 22AL, 22AM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20T1",
+    "name": "T14s (Type 20T0, 20T1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20T0",
+    "name": "T14s (Type 20T0, 20T1) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20UH",
+    "name": "T14s (Type 20UH, 20UJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20UJ",
+    "name": "T14s (Type 20UH, 20UJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21R3",
+    "name": "T14s 2-in-1 Gen 1 (Type 21R3, 21R4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21R4",
+    "name": "T14s 2-in-1 Gen 1 (Type 21R3, 21R4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21YY",
+    "name": "T14s 2-in-1 Gen 2 (Type 21YY, 22A0) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "22A0",
+    "name": "T14s 2-in-1 Gen 2 (Type 21YY, 22A0) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20WM",
+    "name": "T14s Gen 2 (Type 20WM, 20WN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20WN",
+    "name": "T14s Gen 2 (Type 20WM, 20WN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20XF",
+    "name": "T14s Gen 2 (type 20XF, 20XG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20XG",
+    "name": "T14s Gen 2 (type 20XF, 20XG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21BS",
+    "name": "T14s Gen 3 (Type 21BR 21BS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21BR",
+    "name": "T14s Gen 3 (Type 21BR 21BS) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21CR",
+    "name": "T14s Gen 3 (Type 21CQ 21CR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21CQ",
+    "name": "T14s Gen 3 (Type 21CQ 21CR) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21F7",
+    "name": "T14s Gen 4 (Type 21F6, 21F7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21F6",
+    "name": "T14s Gen 4 (Type 21F6, 21F7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21F8",
+    "name": "T14s Gen 4 (Type 21F8, 21F9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21F9",
+    "name": "T14s Gen 4 (Type 21F8, 21F9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21LS",
+    "name": "T14s Gen 5 (Type 21LS, 21LT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21LT",
+    "name": "T14s Gen 5 (Type 21LS, 21LT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21M2",
+    "name": "T14s Gen 6 (Type 21M1, 21M2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21M1",
+    "name": "T14s Gen 6 (Type 21M1, 21M2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21N1",
+    "name": "T14s Gen 6 (Type 21N1, 21N2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21N2",
+    "name": "T14s Gen 6 (Type 21N1, 21N2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QX",
+    "name": "T14s Gen 6 (Type 21QX, 21QY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21QY",
+    "name": "T14s Gen 6 (Type 21QX, 21QY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21R2",
+    "name": "T14s Gen 6 (Type 21R1, 21R2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21R1",
+    "name": "T14s Gen 6 (Type 21R1, 21R2) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21TB",
+    "name": "T14s Gen 6 (Type 21TB, 21TC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21TC",
+    "name": "T14s Gen 6 (Type 21TB, 21TC) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21YV",
+    "name": "T14s Gen 7 (Type 21YU, 21YV) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21YU",
+    "name": "T14s Gen 7 (Type 21YU, 21YV) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21YX",
+    "name": "T14s Gen 7 (Type 21YW, 21YX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21YW",
+    "name": "T14s Gen 7 (Type 21YW, 21YX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "22A8",
+    "name": "T14s Gen 7 (Type 22A7, 22A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "22A7",
+    "name": "T14s Gen 7 (Type 22A7, 22A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "20S7",
+    "name": "T15 (type 20S6, 20S7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20S6",
+    "name": "T15 (type 20S6, 20S7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20W5",
+    "name": "T15 Gen 2 (Type 20W4, 20W5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20W4",
+    "name": "T15 Gen 2 (Type 20W4, 20W5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20UR",
+    "name": "T15g Gen 1 (type 20UR 20US) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20US",
+    "name": "T15g Gen 1 (type 20UR 20US) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20YS",
+    "name": "T15g Gen 2 (Type 20YS, 20YT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20YT",
+    "name": "T15g Gen 2 (Type 20YS, 20YT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20TN",
+    "name": "T15p Gen 1 (type 20TN 20TM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "20TM",
+    "name": "T15p Gen 1 (type 20TN 20TM) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "21A8",
+    "name": "T15p Gen 2 (Type 21A7, 21A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "21A7",
+    "name": "T15p Gen 2 (Type 21A7, 21A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "21DB",
+    "name": "T15p Gen 3 (Type 21DA 21DB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "21DA",
+    "name": "T15p Gen 3 (Type 21DA 21DB) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T15"
+  },
+  {
+    "id": "21BW",
+    "name": "T16 Gen 1 (Type 21BV, 21BW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21BV",
+    "name": "T16 Gen 1 (Type 21BV, 21BW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21CH",
+    "name": "T16 Gen 1 (Type 21CH, 21CJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21CJ",
+    "name": "T16 Gen 1 (Type 21CH, 21CJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21HJ",
+    "name": "T16 Gen 2 (Type 21HH, 21HJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21HH",
+    "name": "T16 Gen 2 (Type 21HH, 21HJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21K8",
+    "name": "T16 Gen 2 (Type 21K7, 21K8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21K7",
+    "name": "T16 Gen 2 (Type 21K7, 21K8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21MQ",
+    "name": "T16 Gen 3 (Type 21MN, 21MQ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21MN",
+    "name": "T16 Gen 3 (Type 21MN, 21MQ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21QF",
+    "name": "T16 Gen 4 (Type 21QE, 21QF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21QE",
+    "name": "T16 Gen 4 (Type 21QE, 21QF) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21QQ",
+    "name": "T16 Gen 4 (Type 21QN, 21QQ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21QN",
+    "name": "T16 Gen 4 (Type 21QN, 21QQ) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "22AX",
+    "name": "T16 Gen 4 (Type 22AW, 22AX) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "22AW",
+    "name": "T16 Gen 4 (Type 22AW, 22AX) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21WT",
+    "name": "T16 Gen 5 (Type 21WT, 21WU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21WU",
+    "name": "T16 Gen 5 (Type 21WT, 21WU) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21WX",
+    "name": "T16 Gen 5 (Type 21WX, 21WY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21WY",
+    "name": "T16 Gen 5 (Type 21WX, 21WY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "22AQ",
+    "name": "T16 Gen 5 (Type 22AN, 22AQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "22AN",
+    "name": "T16 Gen 5 (Type 22AN, 22AQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21V5",
+    "name": "T16g Gen 3 (Type 21V5, 21V6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "21V6",
+    "name": "T16g Gen 3 (Type 21V5, 21V6) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T16"
+  },
+  {
+    "id": "20HE",
+    "name": "T470 (Type 20HD, 20HE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20HD",
+    "name": "T470 (Type 20HD, 20HE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20JM",
+    "name": "T470 (Type 20JM, 20JN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20JN",
+    "name": "T470 (Type 20JM, 20JN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20J7",
+    "name": "T470p Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20J6",
+    "name": "T470p Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20HF",
+    "name": "T470s (type 20HF, 20HG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20HG",
+    "name": "T470s (type 20HF, 20HG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20JT",
+    "name": "T470s (type 20JS, 20JT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20JS",
+    "name": "T470s (type 20JS, 20JT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T470"
+  },
+  {
+    "id": "20L6",
+    "name": "T480 (Type 20L5, 20L6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T480"
+  },
+  {
+    "id": "20L5",
+    "name": "T480 (Type 20L5, 20L6) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T480"
+  },
+  {
+    "id": "20L7",
+    "name": "T480s (type 20L7, 20L8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T480"
+  },
+  {
+    "id": "20L8",
+    "name": "T480s (type 20L7, 20L8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T480"
+  },
+  {
+    "id": "20N3",
+    "name": "T490 (Type 20N2, 20N3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20N2",
+    "name": "T490 (Type 20N2, 20N3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20RX",
+    "name": "T490 (Type 20RY, 20RX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20RY",
+    "name": "T490 (Type 20RY, 20RX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20QH",
+    "name": "T490 Type 20Q9, 20QH Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20Q9",
+    "name": "T490 Type 20Q9, 20QH Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20NX",
+    "name": "T490s (Type 20NX, 20NY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "20NY",
+    "name": "T490s (Type 20NX, 20NY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T490"
+  },
+  {
+    "id": "ZA45",
+    "name": "Tab P10 / Smart Tab P10 Tablet (TB-X705F, TB-X705L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA44",
+    "name": "Tab P10 / Smart Tab P10 Tablet (TB-X705F, TB-X705L)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9D",
+    "name": "Tab P12 Pro (Lenovo TB-Q706F, Lenovo TB-Q706Z)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZA9E",
+    "name": "Tab P12 Pro (Lenovo TB-Q706F, Lenovo TB-Q706Z)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "ZAAX",
+    "name": "Tab P12 Pro (Lenovo TB-Q706F, Lenovo TB-Q706Z)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "60AC",
+    "name": "ThinkVision LT1423p 13.3-inch IPS WLED Backlit LCD Mobile Touch Monitor With Pen",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "60A3",
+    "name": "ThinkVision LT1423p 13.3-inch IPS WLED Backlit LCD Mobile Touch Monitor With Pen",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "T14"
+  },
+  {
+    "id": "21CB",
+    "name": "X1 Carbon 10th Gen (Type 21CB, 21CC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21CC",
+    "name": "X1 Carbon 10th Gen (Type 21CB, 21CC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21HM",
+    "name": "X1 Carbon 11th Gen (Type 21HM, 21HN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21HN",
+    "name": "X1 Carbon 11th Gen (Type 21HM, 21HN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21KC",
+    "name": "X1 Carbon 12th Gen (Type 21KC, 21KD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21KD",
+    "name": "X1 Carbon 12th Gen (Type 21KC, 21KD) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21NS",
+    "name": "X1 Carbon 13th Gen (Type 21NS, 21NT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21NT",
+    "name": "X1 Carbon 13th Gen (Type 21NS, 21NT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21NX",
+    "name": "X1 Carbon 13th Gen (Type 21NX, 21NY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21NY",
+    "name": "X1 Carbon 13th Gen (Type 21NX, 21NY) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3463",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3444",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3448",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3462",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "34XX",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3460",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3443",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "3446",
+    "name": "X1 Carbon 1st Gen (Type 34xx) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20A8",
+    "name": "X1 Carbon 2nd Gen (Type 20A7, 20A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20A7",
+    "name": "X1 Carbon 2nd Gen (Type 20A7, 20A8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20BT",
+    "name": "X1 Carbon 3rd Gen (Type 20BS, 20BT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20BS",
+    "name": "X1 Carbon 3rd Gen (Type 20BS, 20BT) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20FB",
+    "name": "X1 Carbon 4th Gen (Type 20FB, 20FC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20FC",
+    "name": "X1 Carbon 4th Gen (Type 20FB, 20FC) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20HR",
+    "name": "X1 Carbon 5th Gen - Kabylake (Type 20HR, 20HQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20HQ",
+    "name": "X1 Carbon 5th Gen - Kabylake (Type 20HR, 20HQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20K3",
+    "name": "X1 Carbon 5th Gen - Skylake (Type 20K4, 20K3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20K4",
+    "name": "X1 Carbon 5th Gen - Skylake (Type 20K4, 20K3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20KH",
+    "name": "X1 Carbon 6th Gen - (Type 20KH, 20KG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20KG",
+    "name": "X1 Carbon 6th Gen - (Type 20KH, 20KG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20QD",
+    "name": "X1 Carbon 7th Gen - (Type 20QD, 20QE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20QE",
+    "name": "X1 Carbon 7th Gen - (Type 20QD, 20QE) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20R1",
+    "name": "X1 Carbon 7th Gen - (Type 20R1, 20R2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20R2",
+    "name": "X1 Carbon 7th Gen - (Type 20R1, 20R2) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20U9",
+    "name": "X1 Carbon 8th Gen - (Type 20U9, 20UA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20UA",
+    "name": "X1 Carbon 8th Gen - (Type 20U9, 20UA) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20XW",
+    "name": "X1 Carbon 9th Gen (Type 20XW, 20XX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20XX",
+    "name": "X1 Carbon 9th Gen (Type 20XW, 20XX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21V7",
+    "name": "X1 Carbon Gen 14 (Type 21V7, 21V8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21V8",
+    "name": "X1 Carbon Gen 14 (Type 21V7, 21V8) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "20T2",
+    "name": "X13 (Type 20T2, 20T3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20T3",
+    "name": "X13 (Type 20T2, 20T3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20UF",
+    "name": "X13 (Type 20UF, 20UG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20UG",
+    "name": "X13 (Type 20UF, 20UG) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21LX",
+    "name": "X13 2-in-1 Gen 5 (Type 21LW, 21LX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21LW",
+    "name": "X13 2-in-1 Gen 5 (Type 21LW, 21LX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21U6",
+    "name": "X13 Detachable Gen 1 (Type 21U6, 21U7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21U7",
+    "name": "X13 Detachable Gen 1 (Type 21U6, 21U7) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20WK",
+    "name": "X13 Gen 2 (Type 20WK, 20WL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20WL",
+    "name": "X13 Gen 2 (Type 20WK, 20WL) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20XH",
+    "name": "X13 Gen 2 (Type 20XH, 20XJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20XJ",
+    "name": "X13 Gen 2 (Type 20XH, 20XJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21BQ",
+    "name": "X13 Gen 3 (Type 21BN 21BQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21BN",
+    "name": "X13 Gen 3 (Type 21BN 21BQ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21CM",
+    "name": "X13 Gen 3 (Type 21CM 21CN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21CN",
+    "name": "X13 Gen 3 (Type 21CM 21CN) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21EY",
+    "name": "X13 Gen 4 (Type 21EX, 21EY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21EX",
+    "name": "X13 Gen 4 (Type 21EX, 21EY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21J3",
+    "name": "X13 Gen 4 (Type 21J3, 21J4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21J4",
+    "name": "X13 Gen 4 (Type 21J3, 21J4) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21LU",
+    "name": "X13 Gen 5 (Type 21LU, 21LV) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21LV",
+    "name": "X13 Gen 5 (Type 21LU, 21LV) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21RL",
+    "name": "X13 Gen 6 (Type 21RK, 21RL) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21RK",
+    "name": "X13 Gen 6 (Type 21RK, 21RL) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21RM",
+    "name": "X13 Gen 6 (Type 21RM, 21RN) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21RN",
+    "name": "X13 Gen 6 (Type 21RM, 21RN) Laptops (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21YJ",
+    "name": "X13 Gen 7 (Type 21YH, 21YJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21YH",
+    "name": "X13 Gen 7 (Type 21YH, 21YJ) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21YL",
+    "name": "X13 Gen 7 (Type 21YK, 21YL) Laptop (Thinkpad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21YK",
+    "name": "X13 Gen 7 (Type 21YK, 21YL) Laptop (Thinkpad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20SY",
+    "name": "X13 Yoga Gen 1 (Type 20SX, 20SY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20SX",
+    "name": "X13 Yoga Gen 1 (Type 20SX, 20SY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20W9",
+    "name": "X13 Yoga Gen 2 (Type 20W8, 20W9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "20W8",
+    "name": "X13 Yoga Gen 2 (Type 20W8, 20W9) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21AW",
+    "name": "X13 Yoga Gen 3 (Type 21AW 21AX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21AX",
+    "name": "X13 Yoga Gen 3 (Type 21AW 21AX) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21F2",
+    "name": "X13 Yoga Gen 4 (Type 21F2, 21F3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21F3",
+    "name": "X13 Yoga Gen 4 (Type 21F2, 21F3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "0627",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "0629",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "2339",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "0622",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "2338",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "2340",
+    "name": "X130e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "6283",
+    "name": "X131e Chromebook (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3371",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3369",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3367",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3374",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3368",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "3372",
+    "name": "X131e Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21BX",
+    "name": "X13s (Type 21BX, 21BY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "21BY",
+    "name": "X13s (Type 21BX, 21BY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "X13"
+  },
+  {
+    "id": "83TD",
+    "name": "Yoga 7 2-in-1 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JR",
+    "name": "Yoga 7 2-in-1 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83TF",
+    "name": "Yoga 7 2-in-1 16AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JU",
+    "name": "Yoga 7 2-in-1 16AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83KG",
+    "name": "Yoga Pro 7 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83LX",
+    "name": "Yoga Pro 7 14ASP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83QS",
+    "name": "Yoga Slim 7 14AGP11",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "83JY",
+    "name": "Yoga Slim 7 14AKP10",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "P1"
+  },
+  {
+    "id": "82U9",
+    "name": "Yoga Slim 7 Carbon 13IAP7",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "83AY",
+    "name": "Yoga Slim 7 Carbon 13IRP8",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "82EV",
+    "name": "Yoga Slim 7 Carbon 13ITL5 (ideapad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "82L0",
+    "name": "Yoga Slim 7 Carbon-14ACN06 (IdeaPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Carbon"
+  },
+  {
+    "id": "21D2",
+    "name": "Z13 Gen 1 (Type 21D2, 21D3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z13"
+  },
+  {
+    "id": "21D3",
+    "name": "Z13 Gen 1 (Type 21D2, 21D3) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z13"
+  },
+  {
+    "id": "21JV",
+    "name": "Z13 Gen 2 (Type 21JV, 21JW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z13"
+  },
+  {
+    "id": "21JW",
+    "name": "Z13 Gen 2 (Type 21JV, 21JW) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z13"
+  },
+  {
+    "id": "21D5",
+    "name": "Z16 Gen 1 (Type 21D4, 21D5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z16"
+  },
+  {
+    "id": "21D4",
+    "name": "Z16 Gen 1 (Type 21D4, 21D5) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z16"
+  },
+  {
+    "id": "21JY",
+    "name": "Z16 Gen 2 (Type 21JX, 21JY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z16"
+  },
+  {
+    "id": "21JX",
+    "name": "Z16 Gen 2 (Type 21JX, 21JY) Laptop (ThinkPad)",
+    "oem": "lenovo",
+    "brand": "Lenovo",
+    "series": "Z16"
+  }
+]
