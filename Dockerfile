@@ -3,7 +3,7 @@
 # Dominio objetivo: oem.elfakir.com
 # ================================================================
 
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 
 # Metadatos del contenedor
 LABEL maintainer="El Fakir <oem.elfakir.com>"
