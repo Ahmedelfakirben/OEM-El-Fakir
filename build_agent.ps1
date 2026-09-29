@@ -12,7 +12,7 @@ if (-not (Test-Path $cscPath)) {
 }
 
 Write-Host "Compilando Agent.cs a AgentGUI.exe..." -ForegroundColor Cyan
-& $cscPath /nologo /target:winexe /out:AgentGUI.exe /reference:System.Windows.Forms.dll,System.Drawing.dll,System.Management.dll,System.Web.Extensions.dll Agent.cs
+& $cscPath /nologo /target:winexe /win32icon:refresh_14433.ico /out:AgentGUI.exe /reference:System.Windows.Forms.dll,System.Drawing.dll,System.Management.dll,System.Web.Extensions.dll Agent.cs
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Error durante la compilación." -ForegroundColor Red
