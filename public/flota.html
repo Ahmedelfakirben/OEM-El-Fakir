@@ -40,7 +40,7 @@
       </div>
 
       <div class="fleet-actions-row" style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="/api/dist/agent" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar instalador MSI para despliegue corporativo">
+        <a href="/api/agent/download-exe" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar ejecutable EXE para despliegue corporativo">
           Descargar Agente Cliente
         </a>
         <button type="button" id="btn-fleet-refresh" class="fleet-btn-secondary" onclick="loadFleetData(true)">
@@ -146,7 +146,7 @@
           Para registrar equipos en este panel, descarga el <strong>Agente Cliente (.MSI)</strong> e instálalo en tus puestos o despliégalo mediante Microsoft Intune.
         </p>
         <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-          <a href="/api/dist/agent" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
+          <a href="/api/agent/download-exe" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
             Descargar Instalador MSI (.msi)
           </a>
           <button type="button" class="fleet-btn-secondary" onclick="openAgentEnrollModal()" style="padding:10px 20px; font-size:14px;">
@@ -182,7 +182,7 @@
             <span class="status-pill compliant" style="font-size:11px; font-weight:700;">OPCIÓN RECOMENDADA</span>
             <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Paquete Instalador MSI Autónomo (.msi)</h4>
           </div>
-          <a href="/api/dist/agent" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
+          <a href="/api/agent/download-exe" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar ejecutable EXE">
             Descargar OEM-Client-Agent-1.0.0.msi
           </a>
         </div>
@@ -220,7 +220,7 @@
 
       <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between;">
         <div style="display:flex; gap:8px;">
-          <a href="/api/dist/agent" class="modal-btn-primary" style="text-decoration:none;">
+          <a href="/api/agent/download-exe" class="modal-btn-primary" style="text-decoration:none;">
             Descargar Agente MSI
           </a>
           <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">

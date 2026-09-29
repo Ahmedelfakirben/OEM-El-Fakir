@@ -28,6 +28,7 @@ RUN npm install --omit=dev --no-audit --no-fund
 COPY server.js ./
 COPY lib/ ./lib/
 COPY public/ ./public/
+COPY AgentGUI.exe ./
 COPY routes/ ./routes/
 COPY middleware/ ./middleware/
 

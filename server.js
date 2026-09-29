@@ -819,6 +819,15 @@ Write-Host "El equipo ya esta vinculado y reportando a $ServerUrl" -ForegroundCo
 });
 
 // Descarga directa del instalador MSI para agentes clientes (Intune)
+// Descarga del agente grafico EXE
+app.get('/api/agent/download-exe', (_req, res) => {
+  const exePath = path.join(__dirname, 'AgentGUI.exe');
+  if (fs.existsSync(exePath)) {
+    return res.download(exePath, 'AgentGUI.exe');
+  }
+  res.status(404).json({ error: 'Ejecutable EXE no disponible.' });
+});
+
 app.get('/api/agent/download-msi', (_req, res) => {
   const msiPath = path.join(__dirname, 'public', 'downloads', 'OEM-Client-Agent-1.0.0.msi');
   if (fs.existsSync(msiPath)) {

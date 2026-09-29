@@ -433,8 +433,8 @@
             </p>
           </div>
           <div class="fleet-actions-row">
-            <a href="/api/agent/download-msi" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar paquete de instalación silenciosa para Intune o despliegue manual">
-              <img src="/refresh_14433.png" alt="Icon" style="width:16px; height:16px;" /> Descargar Agente MSI (.msi)
+            <a href="/api/agent/download-exe" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar paquete de instalación silenciosa para Intune o despliegue manual">
+              <img src="/refresh_14433.png" alt="Icon" style="width:16px; height:16px;" /> Descargar Agente Visual (.exe)
             </a>
             <button type="button" class="fleet-btn-secondary" onclick="loadFleetData(true)">
               Refrescar Flota
@@ -534,11 +534,11 @@
             <h3 style="font-size:18px; color:var(--text-primary); margin-bottom:8px;">No hay equipos conectados a la flota actualmente</h3>
             <p style="color:var(--text-muted); max-width:620px; margin:0 auto 20px auto; font-size:14px; line-height:1.6;">
               Los datos mostrados en este dashboard corresponden exclusivamente a equipos reales en producción.
-              Para que tus ordenadores aparezcan aquí, instala el <strong>Agente Cliente (.MSI)</strong> o despliégalo mediante Microsoft Intune.
+              Para que tus ordenadores aparezcan aquí, instala el <strong>Agente Cliente Visual (.EXE)</strong> o despliégalo mediante Microsoft Intune.
             </p>
             <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-              <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
-                Descargar Instalador MSI (.msi)
+              <a href="/api/agent/download-exe" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
+                Descargar Agente Visual (.exe)
               </a>
               <button type="button" class="fleet-btn-secondary" onclick="openAgentEnrollModal()" style="padding:10px 20px; font-size:14px;">
                 Ver Instrucciones de Despliegue Intune
@@ -1114,10 +1114,10 @@
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
           <div>
             <span class="status-pill compliant" style="font-size:11px; font-weight:700;">OPCIÓN RECOMENDADA</span>
-            <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Paquete Instalador MSI Autónomo (.msi)</h4>
+            <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Agente Ejecutable Visual (.exe)</h4>
           </div>
-          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
-            Descargar OEM-Client-Agent-1.0.0.msi
+          <a href="/api/agent/download-exe" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar ejecutable EXE">
+            Descargar AgentGUI.exe
           </a>
         </div>
         <p style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">
@@ -1127,7 +1127,7 @@
           <span>Comando de Instalación Silenciosa (Intune / CMD / PowerShell Admin):</span>
           <button type="button" class="copy-cmd-btn" onclick="copyMsiInstallCommand()">Copiar msiexec</button>
         </div>
-        <pre class="terminal-cmd-code" id="msi-install-cmd-display" style="border-radius:0 0 var(--radius-sm) var(--radius-sm);">msiexec /i OEM-Client-Agent-1.0.0.msi /qn SERVER_URL="http://localhost:3000"</pre>
+        <pre class="terminal-cmd-code" id="msi-install-cmd-display" style="border-radius:0 0 var(--radius-sm) var(--radius-sm);">msiexec /i AgentGUI.exe /qn SERVER_URL="http://localhost:3000"</pre>
       </div>
 
       <!-- Configuración de Host / Dominio del Servidor -->
@@ -1157,7 +1157,7 @@
         <h4 style="font-size:13px; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:8px;">Pasos de Despliegue en Microsoft Intune</h4>
         <ol style="font-size:13px; color:var(--text-secondary); margin-left:18px; display:flex; flex-direction:column; gap:6px;">
           <li>En el portal de <strong>Microsoft Intune Admin Center</strong> (endpoint.microsoft.com), ve a <strong>Aplicaciones &gt; Todas las aplicaciones &gt; Agregar</strong>.</li>
-          <li>Tipo de aplicación: <strong>Aplicación de línea de negocio (LOB)</strong> o <strong>Windows app (Win32)</strong> y sube <code>OEM-Client-Agent-1.0.0.msi</code>.</li>
+          <li>Tipo de aplicación: <strong>Aplicación de línea de negocio (LOB)</strong> o <strong>Windows app (Win32)</strong> y sube <code>AgentGUI.exe</code>.</li>
           <li>En argumentos de la línea de comandos introduce: <code>/qn SERVER_URL="https://oem.elfakir.com"</code> (reemplaza con tu dominio Coolify).</li>
           <li>Asigna el paquete al grupo de dispositivos deseado (Piloto o Producción).</li>
           <li>El agente se instalará en segundo plano en <code>C:\Program Files\OEMDriverAgent</code> y creará una tarea programada bajo <code>NT AUTHORITY\SYSTEM</code> que enviará telemetría de hardware y estado de controladores automáticamente.</li>
@@ -1166,7 +1166,7 @@
 
       <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between;">
         <div style="display:flex; gap:8px;">
-          <a href="/api/agent/download-msi" class="modal-btn-primary" style="text-decoration:none;">
+          <a href="/api/agent/download-exe" class="modal-btn-primary" style="text-decoration:none;">
             Descargar Agente MSI
           </a>
           <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
