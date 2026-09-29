@@ -18,16 +18,7 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-const BASE_MODELS = [
-  { id: '20W7', oem: 'lenovo', name: 'ThinkPad L14 Gen 2 Intel' },
-  { id: '20L5', oem: 'lenovo', name: 'ThinkPad T480' },
-  { id: '20N2', oem: 'lenovo', name: 'ThinkPad T490' },
-  { id: '20U1', oem: 'lenovo', name: 'ThinkPad L14 Gen 1' },
-  { id: '888A', oem: 'hp', name: 'HP ProBook 440 G8' },
-  { id: '8A4E', oem: 'hp', name: 'HP ProBook 440 G9' },
-  { id: '880D', oem: 'hp', name: 'HP EliteBook 840 G7' },
-  { id: '8936', oem: 'hp', name: 'HP EliteBook 840 G8' }
-];
+const BASE_MODELS = [];
 
 const BASE_GROUPS = [
   { id: 'pilot', name: 'Grupo Piloto / IT', desc: 'Validación temprana y anillo 1. Permite despliegue anticipado inmediato para comprobar estabilidad de parches.' },
@@ -87,8 +78,8 @@ function updateActiveBannerPreview() {
 
   if (isScheduled) {
     if (indicator) {
-      indicator.style.background = 'var(--ms-admitted)';
-      indicator.style.boxShadow = '0 0 10px var(--ms-admitted)';
+      indicator.style.background = 'var(--warning)';
+      indicator.style.boxShadow = '0 0 10px var(--warning)';
     }
     if (title) title.textContent = 'MODO: ACTUALIZACIÓN PROGRAMADA ACTIVA';
     if (pill) {
@@ -107,8 +98,8 @@ function updateActiveBannerPreview() {
     }
   } else {
     if (indicator) {
-      indicator.style.background = 'var(--accent-cyan)';
-      indicator.style.boxShadow = '0 0 10px var(--accent-cyan)';
+      indicator.style.background = 'var(--primary-action)';
+      indicator.style.boxShadow = '0 0 10px var(--primary-action)';
     }
     if (title) title.textContent = 'MODO: SOLO SABER (AUDITORÍA)';
     if (pill) {
@@ -223,7 +214,7 @@ function renderGroupsTable(groupRules) {
           </label>
         </td>
         <td>
-          <span style="font-size:12px; font-weight:600; color:${isEnabled ? 'var(--accent-cyan)' : 'var(--text-muted)'};">
+          <span style="font-size:12px; font-weight:600; color:${isEnabled ? 'var(--primary-action)' : 'var(--text-muted)'};">
             ${windowDesc}
           </span>
         </td>
@@ -240,7 +231,8 @@ function renderModelsTable(modelRules) {
   if (!tbody) return;
 
   tbody.innerHTML = allKnownModels.map(m => {
-    const rule = modelRules[m.id] || { enabled: true, criticalOnly: true };
+    // Por defecto un modelo nuevo entra con las actualizaciones deshabilitadas (enabled: false)
+    const rule = modelRules[m.id] || { enabled: false, criticalOnly: true };
     const isEnabled = rule.enabled !== false;
     const isCritical = rule.criticalOnly !== false;
     const detected = detectedModelsMap[m.id];
@@ -413,7 +405,7 @@ async function saveFleetSettings() {
       const crit = $(`model-crit-${m.id}`);
       model_rules[m.id] = {
         name: m.name,
-        enabled: toggle ? toggle.checked : true,
+        enabled: toggle ? toggle.checked : false,
         criticalOnly: crit ? crit.checked : true
       };
     });

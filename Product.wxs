@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <!-- Definición del Producto -->
+    <Product Id="*" Name="Driver Explorer Client" Language="1033" Version="1.0.0.0" Manufacturer="OEM Corp" UpgradeCode="78e8b0b9-8c01-4475-b3e1-450f3b0e3532">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+        
+        <MajorUpgrade DowngradeErrorMessage="A newer version of Driver Explorer Client is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+
+        <!-- Propiedades Públicas (Pueden ser pasadas por línea de comandos) -->
+        <Property Id="SERVERURL" Value="http://localhost:3000" />
+
+        <!-- Estructura de Directorios -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="Driver Explorer Client" />
+            </Directory>
+        </Directory>
+
+        <!-- Componentes a Instalar -->
+        <DirectoryRef Id="INSTALLFOLDER">
+            <!-- Archivo Ejecutable Principal -->
+            <Component Id="AgentExecutable" Guid="*">
+                <File Id="AgentEXE" Source="AgentGUI.exe" KeyPath="yes" />
+            </Component>
+
+            <!-- Icono Corporativo -->
+            <Component Id="AgentIcon" Guid="*">
+                <File Id="AgentICO" Source="refresh_14433.ico" Name="app_logo.ico" KeyPath="yes" />
+            </Component>
+
+            <!-- Configuración en el Registro de Windows -->
+            <Component Id="AgentRegistryEntries" Guid="*">
+                <!-- Guardar URL del Servidor -->
+                <RegistryValue Root="HKLM" Key="Software\DriverExplorer" Name="ServerUrl" Type="string" Value="[SERVERURL]" KeyPath="yes" />
+                
+                <!-- Autoinicio con Windows (Modo Silencioso) -->
+                <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run" Name="DriverExplorerAgent" Type="string" Value="&quot;[#AgentEXE]&quot; -Silent" />
+            </Component>
+        </DirectoryRef>
+
+        <!-- Definición de Características (Features) -->
+        <Feature Id="ProductFeature" Title="AgentInstaller" Level="1">
+            <ComponentRef Id="AgentExecutable" />
+            <ComponentRef Id="AgentIcon" />
+            <ComponentRef Id="AgentRegistryEntries" />
+        </Feature>
+    </Product>
+</Wix>

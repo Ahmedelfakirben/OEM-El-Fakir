@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
+  <script src="/auth-guard.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="OEM Driver Explorer — Ficha Técnica de Telemetría y Monitorización de Equipo." />
@@ -13,47 +14,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+  <link rel="icon" href="/refresh_14433.png" />
 
   <link rel="stylesheet" href="style.css?v=10.0" />
+  <script src="/header.js"></script>
+
 </head>
 <body>
 
   <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <div class="logo">
-        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-          <div class="logo-mark" aria-hidden="true">OEM</div>
-          <div class="logo-title-group">
-            <span class="logo-text">Driver Explorer</span>
-            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
-          </div>
-        </a>
-      </div>
-
-      <nav class="nav-tabs-wrapper" role="navigation" aria-label="Secciones de la plataforma">
-        <a href="/" class="nav-tab-btn" style="text-decoration:none;">
-          <span class="nav-tab-label">Catálogo OEM</span>
-        </a>
-        <a href="/flota" class="nav-tab-btn active" style="text-decoration:none;">
-          <span class="nav-tab-label">Flota de Equipos</span>
-        </a>
-        <a href="/configuracion" class="nav-tab-btn" style="text-decoration:none;">
-          <span class="nav-tab-label">Políticas y Configuración</span>
-        </a>
-        <a href="/conectores" class="nav-tab-btn" style="text-decoration:none;">
-          <span class="nav-tab-label">Conectores &amp; APIs</span>
-        </a>
-      </nav>
-
-      <div class="header-badges">
-        <a href="/flota" class="fleet-btn-secondary" style="text-decoration:none; font-size:12px; padding:6px 14px;">
-          &larr; Volver a la Flota
-        </a>
-      </div>
-    </div>
-  </header>
+  <div id="app-header"></div>
 
   <!-- ── Contenido de la Ficha Técnica ─────────────────────────────── -->
   <main class="main-content" role="main" style="max-width:1600px; width:100%; margin:0 auto; padding:24px 20px;">
@@ -185,13 +155,13 @@
         <table class="driver-inventory-table" aria-label="Inventario de controladores del equipo">
           <thead>
             <tr>
-              <th style="width:34%;">Controlador / Dispositivo</th>
-              <th style="width:13%;">Categoría</th>
-              <th style="width:13%;">Versión Instalada</th>
-              <th style="width:13%;">Versión Oficial Objetivo</th>
-              <th style="width:10%;">Estado</th>
-              <th style="width:9%;">Severidad</th>
-              <th style="width:8%;">Admisión WHQL</th>
+              <th onclick="sortByColumn('driver_name')" style="width:34%; cursor:pointer;" title="Ordenar por Nombre">Controlador / Dispositivo <span id="sort-icon-driver_name" style="font-size:10px; margin-left:4px; color:var(--accent);">▲</span></th>
+              <th onclick="sortByColumn('category')" style="width:13%; cursor:pointer;" title="Ordenar por Categoría">Categoría <span id="sort-icon-category" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
+              <th onclick="sortByColumn('installed_version')" style="width:13%; cursor:pointer;" title="Ordenar por Versión Instalada">Versión Instalada <span id="sort-icon-installed_version" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
+              <th onclick="sortByColumn('target_version')" style="width:13%; cursor:pointer;" title="Ordenar por Versión Objetivo">Versión Oficial Objetivo <span id="sort-icon-target_version" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
+              <th onclick="sortByColumn('status')" style="width:10%; cursor:pointer;" title="Ordenar por Estado">Estado <span id="sort-icon-status" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
+              <th onclick="sortByColumn('severity')" style="width:9%; cursor:pointer;" title="Ordenar por Severidad">Severidad <span id="sort-icon-severity" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
+              <th onclick="sortByColumn('is_admitted')" style="width:8%; cursor:pointer;" title="Ordenar por Admisión WHQL">Admisión WHQL <span id="sort-icon-is_admitted" style="font-size:10px; margin-left:4px; color:var(--accent);"></span></th>
             </tr>
           </thead>
           <tbody id="eq-drivers-tbody">
@@ -200,6 +170,38 @@
         </table>
       </div>
 
+    </div>
+
+  
+    <!-- Telemetria del Cliente -->
+    <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:24px; box-shadow:var(--shadow-card); margin-top:24px;">
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <div>
+          <h2 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">
+            Telemetría del Cliente
+          </h2>
+          <p style="font-size:13px; color:var(--text-secondary);">
+            Logs del Agente Local de Instalación (Windows Forms PowerShell)
+          </p>
+        </div>
+        <div>
+          <button type="button" class="export-btn selected" onclick="loadClientTelemetry()" style="font-size:13px;">
+            Refrescar Consola
+          </button>
+        </div>
+      </div>
+
+      <div style="background: #0f1527; border:1px solid var(--border-subtle); border-radius:6px; padding:16px; font-family:'JetBrains Mono', monospace; font-size:12px; max-height:400px; overflow-y:auto; color:#a3b1c6;">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+          <tbody id="telemetry-console">
+            <tr>
+              <td style="color:#64748b; width:120px;">[INFO]</td>
+              <td>Esperando telemetría del agente...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </main>
@@ -216,3 +218,4 @@
   <script src="equipo.js?v=1.0"></script>
 </body>
 </html>
+

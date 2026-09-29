@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
+  <script src="/auth-guard.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="OEM Driver Explorer — Flota Corporativa de Equipos Conectados y Telemetría en Tiempo Real." />
@@ -13,44 +14,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+  <link rel="icon" href="/refresh_14433.png" />
 
   <link rel="stylesheet" href="style.css?v=10.0" />
+  <script src="/header.js"></script>
+
 </head>
 <body>
 
   <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <div class="logo">
-        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-          <div class="logo-mark" aria-hidden="true">OEM</div>
-          <div class="logo-title-group">
-            <span class="logo-text">Driver Explorer</span>
-            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Navegación limpia entre Vistas Independientes -->
-      <nav class="nav-tabs-wrapper" role="navigation" aria-label="Secciones de la plataforma">
-        <a href="/" class="nav-tab-btn" id="nav-btn-catalog" style="text-decoration:none;">
-          <span class="nav-tab-label">Catálogo OEM</span>
-        </a>
-        <a href="/flota" class="nav-tab-btn active" id="nav-btn-fleet" style="text-decoration:none;">
-          <span class="nav-tab-label">Flota de Equipos</span>
-          <span id="nav-fleet-count-badge" class="nav-count-badge">1</span>
-        </a>
-        <a href="/configuracion" class="nav-tab-btn" id="nav-btn-settings" style="text-decoration:none;">
-          <span class="nav-tab-label">Políticas y Configuración</span>
-          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
-        </a>
-        <a href="/conectores" class="nav-tab-btn" id="nav-btn-connectors" style="text-decoration:none;">
-          <span class="nav-tab-label">Conectores &amp; APIs</span>
-        </a>
-      </nav>
-    </div>
-  </header>
+  <div id="app-header"></div>
 
   <!-- ── Contenido Principal de Flota ──────────────────────────────── -->
   <main class="main-content" role="main" style="max-width:1440px; margin:0 auto; padding:24px 20px;">
@@ -67,8 +40,8 @@
       </div>
 
       <div class="fleet-actions-row" style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="/api/agent/download-msi" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar instalador MSI para despliegue corporativo">
-          Descargar Agente MSI (.msi)
+        <a href="/api/dist/agent" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar instalador MSI para despliegue corporativo">
+          Descargar Agente Cliente
         </a>
         <button type="button" id="btn-fleet-refresh" class="fleet-btn-secondary" onclick="loadFleetData(true)">
           Refrescar Flota
@@ -173,7 +146,7 @@
           Para registrar equipos en este panel, descarga el <strong>Agente Cliente (.MSI)</strong> e instálalo en tus puestos o despliégalo mediante Microsoft Intune.
         </p>
         <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
+          <a href="/api/dist/agent" class="fleet-btn-primary" style="text-decoration:none; padding:10px 20px; font-size:14px;">
             Descargar Instalador MSI (.msi)
           </a>
           <button type="button" class="fleet-btn-secondary" onclick="openAgentEnrollModal()" style="padding:10px 20px; font-size:14px;">
@@ -209,7 +182,7 @@
             <span class="status-pill compliant" style="font-size:11px; font-weight:700;">OPCIÓN RECOMENDADA</span>
             <h4 style="font-size:15px; color:var(--text-primary); margin-top:4px;">Paquete Instalador MSI Autónomo (.msi)</h4>
           </div>
-          <a href="/api/agent/download-msi" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
+          <a href="/api/dist/agent" class="fleet-btn-primary" style="text-decoration:none; font-size:13px; padding:6px 14px;" title="Descargar instalador MSI">
             Descargar OEM-Client-Agent-1.0.0.msi
           </a>
         </div>
@@ -247,7 +220,7 @@
 
       <div class="modal-footer" style="margin-top:20px; display:flex; justify-content:space-between;">
         <div style="display:flex; gap:8px;">
-          <a href="/api/agent/download-msi" class="modal-btn-primary" style="text-decoration:none;">
+          <a href="/api/dist/agent" class="modal-btn-primary" style="text-decoration:none;">
             Descargar Agente MSI
           </a>
           <button type="button" class="modal-btn-secondary" onclick="downloadAgentInstallScript()">
@@ -272,6 +245,6 @@
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
   <!-- Script Dedicado de Flota -->
-  <script src="flota.js?v=1.0"></script>
+  <script src="flota.js?v=1.1"></script>
 </body>
 </html>

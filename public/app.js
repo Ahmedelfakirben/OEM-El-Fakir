@@ -728,7 +728,7 @@ async function fetchDrivers(oem, modelId) {
     applyFilters();
 
     try {
-      sessionStorage.setItem('current_drivers_' + modelId.toUpperCase(), JSON.stringify(state.allDrivers));
+      localStorage.setItem('current_drivers_' + modelId.toUpperCase(), JSON.stringify(state.allDrivers));
     } catch(e) {}
 
     showToast(`${state.allDrivers.length} controladores auditados para ${modelId}`, 'success');
@@ -1330,6 +1330,8 @@ function openPatchModal(index) {
   const modal = $('patch-modal');
   if (modal) {
     modal.style.display = 'flex';
+  modal.classList.add('open');
+  modal.style.pointerEvents = 'auto';
     modal.style.opacity = '1';
     modal.style.visibility = 'visible';
   }
@@ -1339,7 +1341,9 @@ function openPatchModal(index) {
 function closePatchModal() {
   const modal = $('patch-modal');
   if (modal) {
-    modal.style.display = 'none';
+    modal.classList.remove('open');
+  modal.style.pointerEvents = 'none';
+  modal.style.display = 'none';
     modal.style.visibility = 'hidden';
   }
   document.body.style.overflow = '';
@@ -1403,18 +1407,29 @@ function openTerminalCommandModal() {
 
   updateTerminalCommandString();
 
-  modal.style.display = 'flex';
-  modal.style.opacity = '1';
-  modal.style.visibility = 'visible';
+  modal.classList.remove('is-hidden');
+  modal.style.removeProperty('display');
+  modal.style.removeProperty('visibility');
+  modal.style.removeProperty('opacity');
+  modal.style.removeProperty('pointer-events');
+
+  modal.style.setProperty('display', 'flex', 'important');
+  modal.style.setProperty('opacity', '1', 'important');
+  modal.style.setProperty('visibility', 'visible', 'important');
+  modal.style.setProperty('pointer-events', 'auto', 'important');
+  modal.classList.add('open');
+  
   document.body.style.overflow = 'hidden';
 }
 
 function closeTerminalCommandModal() {
   const modal = $('terminal-modal');
   if (modal) {
+    modal.classList.remove('open');
     modal.style.setProperty('display', 'none', 'important');
     modal.style.setProperty('visibility', 'hidden', 'important');
     modal.style.setProperty('opacity', '0', 'important');
+    modal.style.setProperty('pointer-events', 'none', 'important');
     modal.classList.add('is-hidden');
   }
   document.body.style.overflow = '';
@@ -1942,13 +1957,15 @@ function switchMainView(viewName) {
 // ================================================================
 
 let allFleetDevices = [];
+let FLEET_RINGS = [];
 let currentDeviceUnderAudit = null;
 
 async function loadFleetData(showToastFeedback = false) {
   try {
-    const [statsRes, devicesRes] = await Promise.all([
+    const [statsRes, devicesRes, ringsRes] = await Promise.all([
       fetch('/api/fleet/stats'),
-      fetch('/api/fleet/devices')
+      fetch('/api/fleet/devices'),
+      fetch('/api/rings')
     ]);
 
     if (!statsRes.ok || !devicesRes.ok) {
@@ -1957,6 +1974,7 @@ async function loadFleetData(showToastFeedback = false) {
 
     const stats = await statsRes.json();
     const devices = await devicesRes.json();
+    if (ringsRes.ok) { FLEET_RINGS = await ringsRes.json(); }
 
     allFleetDevices = devices;
     renderFleetStats(stats, devices);
@@ -2106,10 +2124,8 @@ function renderFleetTable(devices) {
           <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">BIOS: ${escapeHtml(d.bios_version || '—')}</div>
         </td>
         <td>
-          <select class="fleet-inline-select" onclick="event.stopPropagation()" onchange="changeDeviceGroup('${escapeHtml(d.id)}', this.value)" title="Asignar directiva de grupo">
-            <option value="pilot" ${d.group_name === 'pilot' ? 'selected' : ''}>Piloto / IT</option>
-            <option value="general" ${d.group_name === 'general' ? 'selected' : ''}>General / Prod</option>
-            <option value="vip" ${d.group_name === 'vip' ? 'selected' : ''}>VIP / Dirección</option>
+          <select class="fleet-inline-select" onclick="event.stopPropagation()" onchange="changeDeviceGroup('${escapeHtml(d.id)}', this.value)" title="Asignar Anillo de Despliegue">
+            ${FLEET_RINGS.map(r => `<option value="${r.id}" ${d.ring_id === r.id ? 'selected' : ''}>${escapeHtml(r.name)}</option>`).join('')}
           </select>
         </td>
         <td>
@@ -2938,37 +2954,12 @@ function init() {
     });
   }
 
-  // Listeners directos para pestañas de navegación principal (SPA)
-  const navBtnCatalog = $('nav-btn-catalog');
-  if (navBtnCatalog) {
-    navBtnCatalog.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchMainView('catalog');
-    });
-  }
-
-  const navBtnFleet = $('nav-btn-fleet');
-  if (navBtnFleet) {
-    navBtnFleet.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchMainView('fleet');
-    });
-  }
-
-  const navBtnSettings = $('nav-btn-settings');
-  if (navBtnSettings) {
-    navBtnSettings.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchMainView('settings');
-    });
-  }
-
+  // SPA event listeners (nav-btn-*) have been removed to allow multi-page routing.
+  
   // Inicializa en Lenovo
   selectOEM('lenovo');
 
-  // Inicializar datos de flota y políticas en segundo plano
-  loadFleetData(false);
-  loadFleetSettings();
+  // Background polling for fleet data removed to prevent race conditions and redundant network errors.
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {

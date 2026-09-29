@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
+  <script src="/auth-guard.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="OEM Driver Explorer — Políticas y Configuración de Flota." />
@@ -13,58 +14,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+  <link rel="icon" href="/refresh_14433.png" />
 
   <link rel="stylesheet" href="style.css?v=11.0" />
+  <script src="/header.js"></script>
+
 </head>
 <body>
 
   <!-- Barra Superior de Navegación -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <div class="logo">
-        <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-          <div class="logo-mark" aria-hidden="true">OEM</div>
-          <div class="logo-title-group">
-            <span class="logo-text">Driver Explorer</span>
-            <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
-          </div>
-        </a>
-      </div>
-
-      <nav class="primary-nav" role="navigation" aria-label="Secciones de la plataforma">
-        <a href="/" class="nav-tab-btn" id="nav-btn-catalog">
-          <span class="nav-tab-label">Catálogo OEM</span>
-        </a>
-        <a href="/flota" class="nav-tab-btn" id="nav-btn-fleet">
-          <span class="nav-tab-label">Flota de Equipos</span>
-        </a>
-        <a href="/configuracion" class="nav-tab-btn active" id="nav-btn-settings">
-          <span class="nav-tab-label">Políticas y Configuración</span>
-          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
-        </a>
-        <a href="/conectores" class="nav-tab-btn" id="nav-btn-connectors">
-          <span class="nav-tab-label">Conectores &amp; APIs</span>
-        </a>
-      </nav>
-
-      <div class="header-badges">
-        <span id="header-timestamp-label" style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
-          Políticas Sincronizadas
-        </span>
-      </div>
-    </div>
-  </header>
+  <div id="app-header"></div>
 
   <!-- Contenido de Configuración -->
   <main class="main-content" role="main" style="max-width:1300px; margin:0 auto; padding:28px 24px 60px;">
     
     <div class="fleet-header-row" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
       <div>
-        <h1 class="fleet-view-title" style="font-size:24px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">
+        <h1 class="fleet-view-title" style="font-size:24px; font-weight:700; color:var(--text-main); margin-bottom:6px;">
           Políticas y Configuración de Flota
         </h1>
-        <p class="fleet-view-subtitle" style="color:var(--text-secondary); font-size:14px;">
+        <p class="fleet-view-subtitle" style="color:var(--text-body); font-size:14px;">
           Define las directivas maestras de automatización, periodicidad de actualización, anillos de despliegue y compatibilidad por hardware.
         </p>
       </div>
@@ -77,16 +46,16 @@
     </div>
 
     <!-- BANNER DE ESTADO GLOBAL ACTIVO -->
-    <div id="settings-active-banner" class="settings-card" style="margin-bottom:24px; background:linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.85) 100%); border:1px solid rgba(56,189,248,0.25);">
+    <div id="settings-active-banner" class="settings-card" style="margin-bottom:24px; border:1px solid var(--border-subtle);">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
         <div style="display:flex; align-items:center; gap:14px;">
-          <div id="active-banner-indicator" style="width:14px; height:14px; border-radius:50%; background:var(--accent-cyan); box-shadow:0 0 10px var(--accent-cyan);"></div>
+          <div id="active-banner-indicator" style="width:14px; height:14px; border-radius:50%; background:var(--primary-action); box-shadow:0 0 10px var(--primary-action);"></div>
           <div>
             <div style="display:flex; align-items:center; gap:10px;">
-              <span id="active-banner-title" style="font-size:15px; font-weight:700; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.04em;">MODO: SOLO SABER (AUDITORÍA)</span>
+              <span id="active-banner-title" style="font-size:15px; font-weight:700; color:var(--text-main); text-transform:uppercase; letter-spacing:0.04em;">MODO: SOLO SABER (AUDITORÍA)</span>
               <span id="active-banner-pill" class="status-pill compliant" style="font-size:10px;">SEGURO</span>
             </div>
-            <p id="active-banner-desc" style="font-size:13px; color:var(--text-secondary); margin-top:2px;">
+            <p id="active-banner-desc" style="font-size:13px; color:var(--text-body); margin-top:2px;">
               La telemetría se recopila con normalidad. No se aplican cambios ni descargas automáticas en los equipos de la flota.
             </p>
           </div>
@@ -95,11 +64,11 @@
         <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
           <div style="text-align:right;">
             <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Próxima Ventana</div>
-            <div id="active-banner-window" class="font-mono" style="font-size:13px; font-weight:600; color:var(--accent-cyan);">Manual</div>
+            <div id="active-banner-window" class="font-mono" style="font-size:13px; font-weight:600; color:var(--primary-action);">Manual</div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Equipos Elegibles</div>
-            <div id="active-banner-eligible-devices" class="font-mono" style="font-size:16px; font-weight:700; color:var(--text-primary);">0 / 1</div>
+            <div id="active-banner-eligible-devices" class="font-mono" style="font-size:16px; font-weight:700; color:var(--text-main);">0 / 1</div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase;">Parches en Espera</div>
@@ -208,7 +177,7 @@
             <label for="settings-monthly-day" class="settings-field-label">Día del mes para aplicar actualizaciones automáticas:</label>
             <div style="display:flex; align-items:center; gap:12px; margin-top:8px; flex-wrap:wrap;">
               <input type="number" id="settings-monthly-day" class="fleet-input" min="1" max="28" value="15" style="width:85px; padding:6px 12px; font-weight:700;" />
-              <span style="color:var(--text-secondary); font-size:13px;">de cada mes</span>
+              <span style="color:var(--text-body); font-size:13px;">de cada mes</span>
               <div style="display:flex; gap:8px;">
                 <button type="button" id="btn-preset-day-15" class="tab-btn-pill" style="cursor:pointer; border:1px solid var(--border-normal);">Día 15 (Patch Tuesday)</button>
                 <button type="button" id="btn-preset-day-today" class="tab-btn-pill" style="cursor:pointer; border:1px solid var(--border-normal);">Día de Hoy (<span id="preset-today-num">25</span>)</button>
@@ -319,10 +288,10 @@
       <div style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
         <div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
-            <span style="font-size:14px; font-weight:700; color:var(--text-primary);">Evaluación de Despliegue:</span>
+            <span style="font-size:14px; font-weight:700; color:var(--text-main);">Evaluación de Despliegue:</span>
             <span id="sim-status-pill" class="status-pill compliant" style="font-size:11px;">LISTO PARA EVALUAR</span>
           </div>
-          <p id="sim-impact-summary" style="font-size:13px; color:var(--text-secondary); line-height:1.5;">
+          <p id="sim-impact-summary" style="font-size:13px; color:var(--text-body); line-height:1.5;">
             Calculando equipos elegibles y controladores pendientes según las políticas configuradas...
           </p>
         </div>
@@ -337,7 +306,7 @@
     <!-- Barra Inferior de Guardado -->
     <div class="settings-save-bar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
       <div>
-        <span style="font-weight:600; color:var(--text-primary); display:block;">Persistencia de Políticas Corporativas</span>
+        <span style="font-weight:600; color:var(--text-main); display:block;">Persistencia de Políticas Corporativas</span>
         <span style="font-size:12px; color:var(--text-muted);">Los cambios se guardan de inmediato en la base de datos y se propagan en los próximos check-ins de los agentes cliente.</span>
       </div>
       <div style="display:flex; gap:12px; align-items:center;">

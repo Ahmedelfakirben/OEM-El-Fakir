@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <script src="/auth-guard.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Políticas y Líneas Base — OEM Driver Explorer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/refresh_14433.png" />
+  <link rel="stylesheet" href="style.css?v=11.0" />
+  
+  <script src="/header.js"></script>
+  <script src="politicas.js" defer></script>
+</head>
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content" style="max-width:1440px; margin:0 auto; padding:24px 20px;">
+    
+    <div style="margin-bottom:24px;">
+      <h1 style="font-size:24px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">Políticas Corporativas</h1>
+      <p style="color:var(--text-secondary); font-size:14px;">Gestiona las Líneas Base de Hardware y define los Anillos de Despliegue.</p>
+    </div>
+
+    <!-- Pestañas (Tabs) -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-btn active" data-target="tab-baselines">Líneas Base de Hardware</button>
+        <button class="tab-btn" data-target="tab-rings">Anillos de Despliegue (Grupos)</button>
+      </div>
+
+      <div class="tabs-content">
+        <!-- TAB 1: Líneas Base -->
+        <div id="tab-baselines" class="tab-pane active">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h2 style="font-size:18px; font-weight:600; color:var(--text-primary);">Catálogo de Hardware Detectado</h2>
+            <button class="fleet-btn-secondary" onclick="loadBaselines()">Refrescar</button>
+          </div>
+          
+          <div class="fleet-table-container">
+            <table class="fleet-table" id="baselines-table">
+              <thead>
+                <tr>
+                  <th>Modelo (Hardware)</th>
+                  <th>Estado</th>
+                  <th>Bloquear WinUpdate</th>
+                  <th>Solo Críticos</th>
+                  <th style="text-align:right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="baselines-tbody">
+                <tr><td colspan="5" style="text-align:center;">Cargando...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: Anillos de Despliegue -->
+        <div id="tab-rings" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h2 style="font-size:18px; font-weight:600; color:var(--text-primary);">Anillos Configurados</h2>
+            <button class="fleet-btn-primary" onclick="openRingModal()">+ Crear Nuevo Anillo</button>
+          </div>
+
+          <div class="rings-grid" id="rings-container">
+            <!-- Cards de anillos generadas por JS -->
+            <p>Cargando anillos...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: Configurar Línea Base -->
+  <div id="modal-baseline" class="modal-overlay">
+    <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+      <h3 style="margin-bottom:16px; font-size:18px;">Configurar Línea Base</h3>
+      <p id="baseline-model-name" style="font-family:monospace; margin-bottom:20px; font-size:14px; color:var(--text-secondary);"></p>
+      
+      <form id="form-baseline" style="display:flex; flex-direction:column; gap:16px;">
+        <input type="hidden" id="baseline-id" />
+        
+        <div>
+          <label class="form-label">Estado de Aprobación</label>
+          <select id="baseline-status" class="fleet-select" style="width:100%;">
+            <option value="Active">Aprobado (Active)</option>
+            <option value="Quarantine">Requiere Revisión (Quarantine)</option>
+            <option value="Revoked">Revocado / Kill Switch (Revoked)</option>
+          </select>
+        </div>
+
+        <label class="toggle-row">
+          <span>Solo Actualizaciones Críticas</span>
+          <input type="checkbox" id="baseline-critical" />
+        </label>
+
+        <label class="toggle-row">
+          <span>Bloquear Drivers de Windows Update</span>
+          <input type="checkbox" id="baseline-winupdate" />
+        </label>
+
+        <hr style="border:none; border-top:1px solid var(--border-color); margin: 8px 0;" />
+        
+        <div>
+          <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Aprobación Granular de Drivers</span>
+            <input type="text" id="baseline-driver-search" placeholder="🔍 Buscar driver..." class="fleet-input" style="width:200px; padding:4px 8px; font-size:13px;" onkeyup="filterBaselineDrivers()" />
+          </label>
+          <div id="baseline-drivers-container" style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 4px; background: white; margin-top:8px;">
+             <div style="padding:16px; text-align:center; color:var(--text-secondary); font-size:13px;">Cargando drivers del catálogo oficial...</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:16px;">
+          <button type="button" class="fleet-btn-secondary" onclick="closeBaselineModal()">Cancelar</button>
+          <button type="submit" class="fleet-btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Crear/Editar Anillo -->
+  <div id="modal-ring" class="modal-overlay">
+    <div class="modal-content" style="max-width: 650px;">
+      <h3 style="margin-bottom:16px; font-size:18px;">Configurar Anillo de Despliegue</h3>
+      
+      <form id="form-ring" style="display:flex; flex-direction:column; gap:16px;">
+        <input type="hidden" id="ring-id" />
+        
+        <div>
+          <label class="form-label">Nombre del Anillo</label>
+          <input type="text" id="ring-name" class="fleet-input" style="width:100%;" required placeholder="Ej. Anillo 1 - Producción" />
+        </div>
+
+        <div>
+          <label class="form-label">Frecuencia</label>
+          <select id="ring-frequency" class="fleet-select" style="width:100%; margin-bottom:8px;">
+            <option value="weekly">Semanal (Lunes a Domingo)</option>
+            <option value="monthly">Una vez al mes (Ej. Primer martes)</option>
+            <option value="disabled">Desactivado (Sin despliegue automático)</option>
+          </select>
+
+          <label class="form-label">Día de Despliegue</label>
+          <select id="ring-day" class="fleet-select" style="width:100%;">
+            <option value="Monday">Lunes</option>
+            <option value="Tuesday">Martes</option>
+            <option value="Wednesday">Miércoles</option>
+            <option value="Thursday">Jueves</option>
+            <option value="Friday">Viernes</option>
+            <option value="Saturday">Sábado</option>
+            <option value="Sunday">Domingo</option>
+            <option value="Any">Cualquier Día</option>
+          </select>
+        </div>
+
+        <div id="time-window-container" style="display:flex; gap:12px;">
+          <div style="flex:1;">
+            <label class="form-label">Hora Inicio</label>
+            <input type="time" id="ring-start" class="fleet-input" style="width:100%;" required />
+          </div>
+          <div style="flex:1;">
+            <label class="form-label">Hora Fin</label>
+            <input type="time" id="ring-end" class="fleet-input" style="width:100%;" required />
+          </div>
+        </div>
+
+        <label class="toggle-row">
+          <span>Es Anillo Piloto (Canary)</span>
+          <input type="checkbox" id="ring-canary" />
+        </label>
+        
+        <label class="toggle-row">
+          <span>Permitir instalación manual al usuario (Self-Service)</span>
+          <input type="checkbox" id="ring-manual" />
+        </label>
+
+        <div>
+          <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Asignar Equipos a este Anillo</span>
+            <input type="text" id="ring-machine-search" placeholder="🔍 Buscar equipo..." class="fleet-input" style="width:200px; padding:4px 8px; font-size:13px;" onkeyup="filterRingMachines()" />
+          </label>
+          <div id="ring-machines-container" style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border-color); padding: 8px; border-radius: 4px; background: white; display: flex; flex-direction: column; gap: 8px; margin-top:8px;">
+            <!-- Renderizado dinámicamente -->
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:16px;">
+          <button type="button" class="fleet-btn-secondary" onclick="closeRingModal()">Cancelar</button>
+          <button type="submit" class="fleet-btn-primary">Guardar Anillo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

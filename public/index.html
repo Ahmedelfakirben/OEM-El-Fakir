@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="/auth-guard.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="OEM Driver Explorer — Auditoría corporativa de controladores, parches y firmware BIOS para flotas HP y Lenovo con validación de admisión en Windows Update y Windows 11." />
@@ -14,42 +15,16 @@
   <meta property="og:type" content="website" />
 
   <!-- Favicon SVG limpio -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f6ef7'/><path d='M8 10h16v12H8z' fill='none' stroke='white' stroke-width='2'/><path d='M12 26h8M16 22v4' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>" />
+  <link rel="icon" href="/refresh_14433.png" />
 
   <link rel="stylesheet" href="style.css?v=9.0" />
+  <script src="/header.js"></script>
+
 </head>
 <body>
 
   <!-- ── Barra Superior de Navegación ─────────────────────────────── -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <div class="logo">
-        <div class="logo-mark" aria-hidden="true">OEM</div>
-        <div class="logo-title-group">
-          <span class="logo-text">Driver Explorer</span>
-          <span class="logo-subtext">Auditoría Corporativa &amp; Windows Update</span>
-        </div>
-      </div>
-
-      <!-- Pestañas de Navegación Principal -->
-      <nav class="primary-nav" aria-label="Navegación principal">
-        <a href="/" id="nav-btn-catalog" class="nav-tab-btn active">
-          <span class="nav-tab-label">Catálogo OEM</span>
-        </a>
-        <a href="/flota" id="nav-btn-fleet" class="nav-tab-btn">
-          <span class="nav-tab-label">Flota de Equipos</span>
-          <span id="nav-fleet-count-badge" class="nav-count-badge">1</span>
-        </a>
-        <a href="/configuracion" id="nav-btn-settings" class="nav-tab-btn">
-          <span class="nav-tab-label">Políticas y Configuración</span>
-          <span id="nav-mode-badge" class="nav-mode-badge audit">Solo Saber</span>
-        </a>
-        <a href="/conectores" id="nav-btn-connectors" class="nav-tab-btn">
-          <span class="nav-tab-label">Conectores &amp; APIs</span>
-        </a>
-      </nav>
-    </div>
-  </header>
+  <div id="app-header"></div>
 
   <!-- ── VISTA 1: Catálogo OEM y Búsqueda ───────────────────────── -->
   <div id="view-catalog" class="app-view-container active">
@@ -218,9 +193,6 @@
                   <option value="lenovo:21L6">ThinkPad L14 Gen 5 AMD (21L6)</option>
                 </optgroup>
               </select>
-              <button class="fleet-clear-btn" type="button" onclick="clearFleetSelection()" title="Limpiar y buscar a mano">
-                Limpiar
-              </button>
             </div>
           </div>
 
@@ -255,22 +227,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Barra Inferior de Apoyo: Chips Rápidos y Pistas de Comando -->
-        <div class="deck-footer-bar">
-          <div class="chips-container" id="chips-container" role="group" aria-label="Accesos directos rápidos">
-            <span class="chips-title">Accesos rápidos:</span>
-          </div>
-
-          <div class="ps-quick-hint">
-            <button type="button" class="export-btn terminal-btn" onclick="openTerminalCommandModal()" title="Generar comando PowerShell para el modelo activo" style="padding: 4px 10px; font-size: 11px;">
-              Terminal PowerShell
-            </button>
-            <span class="ps-badge">PowerShell</span>
-            <span id="ps-hint-label" class="ps-label">Obtener código cliente:</span>
-            <code id="ps-hint-cmd" class="ps-code" title="Comando de PowerShell">(Get-CimInstance Win32_ComputerSystem).Model.Substring(0,4)</code>
-          </div>
         </div>
 
       </div>
@@ -478,7 +434,7 @@
           </div>
           <div class="fleet-actions-row">
             <a href="/api/agent/download-msi" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar paquete de instalación silenciosa para Intune o despliegue manual">
-              Descargar Agente MSI (.msi)
+              <img src="/refresh_14433.png" alt="Icon" style="width:16px; height:16px;" /> Descargar Agente MSI (.msi)
             </a>
             <button type="button" class="fleet-btn-secondary" onclick="loadFleetData(true)">
               Refrescar Flota
@@ -1237,6 +1193,6 @@
   <!-- ── Toast de Notificaciones ────────────────────────────────── -->
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
-  <script src="app.js?v=9.0"></script>
+  <script src="app.js?v=9.1"></script>
 </body>
 </html>

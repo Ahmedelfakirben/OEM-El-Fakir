@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="/auth-guard.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Logs — OEM Driver Explorer</title>
+
+  <link rel="icon" href="/refresh_14433.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="/header.js"></script>
+</head>
+<body class="dashboard-body">
+
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      
+      <div class="page-header">
+        <h1 class="page-title">Logs de Auditoría</h1>
+        <p class="page-subtitle">Registro centralizado de operaciones administrativas Zero Trust</p>
+      </div>
+
+      <!-- Filtros Flexbox -->
+      <section class="filters-bar" style="display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 24px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        
+        <div class="filter-group">
+          <label for="filter-admin" style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500;">Administrador</label>
+          <input type="text" id="filter-admin" placeholder="Ej. sysadmin" class="search-input" style="padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--radius-sm); font-size: 13px; min-width: 200px; background: var(--bg-input); color: var(--text-primary);" />
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-date-start" style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500;">Fecha Inicio</label>
+          <input type="date" id="filter-date-start" class="search-input" style="padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--radius-sm); font-size: 13px; background: var(--bg-input); color: var(--text-primary);" />
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-date-end" style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500;">Fecha Fin</label>
+          <input type="date" id="filter-date-end" class="search-input" style="padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--radius-sm); font-size: 13px; background: var(--bg-input); color: var(--text-primary);" />
+        </div>
+
+        <button id="btn-filter" class="btn btn-primary" style="padding: 8px 16px; font-size: 13px;">Filtrar</button>
+        <button id="btn-reset" class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;">Limpiar</button>
+
+      </section>
+
+      <!-- Tabla Data Grid -->
+      <section class="table-container" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);">
+        <table class="data-grid" style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead style="background: var(--bg-input); border-bottom: 1px solid var(--border-subtle);">
+            <tr>
+              <th style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Fecha / Hora</th>
+              <th style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Administrador</th>
+              <th style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Acción</th>
+              <th style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">Objetivo / Equipo</th>
+              <th style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;">IP Origen</th>
+            </tr>
+          </thead>
+          <tbody id="audit-logs-tbody">
+            <!-- Renderizado dinámico -->
+          </tbody>
+        </table>
+        
+        <div id="loading-indicator" style="padding: 24px; text-align: center; color: var(--text-secondary); font-size: 13px;">Cargando logs...</div>
+        <div id="empty-state" style="display: none; padding: 24px; text-align: center; color: var(--text-secondary); font-size: 13px;">No se encontraron logs que coincidan con los filtros.</div>
+      </section>
+      
+      <div style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px;">
+        <button id="btn-prev" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" disabled>Anterior</button>
+        <button id="btn-next" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Siguiente</button>
+      </div>
+
+    </div>
+  </main>
+
+  <template id="audit-row-template">
+    <tr style="border-bottom: 1px solid var(--border-subtle); transition: background 0.2s;">
+      <td class="col-time" style="padding: 12px 16px; font-size: 13px; color: var(--text-primary); font-family: var(--font-mono);"></td>
+      <td class="col-admin" style="padding: 12px 16px; font-size: 13px; color: var(--text-primary); font-weight: 500;"></td>
+      <td class="col-action" style="padding: 12px 16px; font-size: 12px;">
+        <span class="action-pill" style="display: inline-block; padding: 4px 8px; border-radius: 4px; background: rgba(37, 99, 235, 0.1); color: var(--primary-action); font-weight: 600;"></span>
+      </td>
+      <td class="col-target" style="padding: 12px 16px; font-size: 13px; color: var(--text-secondary); font-family: var(--font-mono);"></td>
+      <td class="col-ip" style="padding: 12px 16px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);"></td>
+    </tr>
+  </template>
+
+  <!-- El script como módulo para importar apiFetch -->
+  <script type="module" src="/audit.js"></script>
+</body>
+</html>

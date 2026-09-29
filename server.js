@@ -6,6 +6,7 @@
 
 'use strict';
 
+require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
 const helmet  = require('helmet');
@@ -23,6 +24,8 @@ const modelSearchService                          = require('./lib/modelSearchSe
 // ------------------------------------------------------------------
 const PORT          = process.env.PORT || 3000;
 const REQUEST_TIMEOUT_MS = 12_000; // Timeout global (ligeramente mayor que el de los servicios)
+const { requireAuth: requireAdminToken, verifyApiKey } = require('./middleware/authMiddleware');
+const authRouter = require('./routes/auth');
 
 // ------------------------------------------------------------------
 // Inicialización de Express
@@ -53,6 +56,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/api/auth', authRouter);
 
 // Sirve el frontend desde /public con control de cache estricto para desarrollo
 app.use(express.static(path.join(__dirname, 'public'), {
@@ -381,6 +385,7 @@ app.get('/api/fleet/devices/:id', (req, res) => {
 app.put('/api/fleet/devices/:id/group', (req, res) => {
   const { group } = req.body || {};
   if (!group) return res.status(400).json({ error: 'Grupo requerido' });
+  fleetStorage.assignMachinesToRing(group, [req.params.id]);
   const updated = fleetStorage.setDeviceGroup(req.params.id, group);
   res.json(updated);
 });
@@ -943,6 +948,11 @@ app.get('/api/connectors/status', async (_req, res) => {
 // ------------------------------------------------------------------
 // Vistas Dedicadas HTML (Arquitectura Modular)
 // ------------------------------------------------------------------
+app.get('/debug-env', (req, res) => res.send(process.env.LOCAL_ADMIN_PASS_HASH));
+app.get('/login', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
 app.get('/flota', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'flota.html'));
 });
@@ -955,13 +965,177 @@ app.get('/configuracion', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'configuracion.html'));
 });
 
+app.get('/politicas', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'politicas.html'));
+});
+
 app.get('/conectores', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'conectores.html'));
+});
+
+// --- GESTION DE POLITICAS Y ANILLOS (Frontend API) ---
+app.get('/api/baselines', requireAdminToken, (req, res) => {
+  const db = fleetStorage.getDb();
+  const baselines = db.prepare('SELECT * FROM hardware_baselines').all();
+  res.json(baselines);
+});
+app.put('/api/baselines/:id', requireAdminToken, (req, res) => {
+  const db = fleetStorage.getDb();
+  const { status, block_windows_update, require_critical_only } = req.body;
+  try {
+    db.prepare('UPDATE hardware_baselines SET status = ?, block_windows_update = ?, require_critical_only = ? WHERE id = ?').run(status, block_windows_update, require_critical_only, req.params.id);
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+app.get('/api/rings', (req, res) => {
+  const db = fleetStorage.getDb();
+  const rings = db.prepare('SELECT * FROM deployment_rings').all();
+  res.json(rings);
+});
+app.post('/api/rings', requireAdminToken, (req, res) => {
+  const db = fleetStorage.getDb();
+  const { name, install_day, time_window_start, time_window_end, is_canary } = req.body;
+  const id = 'ring-' + Math.random().toString(36).substring(2, 9);
+  try {
+    db.prepare('INSERT INTO deployment_rings (id, name, install_day, time_window_start, time_window_end, is_canary) VALUES (?, ?, ?, ?, ?, ?)').run(id, name, install_day, time_window_start, time_window_end, is_canary);
+    res.json({ success: true, id });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+app.put('/api/rings/:id', requireAdminToken, (req, res) => {
+  const db = fleetStorage.getDb();
+  const { name, install_day, time_window_start, time_window_end, is_canary } = req.body;
+  try {
+    db.prepare('UPDATE deployment_rings SET name = ?, install_day = ?, time_window_start = ?, time_window_end = ?, is_canary = ? WHERE id = ?').run(name, install_day, time_window_start, time_window_end, is_canary, req.params.id);
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // ------------------------------------------------------------------
 // Fallback SPA: cualquier ruta no-API sirve el index.html
 // ------------------------------------------------------------------
+
+// GET /api/client/updates/:machineId
+app.get('/api/client/updates/:machineId', async (req, res) => {
+  const device = fleetStorage.getDeviceById(req.params.machineId);
+  if (device) {
+    try {
+      const db = fleetStorage.getDb();
+      db.prepare('UPDATE devices SET last_seen = ? WHERE id = ?').run(new Date().toISOString(), device.id);
+    } catch(e) {
+      console.error('Error updating last_seen:', e);
+    }
+  }
+  if (!device) return res.status(404).json({ error: 'Device not found' });
+  
+  const db = fleetStorage.getDb();
+  const ring = device.ring_id ? db.prepare('SELECT * FROM deployment_rings WHERE id = ?').get(device.ring_id) : null;
+  const allow_manual_update = ring ? !!ring.allow_manual_update : false;
+  const frequency = ring && ring.frequency ? ring.frequency : 'weekly';
+
+  let updates = [];
+  const mName = device.model_name || device.model_id;
+  if (mName) {
+    const baseline = db.prepare('SELECT * FROM hardware_baselines WHERE model_name = ?').get(mName);
+    if (baseline) {
+       const rows = db.prepare('SELECT update_id, update_name FROM baseline_approved_updates WHERE baseline_id = ? AND is_approved = 1').all(baseline.id);
+       
+       if (rows.length > 0) {
+         try {
+           const { fetchDrivers: lenovoFetch } = require('./lib/lenovoService');
+           const modelPrefix = mName.substring(0, 4);
+           let fullDrivers = await lenovoFetch(modelPrefix);
+           const approvedIds = new Set(rows.map(r => r.update_id));
+           const installedRows = db.prepare('SELECT driver_name, installed_version FROM device_drivers WHERE device_id = ?').all(device.id);
+           const installedMap = new Map();
+           for(const r of installedRows) installedMap.set(r.driver_name, r.installed_version);
+
+           const seen = new Set();
+           updates = fullDrivers
+             .filter(d => {
+               if (!approvedIds.has(d.id || d.name)) return false;
+               if (installedMap.get(d.name) === d.version) { seen.add(d.name); return false; }
+               if (seen.has(d.name)) return false;
+               seen.add(d.name);
+               return true;
+             })
+             .map(d => ({
+               driver_name: d.name,
+               category: d.category || 'Driver',
+               installed_version: installedMap.get(d.name) || 'Unknown',
+               target_version: d.version,
+               latest_version: d.version,
+               severity: d.severity || 'Normal',
+               download_url: d.download_url || d.downloadUrl
+             }));
+         } catch(e) {}
+       }
+    }
+  }
+
+  res.json({
+    allow_manual_update,
+    frequency,
+    policy: { enabled: true, criticalOnly: false },
+    updates
+  });
+});
+
+app.get('/api/baselines/:id/updates', requireAdminToken, async (req, res) => {
+  const db = fleetStorage.getDb();
+  const baseline = db.prepare('SELECT * FROM hardware_baselines WHERE id = ?').get(req.params.id);
+  if (!baseline) return res.status(404).json({ error: 'Baseline no encontrada' });
+  try {
+    let drivers = [];
+    const modelPrefix = baseline.model_name ? baseline.model_name.substring(0, 4) : null;
+    if (modelPrefix && modelPrefix.length === 4) {
+       drivers = await lenovoFetch(modelPrefix);
+    }
+    const approvals = db.prepare('SELECT * FROM baseline_approved_updates WHERE baseline_id = ?').all(baseline.id);
+    const approvedMap = new Map();
+    for (const a of approvals) {
+      approvedMap.set(a.update_id, a.is_approved === 1);
+    }
+    const results = drivers.map(d => {
+      const uId = d.id || d.name;
+      return {
+        id: uId,
+        name: d.name,
+        category: d.category || 'Driver',
+        severity: d.severity || 'Normal',
+        version: d.version,
+        is_approved: approvedMap.has(uId) ? approvedMap.get(uId) : true
+      };
+    });
+    res.json({ updates: results });
+  } catch(e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/baselines/:id/updates', requireAdminToken, (req, res) => {
+  const db = fleetStorage.getDb();
+  const { approved_updates } = req.body;
+  try {
+    db.exec('BEGIN TRANSACTION;');
+    db.prepare('DELETE FROM baseline_approved_updates WHERE baseline_id = ?').run(req.params.id);
+    const insert = db.prepare('INSERT INTO baseline_approved_updates (baseline_id, update_id, update_name, is_approved) VALUES (?, ?, ?, 1)');
+    for (const u of (approved_updates || [])) {
+      insert.run(req.params.id, u.id, u.name);
+    }
+    db.exec('COMMIT;');
+    res.json({ success: true });
+  } catch(e) {
+    db.exec('ROLLBACK;');
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -983,6 +1157,58 @@ app.use((err, req, res, _next) => {
 // ------------------------------------------------------------------
 // Inicio del servidor
 // ------------------------------------------------------------------
+
+// POST /api/client/logs
+app.post('/api/client/logs', (req, res) => {
+  try {
+    const { machineId, level, message, timestamp } = req.body;
+    if (!machineId || !message) return res.status(400).json({error: 'Missing fields'});
+    
+    const db = fleetStorage.getDb();
+    db.prepare('INSERT INTO device_logs (device_id, timestamp, level, message) VALUES (?, ?, ?, ?)').run(
+      machineId, timestamp || new Date().toISOString(), level || 'INFO', message
+    );
+    res.json({success: true});
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({error: 'Server error'});
+  }
+});
+
+// GET /api/fleet/:id/logs
+app.get('/api/fleet/:id/logs', (req, res) => {
+  try {
+    const db = fleetStorage.getDb();
+    const logs = db.prepare('SELECT * FROM device_logs WHERE device_id = ? ORDER BY timestamp DESC LIMIT 50').all(req.params.id);
+    res.json(logs);
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({error: 'Server error'});
+  }
+});
+
+
+// GET /api/audit-logs
+app.get('/api/audit-logs', (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 50;
+    const offset = parseInt(req.query.offset) || 0;
+    const db = fleetStorage.getDb();
+    
+    // Get total count
+    const totalRow = db.prepare('SELECT COUNT(*) as count FROM audit_logs').get();
+    const total = totalRow.count;
+    
+    // Get logs
+    const logs = db.prepare('SELECT * FROM audit_logs ORDER BY timestamp DESC LIMIT ? OFFSET ?').all(limit, offset);
+    
+    res.json({ logs, total });
+  } catch(e) {
+    console.error(e);
+    res.status(500).json({error: 'Server error'});
+  }
+});
+
 function startServer(port = PORT) {
   return new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
@@ -1010,4 +1236,10 @@ if (require.main === module) {
 }
 
 module.exports = { app, startServer };
+
+
+
+ 
+ 
+
 
