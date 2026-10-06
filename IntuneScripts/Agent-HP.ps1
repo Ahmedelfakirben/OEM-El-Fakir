@@ -3,7 +3,7 @@
     Se conecta al backend de OEM Driver Auditor (/api/agent/checkin)
 #>
 
-$ApiUrl = "http://localhost:3005/api/agent/checkin"
+$ApiUrl = "https://oem.elfakir.com/api/agent/checkin"
 $ApiKey = "cambia-esta-clave"
 
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
