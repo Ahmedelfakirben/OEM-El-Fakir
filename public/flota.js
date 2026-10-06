@@ -378,7 +378,7 @@ function renderFleetTable(devices) {
     actionsDiv.append(updateBtn);
     tdActions.appendChild(actionsDiv);
 
-    tr.append(tdStatus, tdHost, tdModel, tdCpu, tdOs, tdGroup, tdBar, tdDrvs, tdSeen, tdActions);
+    tr.append(tdStatus, tdHost, tdModel, tdCpu, tdOs, tdBar, tdDrvs, tdSeen);
     fragment.appendChild(tr);
   }
 

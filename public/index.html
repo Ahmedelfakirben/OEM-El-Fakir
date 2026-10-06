@@ -44,40 +44,6 @@
       <!-- Command Deck Card -->
       <div class="command-deck-card">
         
-        <!-- Pestañas Selectoras de Fabricante (Lenovo / HP) -->
-        <div class="oem-toggle-bar" role="tablist" aria-label="Seleccionar fabricante">
-          <button
-            id="tab-lenovo"
-            class="oem-tab-btn active"
-            role="tab"
-            aria-selected="true"
-            aria-controls="results-panel"
-            data-oem="lenovo"
-            onclick="selectOEM('lenovo')"
-          >
-            <span class="tab-btn-pill lenovo">LENOVO</span>
-            <div class="tab-btn-text">
-              <span class="tab-btn-title">Lenovo ThinkPad &amp; Workstations</span>
-              <span class="tab-btn-sub">Familias T460 · T480 · T490 · P15 · L14 · X1</span>
-            </div>
-          </button>
-
-          <button
-            id="tab-hp"
-            class="oem-tab-btn"
-            role="tab"
-            aria-selected="false"
-            aria-controls="results-panel"
-            data-oem="hp"
-            onclick="selectOEM('hp')"
-          >
-            <span class="tab-btn-pill hp">HP</span>
-            <div class="tab-btn-text">
-              <span class="tab-btn-title">HP ProBook &amp; EliteBook</span>
-              <span class="tab-btn-sub">Familias ProBook 440 (G5-G11) · EliteBook 840 (G5-G11)</span>
-            </div>
-          </button>
-        </div>
 
         <!-- Fila Unificada de Búsqueda: Selector de Flota + Input Libre -->
         <div class="unified-search-deck">
@@ -95,103 +61,103 @@
                 <option value="">Selecciona un modelo de la flota corporativa...</option>
 
                 <!-- HP PROBOOK 440 -->
-                <optgroup label="HP — Familia ProBook 440">
-                  <option value="hp:837E">HP ProBook 440 G5 (837E)</option>
-                  <option value="hp:8532">HP ProBook 440 G6 (8532)</option>
-                  <option value="hp:8723">HP ProBook 440 G7 (8723)</option>
-                  <option value="hp:888A">HP ProBook 440 G8 (888A)</option>
-                  <option value="hp:888B">HP ProBook 440 G8 — Placa Alt. (888B)</option>
-                  <option value="hp:8A4E">HP ProBook 440 G9 (8A4E)</option>
-                  <option value="hp:8A4F">HP ProBook 440 G9 — Placa Alt. (8A4F)</option>
-                  <option value="hp:8B58">HP ProBook 440 G10 (8B58)</option>
-                  <option value="hp:8B59">HP ProBook 440 G10 — Placa Alt. (8B59)</option>
-                  <option value="hp:8C24">HP ProBook 440 G11 (8C24)</option>
-                  <option value="hp:8C25">HP ProBook 440 G11 — Placa Alt. (8C25)</option>
-                </optgroup>
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
 
                 <!-- HP ELITEBOOK 840 -->
-                <optgroup label="HP — Familia EliteBook 840">
-                  <option value="hp:83B2">HP EliteBook 840 G5 (83B2)</option>
-                  <option value="hp:8549">HP EliteBook 840 G6 (8549)</option>
-                  <option value="hp:880D">HP EliteBook 840 G7 (880D)</option>
-                  <option value="hp:8724">HP EliteBook 840 G7 — Placa Alt. (8724)</option>
-                  <option value="hp:8936">HP EliteBook 840 G8 (8936)</option>
-                  <option value="hp:880E">HP EliteBook 840 G8 — Placa Alt. (880E)</option>
-                  <option value="hp:8AB2">HP EliteBook 840 G9 (8AB2)</option>
-                  <option value="hp:8A3B">HP EliteBook 840 G9 — Placa Alt. (8A3B)</option>
-                  <option value="hp:8A3C">HP EliteBook 840 G9 — Placa Alt. (8A3C)</option>
-                  <option value="hp:8B28">HP EliteBook 840 G10 (8B28)</option>
-                  <option value="hp:8B44">HP EliteBook 840 G10 — Placa Alt. (8B44)</option>
-                  <option value="hp:8B45">HP EliteBook 840 G10 — Placa Alt. (8B45)</option>
-                  <option value="hp:8C1E">HP EliteBook 840 G11 (8C1E)</option>
-                  <option value="hp:8C1F">HP EliteBook 840 G11 — Placa Alt. (8C1F)</option>
-                </optgroup>
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
 
                 <!-- LENOVO T460, T480, T490 -->
-                <optgroup label="Lenovo — Familias ThinkPad T460, T480 y T490">
-                  <option value="lenovo:20FM">ThinkPad T460 (20FM)</option>
-                  <option value="lenovo:20FN">ThinkPad T460 (20FN)</option>
-                  <option value="lenovo:20F9">ThinkPad T460s (20F9)</option>
-                  <option value="lenovo:20FA">ThinkPad T460s (20FA)</option>
-                  <option value="lenovo:20FW">ThinkPad T460p (20FW)</option>
-                  <option value="lenovo:20FX">ThinkPad T460p (20FX)</option>
-                  <option value="lenovo:20L5">ThinkPad T480 (20L5)</option>
-                  <option value="lenovo:20L6">ThinkPad T480 (20L6)</option>
-                  <option value="lenovo:20L7">ThinkPad T480s (20L7)</option>
-                  <option value="lenovo:20L8">ThinkPad T480s (20L8)</option>
-                  <option value="lenovo:20N2">ThinkPad T490 (20N2)</option>
-                  <option value="lenovo:20N3">ThinkPad T490 (20N3)</option>
-                  <option value="lenovo:20RY">ThinkPad T490 (20RY)</option>
-                  <option value="lenovo:20RX">ThinkPad T490 (20RX)</option>
-                  <option value="lenovo:20Q9">ThinkPad T490 Healthcare Edition (20Q9)</option>
-                  <option value="lenovo:20QH">ThinkPad T490 Healthcare Edition (20QH)</option>
-                  <option value="lenovo:20NX">ThinkPad T490s (20NX)</option>
-                  <option value="lenovo:20NY">ThinkPad T490s (20NY)</option>
-                </optgroup>
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
 
                 <!-- LENOVO P15 WORKSTATIONS -->
-                <optgroup label="Lenovo — Familia ThinkPad P15 (Workstations)">
-                  <option value="lenovo:20ST">ThinkPad P15 Gen 1 (20ST)</option>
-                  <option value="lenovo:20SU">ThinkPad P15 Gen 1 (20SU)</option>
-                  <option value="lenovo:20TQ">ThinkPad P15v Gen 1 Intel (20TQ)</option>
-                  <option value="lenovo:20TR">ThinkPad P15v Gen 1 Intel (20TR)</option>
-                  <option value="lenovo:20T4">ThinkPad P15s Gen 1 (20T4)</option>
-                  <option value="lenovo:20T5">ThinkPad P15s Gen 1 (20T5)</option>
-                  <option value="lenovo:20YQ">ThinkPad P15 Gen 2 (20YQ)</option>
-                  <option value="lenovo:20YR">ThinkPad P15 Gen 2 (20YR)</option>
-                  <option value="lenovo:21A9">ThinkPad P15v Gen 2 (21A9)</option>
-                  <option value="lenovo:21AA">ThinkPad P15v Gen 2 (21AA)</option>
-                  <option value="lenovo:20W6">ThinkPad P15s Gen 2 (20W6)</option>
-                  <option value="lenovo:20W7">ThinkPad P15s Gen 2 (20W7)</option>
-                  <option value="lenovo:21D8">ThinkPad P15v Gen 3 Intel (21D8)</option>
-                  <option value="lenovo:21D9">ThinkPad P15v Gen 3 Intel (21D9)</option>
-                  <option value="lenovo:21EM">ThinkPad P15v Gen 3 AMD (21EM)</option>
-                  <option value="lenovo:21EN">ThinkPad P15v Gen 3 AMD (21EN)</option>
-                </optgroup>
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
 
                 <!-- LENOVO L14 FAMILIA -->
-                <optgroup label="Lenovo — Familia ThinkPad L14">
-                  <option value="lenovo:20U1">ThinkPad L14 Gen 1 Intel (20U1)</option>
-                  <option value="lenovo:20U2">ThinkPad L14 Gen 1 Intel (20U2)</option>
-                  <option value="lenovo:20U5">ThinkPad L14 Gen 1 AMD (20U5)</option>
-                  <option value="lenovo:20U6">ThinkPad L14 Gen 1 AMD (20U6)</option>
-                  <option value="lenovo:20X1">ThinkPad L14 Gen 2 Intel (20X1)</option>
-                  <option value="lenovo:20X2">ThinkPad L14 Gen 2 Intel (20X2)</option>
-                  <option value="lenovo:20X5">ThinkPad L14 Gen 2 AMD (20X5)</option>
-                  <option value="lenovo:20X6">ThinkPad L14 Gen 2 AMD (20X6)</option>
-                  <option value="lenovo:21C1">ThinkPad L14 Gen 3 Intel (21C1)</option>
-                  <option value="lenovo:21C2">ThinkPad L14 Gen 3 Intel (21C2)</option>
-                  <option value="lenovo:21C5">ThinkPad L14 Gen 3 AMD (21C5)</option>
-                  <option value="lenovo:21C6">ThinkPad L14 Gen 3 AMD (21C6)</option>
-                  <option value="lenovo:21H1">ThinkPad L14 Gen 4 Intel (21H1)</option>
-                  <option value="lenovo:21H2">ThinkPad L14 Gen 4 Intel (21H2)</option>
-                  <option value="lenovo:21H5">ThinkPad L14 Gen 4 AMD (21H5)</option>
-                  <option value="lenovo:21H6">ThinkPad L14 Gen 4 AMD (21H6)</option>
-                  <option value="lenovo:21L1">ThinkPad L14 Gen 5 Intel (21L1)</option>
-                  <option value="lenovo:21L2">ThinkPad L14 Gen 5 Intel (21L2)</option>
-                  <option value="lenovo:21L5">ThinkPad L14 Gen 5 AMD (21L5)</option>
-                  <option value="lenovo:21L6">ThinkPad L14 Gen 5 AMD (21L6)</option>
-                </optgroup>
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
               </select>
             </div>
           </div>
@@ -285,37 +251,8 @@
         </select>
       </div>
 
-      <!-- Filtro Origen de la Oferta -->
-      <div class="filter-col">
-        <label class="filter-label" for="filter-windows-admitted">Origen de la Oferta</label>
-        <select id="filter-windows-admitted" class="filter-select select-admitted" onchange="applyFilters()" aria-label="Filtrar por origen de la oferta">
-          <option value="">Todos los orígenes (WU y OEM)</option>
-          <option value="admitted">Ofertadas en Windows Update (Catálogo Microsoft)</option>
-          <option value="oem_only" id="opt-filter-oem-only">Solo Soporte Lenovo (No en Windows Update)</option>
-        </select>
       </div>
 
-      <!-- Filtro Canal Windows Update / Intune -->
-      <div class="filter-col">
-        <label class="filter-label" for="filter-intune">Canal Intune / WU</label>
-        <select id="filter-intune" class="filter-select" onchange="applyFilters()" aria-label="Filtrar por canal de Windows Update e Intune">
-          <option value="">Todos los canales</option>
-          <option value="automatic">Automático (Recomendada WU)</option>
-          <option value="manual_optional">Aprobación Intune (Opcional)</option>
-          <option value="priority_firmware">Prioritario (Firmware / BIOS)</option>
-        </select>
-      </div>
-
-      <!-- Filtro SO Windows 11 Build -->
-      <div class="filter-col">
-        <label class="filter-label" for="filter-os-build">SO Windows 11</label>
-        <select id="filter-os-build" class="filter-select select-os" onchange="applyFilters()" aria-label="Filtrar por versión de Windows 11">
-          <option value="">Todos los Builds Win 11</option>
-          <option value="win11-24h2">Compatibles con Windows 11 24H2</option>
-          <option value="win11-25h2">Compatibles con Windows 11 25H2</option>
-          <option value="win11-26h2">Compatibles con Windows 11 26H2</option>
-        </select>
-      </div>
 
       <!-- Búsqueda en Texto Libre -->
       <div class="filter-col filter-col-search">
@@ -347,6 +284,7 @@
         <span class="oem-badge" id="oem-badge">LENOVO</span>
         <span class="model-id-tag" id="model-id-display"></span>
         <span class="model-name-tag" id="model-name-display"></span>
+        <span class="last-updated-tag" id="last-updated-display" style="font-size: 0.85em; color: var(--text-muted); margin-left: 10px;"></span>
       </div>
 
       <div class="export-actions">
@@ -492,8 +430,8 @@
 
               <select id="fleet-filter-oem" class="fleet-select" onchange="filterFleetTable()">
                 <option value="">Todos los Fabricantes</option>
-                <option value="lenovo">Solo Lenovo</option>
-                <option value="hp">Solo HP</option>
+                
+                
               </select>
 
               <select id="fleet-filter-status" class="fleet-select" onchange="filterFleetTable()">
@@ -1194,5 +1132,5 @@
   <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
   <script src="app.js?v=9.1"></script>
-</body>
+<script>fetch("/api/fleet/settings").then(r=>r.json()).then(d=>{const s=document.getElementById("fleet-model-select");if(s&&d._meta.detectedModels){s.innerHTML="<option value=\"\">Selecciona un modelo de la flota corporativa...</option>"+d._meta.detectedModels.map(m=>`<option value="${m.oem}:${m.model_id}">${m.oem.toUpperCase()} ${m.model_name}</option>`).join("");}})</script></body>
 </html>

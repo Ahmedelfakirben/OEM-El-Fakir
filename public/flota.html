@@ -40,9 +40,6 @@
       </div>
 
       <div class="fleet-actions-row" style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="/api/agent/download-exe" id="btn-fleet-download-msi" class="fleet-btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Descargar ejecutable EXE para despliegue corporativo">
-          Descargar Agente Cliente
-        </a>
         <button type="button" id="btn-fleet-refresh" class="fleet-btn-secondary" onclick="loadFleetData(true)">
           Refrescar Flota
         </button>
@@ -91,12 +88,6 @@
         </div>
 
         <div class="fleet-filters-row" style="display:flex; gap:10px; flex-wrap:wrap;">
-          <select id="fleet-filter-group" class="fleet-select" onchange="filterFleetTable()">
-            <option value="">Todos los Grupos</option>
-            <option value="pilot">Grupo Piloto / IT</option>
-            <option value="general">Grupo General / Producción</option>
-            <option value="vip">Grupo VIP / Dirección</option>
-          </select>
 
           <select id="fleet-filter-oem" class="fleet-select" onchange="filterFleetTable()">
             <option value="">Todos los Fabricantes</option>
@@ -125,11 +116,9 @@
               <th>Fabricante &amp; Modelo</th>
               <th>Hardware (CPU / RAM)</th>
               <th>Sistema &amp; BIOS</th>
-              <th>Grupo de Políticas</th>
               <th>Cumplimiento</th>
               <th>Controladores</th>
               <th>Última Conexión</th>
-              <th style="text-align:right;">Acciones</th>
             </tr>
           </thead>
           <tbody id="fleet-table-tbody">

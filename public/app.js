@@ -1707,6 +1707,16 @@ function updateResultsHeader(count, oem, modelId) {
     }
   }
 
+  const lastUpdatedDisplay = $('last-updated-display');
+  if (lastUpdatedDisplay) {
+    if (state.lastMeta && state.lastMeta.lastUpdated) {
+      const d = new Date(state.lastMeta.lastUpdated);
+      lastUpdatedDisplay.textContent = `(Catálogo actualizado: ${d.toLocaleString()})`;
+    } else {
+      lastUpdatedDisplay.textContent = `(Sin sincronización reciente)`;
+    }
+  }
+
   const hasResults = count > 0;
   if ($('terminal-cmd-btn')) $('terminal-cmd-btn').disabled = !hasResults;
   if ($('export-csv-btn'))  $('export-csv-btn').disabled  = !hasResults;

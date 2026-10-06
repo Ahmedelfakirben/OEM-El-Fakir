@@ -1,0 +1,37 @@
+[
+  {
+    "id": "2026",
+    "name": "HP EliteBook 6 G2a 14 inch Notebook AI PCHP EliteBook 6 G2a 16 inch Notebook AI PCHP EliteBook 6 G2ah 14 inch Notebook PCHP EliteBook 6 G2ah 16 inch Notebook PCHP ProBook 4 G2a 14 inch Notebook AI PCHP ProBook 4 G2a 16 inch Notebook AI PCHP ProBook 4 G2ah 14 inch Notebook PCHP ProBook 4 G2ah 16 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "HSAS",
+    "name": "HP EliteBook 6 G2a 14 inch Notebook AI PCHP EliteBook 6 G2a 16 inch Notebook AI PCHP EliteBook 6 G2ah 14 inch Notebook PCHP EliteBook 6 G2ah 16 inch Notebook PCHP ProBook 4 G2a 14 inch Notebook AI PCHP ProBook 4 G2a 16 inch Notebook AI PCHP ProBook 4 G2ah 14 inch Notebook PCHP ProBook 4 G2ah 16 inch Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "ProBook"
+  },
+  {
+    "id": "2025",
+    "name": "HP EliteBook 8 G1a 13 inch Notebook Next Gen AI PCHP EliteBook 8 G1a 14 inch Notebook Next Gen AI PCHP EliteBook 8 G1a 16 inch Notebook Next Gen AI PCHP ZBook 8 G1ak 14 inch Mobile Workstation PCHP ZBook 8 G1as 14 inch Mobile Workstation PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "EliteBook"
+  },
+  {
+    "id": "2022",
+    "name": "HP Elite Dragonfly 13.5 inch G3 Notebook PC",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Dragonfly"
+  },
+  {
+    "id": "2023",
+    "name": "HP ZCentral 4R Workstation",
+    "oem": "hp",
+    "brand": "HP",
+    "series": "Desconocido"
+  }
+]

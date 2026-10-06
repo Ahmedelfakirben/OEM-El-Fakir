@@ -340,11 +340,12 @@ app.get('/api/script/:oem/:modelId', timeoutMiddleware(REQUEST_TIMEOUT_MS), asyn
 
   try {
     let drivers = [];
-    if (oem === 'hp') {
-      drivers = await hpFetch(modelId, 'win11-64');
-    } else {
-      drivers = await lenovoFetch(modelId);
-    }
+    const db = fleetStorage.getDb();
+    const rows = db.prepare(`SELECT DISTINCT driver_name as name, category, target_version as version, severity, '2023-01-01' as releaseDate, '' as downloadUrl, 'N/A' as fileSize FROM device_drivers dd JOIN devices d ON d.id = dd.device_id WHERE d.model_id = ?`).all(modelId);
+    drivers = rows.map(r => ({
+      name: r.name, category: r.category, version: r.version, severity: r.severity,
+      releaseDate: r.releaseDate, downloadUrl: r.downloadUrl, fileSize: r.fileSize
+    }));
 
     const script = generatePowerShellScript(oem, modelId, modelId, drivers);
 

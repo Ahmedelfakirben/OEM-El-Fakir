@@ -11,20 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <nav class="primary-nav" aria-label="Navegación principal">
         <a href="/index.html" id="nav-btn-catalog" class="nav-tab-btn">
-          <span class="nav-tab-label">Catálogo OEM</span>
+          <span class="nav-tab-label">Catálogo de Modelos</span>
         </a>
         <a href="/flota.html" id="nav-btn-fleet" class="nav-tab-btn">
-          <span class="nav-tab-label">Flota de Equipos</span>
+          <span class="nav-tab-label">Equipos Intune</span>
           <span id="nav-fleet-count-badge" class="nav-count-badge">0</span>
-        </a>
-        <a href="/politicas.html" id="nav-btn-settings" class="nav-tab-btn">
-          <span class="nav-tab-label">Políticas y Configuración</span>
-        </a>
-        <a href="/conectores.html" id="nav-btn-connectors" class="nav-tab-btn">
-          <span class="nav-tab-label">Conectores &amp; APIs</span>
-        </a>
-        <a href="/audit.html" id="nav-btn-audit" class="nav-tab-btn">
-          <span class="nav-tab-label">Logs Auditoría</span>
         </a>
       </nav>
       <div class="user-profile">
